@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// page slide animate scss
+//-----------------------------------------------------
+
+// 左方向动画
+//---------------------------------------
+// 从右向左方向进入动画
+@mixin left-in($startX: 100%, $endX: 0) {
+    @include keyframes(left-in) {
+        0% {
+            @include translate3d($startX, 0, 0);
+        }
+        100% {
+            @include translate3d($endX, 0, 0);
+        }
+    }
+}
+
+// 从右向左方向消失动画
+@mixin left-out($startX: 0, $endX: -100%) {
+    @include keyframes(left-out) {
+        0% {
+            @include translate3d($startX, 0, 0);
+        }
+        100% {
+            @include translate3d($endX, 0, 0);
+        }
+    }
+}
+
+// 右方向动画
+//---------------------------------------
+// 从左向右方向进入动画
+@mixin right-in($startX: -100%, $endX: 0) {
+    @include keyframes(right-in) {
+        0% {
+            @include translate3d($startX, 0, 0);
+        }
+        100% {
+            @include translate3d($endX, 0, 0);
+        }
+    }
+}
+
+// 从左向右方向消失动画
+@mixin right-out($startX: 0, $endX: 100%) {
+    @include keyframes(right-out) {
+        0% {
+            @include translate3d($startX, 0, 0);
+        }
+        100% {
+            @include translate3d($endX, 0, 0);
+        }
+    }
+}
+
+// 上方向动画
+//---------------------------------------
+// 从下向上方向进入动画
+@mixin up-in($startY: 2000px, $endY: 0) {
+    @include keyframes(up-in) {
+        0% {
+            @include translate3d(0, $startY, 0);
+        }
+        100% {
+            @include translate3d(0, $endY, 0);
+        }
+    }
+}
+
+// 从下向上方向消失动画
+@mixin up-out($startY: 0, $endY: -2000px) {
+    @include keyframes(up-out) {
+        0% {
+            @include translate3d(0, $startY, 0);
+        }
+        100% {
+            @include translate3d(0, $endY, 0);
+        }
+    }
+}
+
+// 下方向动画
+//---------------------------------------
+// 从上向下方向进入动画
+@mixin down-in($startY: -2000px, $endY: 0) {
+    @include keyframes(down-in) {
+        0% {
+            @include translate3d(0, $startY, 0);
+        }
+        100% {
+            @include translate3d(0, $endY, 0);
+        }
+    }
+}
+
+// 从上向下方向消失动画
+@mixin down-out($startY: 0, $endY: 2000px) {
+    @include keyframes(down-out) {
+        0% {
+            @include translate3d(0, $startY, 0);
+        }
+        100% {
+            @include translate3d(0, $endY, 0);
+        }
+    }
+}
+
+// 渐隐动画
+//---------------------------------------
+// 渐隐出现
+@mixin fade-in($startOpacity: 0) {
+    @include keyframes(fade-in) {
+        0% {
+            opacity: $startOpacity;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+// 渐隐消失
+@mixin fade-out {
+    @include keyframes(fade-out) {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+}

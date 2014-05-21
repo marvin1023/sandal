@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+//----------------------------------------------------- 
+// font-face scss
+// http://icomoon.io/
+// 如需要全部的icon class，设置$fontClassAllSwitch为true即可
+// 如输出单个icon class，直接调用@include font-icon($class);
+// 如要输出大于或等于2个icon，覆写fontClassOutput即可，如fontClassOutput: music search heart;则输出这三个icon的class
+//-----------------------------------------------------
+
+// variables
+//-----------------------------------------------------
+$fontFamily:            icomoon !default;
+$fontFilePath:          "fonts/icomoon" !default;
+$fontClassPrefix:       icon !default;
+$fontClassAllSwitch:    false !default;
+$fontClassOutput:       () !default;
+
+$fontClassAll:         (wifi:         "\e62f",
+                        comment:      "\e601",
+                        user:         "\e632",
+                        cart:         "\e606",
+                        calendar:     "\e607",
+                        music:        "\e60f",
+                        trashcan:     "\e61a",
+                        home:         "\e600",
+                        image:        "\e602",
+                        qrcode:       "\e605",
+                        loading:      "\e60a",
+                        refresh:      "\e60b",
+                        search:       "\e60c",
+                        cog:          "\e60e",
+                        arrow:        "\e619",
+                        arrow2:       "\e61b",
+                        c-checked:    "\e622",
+                        c-unchecked:  "\e623",
+                        r-checked:    "\e625",
+                        r-unchecked:  "\e626",
+                        question:     "\f059",
+                        info:         "\f05a",
+                        exclamation:  "\f06a",
+                        forward:      "\f064",
+                        angle:        "\f104",
+                        angle-double: "\f100",
+                        ellipsis:     "\f142",
+                        pencil:       "\e61c",
+                        list:         "\e61e",
+                        list2:        "\e629",
+                        lock:         "\e62c",
+                        phone:        "\e610",
+                        mail:         "\e611",
+                        location:     "\e61f",
+                        target:       "\e603",
+                        heart:        "\e604",
+                        star:         "\e608",
+                        creditcard:   "\e60d",
+                        checkmark:    "\e612",
+                        cross:        "\e613",
+                        minus:        "\e614",
+                        plus:         "\e615") !default;
+
+// 申明@font-face
+@include font-face($fontFamily, $fontFilePath);
+
+// 定义mixin等基础功能
+//-----------------------------------------------------
+
+// 基础样式
+%font-basic {
+    display: inline-block;
+    font-family: $fontFamily;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    // Better Font Rendering 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// icon mixin
+@mixin font-icon($class) {
+    .#{$fontClassPrefix}-#{$class} {
+        @extend %font-basic;
+        &:before {
+            content: map-get($fontClassAll, $class);
+            @extend %box-sizing-border;
+        }
+    }
+}
+
+// 全部输出
+@if $fontClassAllSwitch {
+    @each $class, $content in $fontClassAll {
+        .#{$fontClassPrefix}-#{$class} {
+            @extend %font-basic;
+            &::before {
+                content: $content;
+                @extend %border-box;
+            }
+        }
+    }
+}
+@else {
+    // 部分输出的class
+    @if length($fontClassOutput) >= 2 {
+        @each $class in $fontClassOutput {
+            @include font-icon($class);
+        }
+    }
+}

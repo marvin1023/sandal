@@ -1,0 +1,342 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------  
+// mixin scss
+// 包括常用的mixin，%及@function
+// mixin，通过@include调用，样式通过拷贝的方式使用，尤其适用于传递参数
+// %，通过@extend调用，样式通过组合申明的方式使用，适用于不传参数的代码片段  
+// @function，返回一个值，用于调用
+//-----------------------------------------------------
+
+// mixin & %
+// 既定义了mixin也定义了%，根据需求使用@include或@extend调用
+//-----------------------------------------------------
+
+// Center-align a block level element
+@mixin center-block($extend: true) {
+    @if $extend {
+        @extend %center-block;
+    }
+    @else {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+%center-block {
+    @include center-block(false);
+}
+
+// clearfix
+@mixin clearfix($extend: true) {
+    @if $extend {
+        @extend %clearfix;
+    }
+    @else {
+        &:before,
+        &:after {
+            content: "";
+            display: table;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+}
+
+%clearfix {
+    @include clearfix(false);
+}
+
+// Hide from both screenreaders and browsers: h5bp.com/u
+// 既隐藏于视觉也隐藏于屏幕浏览器
+@mixin hidden($extend: true) {
+    @if $extend {
+        @extend %hidden;
+    }
+    @else {
+        display: none !important;
+        visibility: hidden;
+    }
+}
+
+%hidden {
+    @include hidden(false);
+}
+
+// Hide only visually, but have it available for screenreaders
+// 只隐藏于视觉，屏幕浏览器可以阅读
+@mixin visually-hidden($extend: true) {
+    @if $extend {
+        @extend %visually-hidden;
+    }
+    @else {
+        position: absolute;
+        clip: rect(1px, 1px, 1px, 1px);
+        //standard
+    }
+}
+
+%visually-hidden {
+    @include visually-hidden(false);
+}
+
+// ul has list style
+@mixin ul-has-style($style: disc) {
+    margin-left: 25px;
+    list-style: disc;
+}
+
+%ul-has-style {
+    @include ul-has-style;
+}
+
+// Text overflow
+// 元素可以设置宽度才可应用省略号
+%ellipsis-basic {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin ellipsis($width: 100%) {
+    @extend %ellipsis-basic;
+    width: $width;
+}
+
+// triangle
+%triangle-basic {
+    content: "";
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+@mixin triangle($direction, $size, $borderColor) {
+    @extend %triangle-basic;
+    @if $direction == top {
+        border-bottom: $size solid $borderColor;
+        border-left: $size dashed transparent;
+        border-right: $size dashed transparent;
+    }
+    @else if $direction == right {
+        border-left: $size solid $borderColor;
+        border-top: $size dashed transparent;
+        border-bottom: $size dashed transparent;
+    }
+    @else if $direction == bottom {
+        border-top: $size solid $borderColor;
+        border-left: $size dashed transparent;
+        border-right: $size dashed transparent;
+    }
+    @else if $direction == left {
+        border-right: $size solid $borderColor;
+        border-top: $size dashed transparent;
+        border-bottom: $size dashed transparent;
+    }
+}
+
+// disabled
+// 禁用样式，加!important
+@mixin disabled($bgColor: #e6e6e6, $textColor: #ababab, $borderColor: false) {
+    background-color: $bgColor !important;
+    color: $textColor !important;
+    @if $borderColor {
+        border: 1px solid $border-color;
+    }
+}
+
+%disabled {
+    @include disabled;
+}
+
+// 水平间隔线，适用于行列表
+@mixin horizontal-line($border: 1px dashed $gray, $padding: 10px) {
+    border-bottom: $border;
+    padding-top: $padding;
+    padding-bottom: $padding;
+}
+
+%horizontal-line {
+    @include horizontal-line;
+}
+
+// flex center
+// display:flex
+%display-flex,%flex-display {
+    @include display-flex;
+}
+
+@mixin flex-center($direction: both) {
+    @extend %display-flex;
+    @if $direction == both {
+        @include justify-content(center);
+        @include align-items(center);
+    }
+    @else if $direction == x {
+        @include justify-content(center);
+    }
+    @else if $direction == y {
+        @include align-items(center);
+    }
+}
+
+// fixed top & bottom
+@mixin fixed($pos: 0) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    @if $pos == bottom {
+        bottom: 0;
+    }
+    @else {
+        top: $pos;
+    }
+}
+
+%fixed-top {
+    @include fixed;
+}
+
+%fixed-bottom {
+    @include fixed($pos: bottom);
+}
+
+// justify
+@mixin justify($extend: true) {
+    @if $extend {
+        @extend %justify;
+    }
+    @else {
+        @extend %display-flex;
+        @include justify-content(space-between);
+    }
+}
+
+%justify {
+    @include justify(false);
+}
+
+// mixin
+// 只定义了mixin，所以只能通过@include来调用
+//-----------------------------------------------------
+
+// rem
+// thanks:http://drublic.de/blog/rem-fallback-sass-less/;
+// @include rem(width,20)   ->   width: 280px; width: 20rem;
+@mixin rem($property, $px) {
+    #{$property}: $px * $baseFontSize;
+    #{$property}: #{$px}rem;
+}
+
+// @include rem-font-size(2)  ->  font-size: 28px; font-size: 2rem;
+@mixin rem-font-size($px) {
+    font-size: $px * $baseFontSize;
+    font-size: #{$px}rem;
+}
+
+// table 等分
+@mixin table-equal($children: li) {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    $childrenEle: li div p a span strong;
+    @if index($childrenEle, $children) {
+        #{$children} {
+            display: table-cell;
+        }
+    }
+    @else {
+        .#{$children} {
+            display: table-cell;
+        }
+    }
+}
+
+// flex 等分
+@mixin flex-equal($children: li) {
+    @extend %display-flex;
+    $childrenEle: li div p a span strong;
+    @if index($childrenEle, $children) {
+        #{$children} {
+            @include flex(1);
+        }
+    }
+    @else {
+        .#{$children} {
+            @include flex(1);
+        }
+    }
+}
+
+// translate 50%
+@mixin translate-center($direction: both) {
+    @if $direction == both {
+        top: 50%;
+        left: 50%;
+        @include translate(-50%, -50%);
+    }
+    @else if $direction == x {
+        left: 50%;
+        @include translate(-50%, 0);
+    }
+    @else if $direction == y {
+        top: 50%;
+        @include translate(0, -50%);
+    }
+}
+
+// 旋转360
+@mixin circle-rotate($deg: 360) {
+    @include keyframes(circle-rotate) {
+        0% {
+            @include rotate(0deg);
+        }
+        100% {
+            @include rotate(360deg);
+        }
+    }
+}
+
+// Retina images. 
+// @include image-2x("../images/img-2x.png", 200px, 200px);
+// Use with care - http://37signals.com/svn/posts/3271-easy-retina-ready-images-using-scss
+@mixin image-2x($url, $width, $height) {
+    @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+        // on retina, use image that's scaled by 2
+        background-image: url(#{$url});
+        background-size: $width $height;
+    }
+}
+
+// %
+// 只定义了%，所以只能通过@extend来调用
+//-----------------------------------------------------
+
+// 普通all transition特效
+%all-transition {
+    @include transition;
+}
+
+// border-box
+%border-box {
+    @include box-sizing;
+}
+
+//function
+//-----------------------------------------------------
+
+// px转em
+@function pxToEm($px, $base: 16) {
+    @return $px / $base * 1em;
+}
+
+// 为颜色添加白色，以百分比形式
+@function tint($color, $percent) {
+    @return mix(white, $color, $percent);
+}
+
+// 为颜色添加黑色，以百分比形式
+@function shade($color, $percent) {
+    @return mix(black, $color, $percent);
+}

@@ -1,0 +1,23 @@
+@charset "UTF-8";
+//-----------------------------------------------------	
+// base scss
+// 提供所有的基础功能包括：变量设置，css3前缀填充，@media，基础mixin，页面动画，reset样式
+// 默认会输出reset样式一份
+//-----------------------------------------------------
+
+//-----------------------------------------------------
+// author:      结一 (http://weibo.com/marvin1023)
+// version:     1.0
+// time:        2014-05-20
+// url:         https://github.com/marvin1023/sandal/
+//-----------------------------------------------------
+
+
+// 导入core中的基础文件
+//-----------------------------------------------------
+@import "core/setting";
+@import "core/css3";
+@import "core/media-queries";
+@import "core/mixin";
+@import "core/page-animate";
+@import "core/reset";
