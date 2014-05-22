@@ -1,5 +1,5 @@
 #Sandal
-`sandal`取其“檀香”之意，针对`web app`，为前端人员提供了一些基础和常用的`scss`，基于它你可以扩展出各种组件。
+sandal取其“檀香”之意，针对`web app`，为前端人员提供了一些基础和常用的`scss`，基于它你可以扩展出各种组件。
 
 ##如何使用
 sandal和[sassCore](https://github.com/marvin1023/sassCore)一样，分核心文件和扩展文件两种。其中核心文件提供一些基础的样式和@mixin，%等方便调用；而扩展文件则提供一些模块的样式。
