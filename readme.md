@@ -24,7 +24,7 @@
 
 ##文件简述
 
-sassCore包括两个集合文件（base，function）和两个文件夹（core，ext）。其中core文件夹中为核心基础文件，包括setting，css3，media-queries，mixin，page-animate，reset；而ext文件夹中是一些扩展文件，包括font-face。
+sandal包括两个集合文件（base，function）和两个文件夹（core，ext）。其中core文件夹中为核心基础文件，包括setting，css3，media-queries，mixin，page-animate，reset；而ext文件夹中是一些扩展文件，包括font-face。
 
 两个集合文件（base，function）导入的都是core中的文件，区别在于base除了提供基本功能之外还会生成一份reset样式，而function则只提供基本功能。至于ext中的文件则属于额外的一些模块扩展，可根据需求导入。
 
