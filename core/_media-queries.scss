@@ -44,6 +44,18 @@
 // screen
 //-----------------------------------------------------
 
+@mixin landscape() {
+    @media screen and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin portrait() {
+    @media screen and (orientation: portrait) {
+        @content;
+    }
+}
+
 @mixin screen($resMin, $resMax) {
     @media screen and (min-width: $resMin) and (max-width: $resMax) {
         @content;

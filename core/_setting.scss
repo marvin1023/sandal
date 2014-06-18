@@ -6,15 +6,19 @@
 
 // font相关
 //-----------------------------------------------------	
-$baseFontSize:                   14px !default;
+$baseFontSize:                   1.4rem !default; 
 $baseLineHeight:                 1.5 !default;
-$baseFont:                       Arial, Roboto, "Droid Sans", "Hiragino Sans GB", STXihei, "SimSun", "sans-serif" !default;
-$baseCnFont:                     "Helvetica Neue", "Droid Sans Fallback" !default; // ios华文黑体,Android
-$baseEnFont:                     Helvetica, Roboto, "Droid Sans" !default; // ios,Android 4.0之后,Android 4.0之前
+$baseFont:                       "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif !default;
+$baseCnFont:                     STHeiTi, Roboto, "Droid Sans Fallback", Arial !default; // ios华文黑体,Android 4.0之后,Android 4.0之前
+$baseEnFont:                     "Helvetica Neue", Helvetica, Roboto, "Droid Sans", Arial !default; // ios4.0+,ios4.0-,Android 4.0+,Android 4.0-
 
 // 元素上下间距
 //-----------------------------------------------------	
 $baseGap:                        10px !default;
+
+// header/footer的高度
+//-----------------------------------------------------	
+$barHeight:                      44px !default; 
 
 // 基本颜色
 // https://github.com/mrmrs/colors
@@ -84,8 +88,7 @@ $smallRadius:                    3px !default;
 
 // z-index
 //-----------------------------------------------------	
-$zindexDropdown:                 1000 !default;
-$zindexFixedTopbar:              1010 !default;
-$zindexTooltip:                  1020 !default;
-$zindexAlert:                    1030 !default;
-$zindexModal:                    1100 !default;
+
+$zIndexHeader:                   960 !default;
+$zIndexFooter:                   940 !default;
+$zIndexOverlay:                  980 !default; // 默认高于header和footer部分

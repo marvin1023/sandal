@@ -136,6 +136,34 @@
     }
 }
 
+// arrow
+@mixin arrow($direction: right, $color: $gray, $size: 10px) {
+    display: inline-block;
+    width: $size;
+    height: $size;
+    vertical-align: middle;
+    @if $direction == top {
+        border-top: 1px solid $color;
+        border-right: 1px solid $color;
+        @include rotate(-45deg);
+    }
+    @else if $direction == right {
+        border-top: 1px solid $color;
+        border-right: 1px solid $color;
+        @include rotate(45deg);
+    }
+    @else if $direction == bottom {
+        border-left: 1px solid $color;
+        border-bottom: 1px solid $color;
+        @include rotate(-45deg);
+    }
+    @if $direction == left {
+        border-left: 1px solid $color;
+        border-bottom: 1px solid $color;
+        @include rotate(45deg);
+    }
+}
+
 // disabled
 // 禁用样式，加!important
 @mixin disabled($bgColor: #e6e6e6, $textColor: #ababab, $borderColor: false) {
@@ -225,13 +253,13 @@
 // thanks:http://drublic.de/blog/rem-fallback-sass-less/;
 // @include rem(width,20)   ->   width: 280px; width: 20rem;
 @mixin rem($property, $px) {
-    #{$property}: $px * $baseFontSize;
+    #{$property}: $px * 10px;
     #{$property}: #{$px}rem;
 }
 
 // @include rem-font-size(2)  ->  font-size: 28px; font-size: 2rem;
 @mixin rem-font-size($px) {
-    font-size: $px * $baseFontSize;
+    font-size: $px * 10px;
     font-size: #{$px}rem;
 }
 
@@ -271,6 +299,7 @@
 
 // translate 50%
 @mixin translate-center($direction: both) {
+    position: absolute;
     @if $direction == both {
         top: 50%;
         left: 50%;
@@ -319,7 +348,7 @@
 }
 
 // border-box
-%border-box {
+%box-sizing-border {
     @include box-sizing;
 }
 

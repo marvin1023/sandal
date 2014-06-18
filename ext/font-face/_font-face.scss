@@ -11,53 +11,64 @@
 // variables
 //-----------------------------------------------------
 $fontFamily:            icomoon !default;
-$fontFilePath:          "fonts/icomoon" !default;
-$fontClassPrefix:       icon !default;
+$fontFilePath:          "../fonts/icomoon" !default;
+$fontClassPrefix:       if !default; // icon-font
 $fontClassAllSwitch:    false !default;
 $fontClassOutput:       () !default;
 
-$fontClassAll:         (wifi:         "\e62f",
-                        comment:      "\e601",
-                        user:         "\e632",
-                        cart:         "\e606",
-                        calendar:     "\e607",
-                        music:        "\e60f",
-                        trashcan:     "\e61a",
-                        home:         "\e600",
-                        image:        "\e602",
-                        qrcode:       "\e605",
-                        loading:      "\e60a",
-                        refresh:      "\e60b",
-                        search:       "\e60c",
-                        cog:          "\e60e",
-                        arrow:        "\e619",
-                        arrow2:       "\e61b",
-                        c-checked:    "\e622",
-                        c-unchecked:  "\e623",
-                        r-checked:    "\e625",
-                        r-unchecked:  "\e626",
-                        question:     "\f059",
-                        info:         "\f05a",
-                        exclamation:  "\f06a",
-                        forward:      "\f064",
-                        angle:        "\f104",
-                        angle-double: "\f100",
-                        ellipsis:     "\f142",
-                        pencil:       "\e61c",
-                        list:         "\e61e",
-                        list2:        "\e629",
-                        lock:         "\e62c",
-                        phone:        "\e610",
-                        mail:         "\e611",
-                        location:     "\e61f",
-                        target:       "\e603",
-                        heart:        "\e604",
-                        star:         "\e608",
-                        creditcard:   "\e60d",
-                        checkmark:    "\e612",
-                        cross:        "\e613",
-                        minus:        "\e614",
-                        plus:         "\e615") !default;
+$fontClassAll:         (wifi:                "\e62f",
+                        comment:             "\e601",
+                        user:                "\e632",
+                        map:                 "\e61b",
+                        cart:                "\e606",
+                        date:                "\e607",
+                        music:               "\e60f",
+                        home:                "\e600",
+                        image:               "\e602",
+                        video:               "\e61d",
+                        tags:                "\e61f",
+                        qrcode:              "\e605",
+                        forward:             "\e608",
+                        back:                "\e609",
+                        loading:             "\e60a",
+                        refresh:             "\e60b",
+                        search:              "\e60c",
+                        con:                 "\e60e",
+                        gift:                "\e620",
+                        trashcan:            "\e621",
+                        logout:              "\e622",
+                        files:               "\e624",
+                        question:            "\e616",
+                        info:                "\e617",
+                        alert:               "\e60d",
+                        arrow-up:            "\e604",
+                        arrow-right:         "\e623",
+                        arrow-down:          "\e611",
+                        arrow-left:          "\e612",
+                        checkbox-checked:    "\e625",
+                        checkbox:            "\e626",
+                        radio-checked:       "\e627",
+                        radio:               "\e628",
+                        mail:                "\f003",
+                        heart:               "\f08a",
+                        star:                "\f006",
+                        voice:               "\f130",
+                        voice-no:            "\f131",
+                        ellipsis:            "\f142",
+                        pencil:              "\e61c",
+                        list:                "\e61e",
+                        lock:                "\e62c",
+                        phone:               "\e610",
+                        target:              "\e603",
+                        card:                "\e613",
+                        checkmark:           "\e614",
+                        cross:               "\e615",
+                        plus:                "\e619",
+                        minus:               "\e618",
+                        angle-up:            "\e636",
+                        angle-right:         "\e62a",
+                        angle-down:          "\e629",
+                        angle-left:          "\e61a") !default;
 
 // 申明@font-face
 @include font-face($fontFamily, $fontFilePath);
@@ -68,13 +79,17 @@ $fontClassAll:         (wifi:         "\e62f",
 // 基础样式
 %font-basic {
     display: inline-block;
+    vertical-align: -2px;
     font-family: $fontFamily;
+    font-size: 1.6rem;
+    line-height: 1;
     speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
     text-transform: none;
-    line-height: 1;
+    @extend %box-sizing-border;
+
     // Better Font Rendering 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -83,10 +98,9 @@ $fontClassAll:         (wifi:         "\e62f",
 // icon mixin
 @mixin font-icon($class) {
     .#{$fontClassPrefix}-#{$class} {
-        @extend %font-basic;
-        &:before {
+        &::before {
+            @extend %font-basic;
             content: map-get($fontClassAll, $class);
-            @extend %box-sizing-border;
         }
     }
 }
@@ -95,10 +109,9 @@ $fontClassAll:         (wifi:         "\e62f",
 @if $fontClassAllSwitch {
     @each $class, $content in $fontClassAll {
         .#{$fontClassPrefix}-#{$class} {
-            @extend %font-basic;
             &::before {
+                @extend %font-basic;
                 content: $content;
-                @extend %border-box;
             }
         }
     }
