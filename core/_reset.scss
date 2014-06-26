@@ -17,7 +17,7 @@
  */
 
 html {
-    font-family: sans-serif; // 1
+    font-family: $baseFont; // 0
     -ms-text-size-adjust: 100%; // 2
     -webkit-text-size-adjust: 100%; // 2
     font-size: 62.5%;
@@ -489,11 +489,6 @@ h3 {
 // 表单placeholder样式
 // 注意不可联合申明，否则无效
 @if nth($placeholder, 1) {
-    // Firefox 4-18
-    input:-moz-placeholder,
-    textarea:-moz-placeholder {
-        color: nth($placeholder, 2);
-    }
     // Firefox 19+
     input::-moz-placeholder,
     textarea::-moz-placeholder {
