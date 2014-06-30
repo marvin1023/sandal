@@ -333,8 +333,8 @@ $flexMid:              true !default;
     @include prefixer(transform, rotate($degrees));
 }
 
-@mixin rotate3D($degrees...) {
-    @include prefixer(transform, rotate3D($degrees));
+@mixin rotate3d($degrees...) {
+    @include prefixer(transform, rotate3d($degrees));
 }
 
 @mixin rotateX($degrees) {
@@ -354,8 +354,8 @@ $flexMid:              true !default;
     @include prefixer(transform, scale($ratio));
 }
 
-@mixin scale3D($ratio...) {
-    @include prefixer(transform, scale3D($ratio));
+@mixin scale3d($ratio...) {
+    @include prefixer(transform, scale3d($ratio));
 }
 
 @mixin scaleX($ratio) {
@@ -375,8 +375,8 @@ $flexMid:              true !default;
     @include prefixer(transform, translate($px));
 }
 
-@mixin translate3D($px...) {
-    @include prefixer(transform, translate3D($px));
+@mixin translate3d($px...) {
+    @include prefixer(transform, translate3d($px));
 }
 
 @mixin translateX($px) {
@@ -414,8 +414,8 @@ $flexMid:              true !default;
     @include prefixer(transform, matrix($args));
 }
 
-@mixin matrix3D($args...) {
-    @include prefixer(transform, matrix3D($args));
+@mixin matrix3d($args...) {
+    @include prefixer(transform, matrix3d($args));
 }
 
 // perspective
