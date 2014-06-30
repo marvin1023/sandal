@@ -13,8 +13,9 @@
 $fontFamily:            icomoon !default;
 $fontFilePath:          "../fonts/icomoon" !default;
 $fontClassPrefix:       if !default; // icon-font
-$fontClassAllSwitch:    false !default;
+$fontClassAllSwitch:    true !default;
 $fontClassOutput:       () !default;
+$fontPseudo:            true !default;
 
 $fontClassAll:         (wifi:                "\e62f",
                         comment:             "\e601",
@@ -88,19 +89,26 @@ $fontClassAll:         (wifi:                "\e62f",
     font-weight: normal;
     font-variant: normal;
     text-transform: none;
-    @extend %box-sizing-border;
 
     // Better Font Rendering 
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale;    
+    @if $fontPseudo {
+        @extend %box-sizing-border;
+    }
 }
 
 // icon mixin
 @mixin font-icon($class) {
     .#{$fontClassPrefix}-#{$class} {
-        &::before {
+        @if $fontPseudo {
+            &::before {
+                @extend %font-basic;
+                content: map-get($fontClassAll, $class);
+            }
+        }
+        @else{
             @extend %font-basic;
-            content: map-get($fontClassAll, $class);
         }
     }
 }
@@ -109,9 +117,14 @@ $fontClassAll:         (wifi:                "\e62f",
 @if $fontClassAllSwitch {
     @each $class, $content in $fontClassAll {
         .#{$fontClassPrefix}-#{$class} {
-            &::before {
+            @if $fontPseudo {
+                &::before {
+                    @extend %font-basic;
+                    content: $content;
+                }
+            }
+            @else{
                 @extend %font-basic;
-                content: $content;
             }
         }
     }
