@@ -245,6 +245,22 @@
     @include justify(false);
 }
 
+// tranform渐隐动画
+@mixin transition-transform($opacity: true) {
+    @if $opacity {
+        -webkit-transition: -webkit-transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    @else {
+        -webkit-transition: -webkit-transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
+    }
+
+}
+%transition-transform {
+    @include transition-transform;
+}
+
 // mixin
 // 只定义了mixin，所以只能通过@include来调用
 //-----------------------------------------------------
@@ -343,13 +359,9 @@
 //-----------------------------------------------------
 
 // 普通all transition特效
-%all-transition {
+%all-transition,
+%transition-all {
     @include transition;
-}
-
-// tranform动画
-%transition-transform{
-    @include transition-property(transform);
 }
 
 // translate3d
