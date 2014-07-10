@@ -112,7 +112,7 @@
     overflow: hidden;
 }
 
-@mixin triangle($direction, $size, $borderColor) {
+@mixin triangle($direction: top, $size: 6px, $borderColor: $gray) {
     @extend %triangle-basic;
     @if $direction == top {
         border-bottom: $size solid $borderColor;
@@ -137,29 +137,29 @@
 }
 
 // arrow
-@mixin arrow($direction: right, $color: $gray, $size: 10px) {
+@mixin arrow($direction: right, $size: 10px, $borderSize: 2px, $borderColor: $gray) {
     display: inline-block;
+    vertical-align: middle;
     width: $size;
     height: $size;
-    vertical-align: middle;
     @if $direction == top {
-        border-top: 1px solid $color;
-        border-right: 1px solid $color;
+        border-top: $borderSize solid $borderColor;
+        border-right: $borderSize solid $borderColor;
         @include rotate(-45deg);
     }
     @else if $direction == right {
-        border-top: 1px solid $color;
-        border-right: 1px solid $color;
+        border-top: $borderSize solid $borderColor;
+        border-right: $borderSize solid $borderColor;
         @include rotate(45deg);
     }
     @else if $direction == bottom {
-        border-left: 1px solid $color;
-        border-bottom: 1px solid $color;
+        border-left: $borderSize solid $borderColor;
+        border-bottom: $borderSize solid $borderColor;
         @include rotate(-45deg);
     }
     @if $direction == left {
-        border-left: 1px solid $color;
-        border-bottom: 1px solid $color;
+        border-left: $borderSize solid $borderColor;
+        border-bottom: $borderSize solid $borderColor;
         @include rotate(45deg);
     }
 }
@@ -319,15 +319,15 @@
     @if $direction == both {
         top: 50%;
         left: 50%;
-        @include translate(-50%, -50%);
+        @include translate3d(-50%, -50%, 0);
     }
     @else if $direction == x {
         left: 50%;
-        @include translate(-50%, 0);
+        @include translate3d(-50%, 0, 0);
     }
     @else if $direction == y {
         top: 50%;
-        @include translate(0, -50%);
+        @include translate3d(0, -50%, 0);
     }
 }
 
@@ -335,11 +335,15 @@
 @mixin circle-rotate($deg: 360) {
     @include keyframes(circle-rotate) {
         0% {
-            @include rotate(0deg);
+            @include rotate3d(0, 0, 1, 0);
         }
         100% {
-            @include rotate(360deg);
+            @include rotate3d(0, 0, 1, 360deg);
         }
+    }
+    .circle-rotate{
+        @include animation-name(circle-rotate);
+        @extend %animated;
     }
 }
 

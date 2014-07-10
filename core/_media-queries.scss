@@ -9,6 +9,8 @@
 //  developed on 14/11/2013
 //
 // Mixins:
+//   @ landscape                              // only landscape
+//   @ portrait                               // only portrait
 //   @ min-screen(width)                      // shortcut for @media screen and (min-width ...)
 //   @ max-screen(width)                      // shortcut for @media screen and (max-width ...)
 //   @ screen(min-width, max-width)           // shortcut for @media screen and (min-width ...) and (max-width ...)
@@ -41,7 +43,7 @@
 //
 //-----------------------------------------------------
 
-// screen
+// direction
 //-----------------------------------------------------
 
 @mixin landscape() {
@@ -55,6 +57,9 @@
         @content;
     }
 }
+
+// screen
+//-----------------------------------------------------
 
 @mixin screen($resMin, $resMax) {
     @media screen and (min-width: $resMin) and (max-width: $resMax) {
