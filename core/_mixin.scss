@@ -343,6 +343,39 @@
     }
 }
 
+// translate animate
+// 视觉之外
+@mixin translate-out($direction: left, $val: 100%, $opacity: 0) {
+    @if $direction == left {
+        @include translate3d(-$val, 0, 0);
+    }
+    @else if $direction == right {
+        @include translate3d($val, 0, 0);
+    }
+    @else if $direction == top {
+        @include translate3d(0, -$val, 0);
+    }
+    @else if $direction == bottom {
+        @include translate3d(0, $val, 0);
+    }
+
+    @if $opacity != false {
+        opacity: $opacity;
+        @extend %transition-transform;
+    }
+    @else {
+        @include transition-transform(false);
+    }
+}
+// 视觉之内
+@mixin translate-in($pos: 0 0 0, $opacity: 1) {
+    @include translate3d($pos);
+
+    @if $opacity != false {
+        opacity: $opacity;
+    }
+}
+
 // Retina images. 
 // @include image-2x("../images/img-2x.png", 200px, 200px);
 // Use with care - http://37signals.com/svn/posts/3271-easy-retina-ready-images-using-scss
@@ -379,6 +412,17 @@
     overflow-y: auto; // pc上浏览
     -webkit-overflow-scrolling: touch;
     overflow-scrolling: touch;
+}
+
+// page parallax slide animate
+// 页面视差滚动两个动画，quick为进入的页面，slow为离开的页面
+%parallax-slow {
+    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.42, 0, 0.58, 1.0) 0.1s;
+    transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1.0) 0.1s;
+}
+%parallax-quick {
+    -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.42, 0, 0.58, 1.0);
+    transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1.0);
 }
 
 //function
