@@ -336,12 +336,16 @@ input::-moz-focus-inner {
 }
 
 /**
- * Address Firefox 4+ setting `line-height` on `input` using `!important` in
- * the UA stylesheet.
+ * 1. Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ *    the UA stylesheet.
+ * 0. clear webkit add style
  */
 
 input {
-    line-height: normal;
+    line-height: normal; // 1
+    &:focus{
+        outline: 0 none; // 0
+    }
 }
 
 /**
