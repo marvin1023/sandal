@@ -170,7 +170,7 @@
     background-color: $bgColor !important;
     color: $textColor !important;
     @if $borderColor {
-        border: 1px solid $border-color;
+        border: 1px solid $borderColor;
     }
 }
 
