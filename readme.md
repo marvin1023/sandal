@@ -43,7 +43,7 @@ sandal包括两个集合文件（base，function）和两个文件夹（core，e
 负责功能方面的文件。这里我们大概分成三个部分，一个是混合部分即mixin（主要定义了一些常用的`flex`,`translate`等），一个是placeholder选择器部分即%，最后就是我们的function函数部分。我们常用的include及extend当然就是来自于这里了。
 
 ###reset
-在[normalize](http://necolas.github.io/normalize.css/)的基础上，根据目前我们大家的使用习惯进行了一些归零行动，及设置文字字体颜色。
+在[normalize](http://necolas.github.io/normalize.css/)的基础上，根据目前我们大家的使用习惯进行了一些归零行动，及设置文字字体颜色。严格来说这并不是专门针对移动端的重置，而是ie8+的重置，因为考虑到有些是专门做移动端，而有些则是移动为先，再则重置的东西也比较少，don't mind。当然有代码洁癖的可以进一步优化。
 
 ###ext文件
 
