@@ -41,7 +41,7 @@ body {
     font-size: $baseFontSize; // 0
     line-height: $baseLineHeight; // 0
     color: $textColor; // 0
-    background-color: $bodyBgColor; // 0
+    background-color: $bgColor; // 0
 }
 
 /* HTML5 display definitions
@@ -455,7 +455,6 @@ th {
 
 // 根据使用习惯，对normalize上进行补充
 //-----------------------------------------------------
-html,
 button,
 input,
 select,
