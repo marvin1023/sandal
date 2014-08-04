@@ -332,6 +332,7 @@
 }
 
 // 旋转360
+// loading
 @mixin circle-rotate($deg: 360) {
     @include keyframes(circle-rotate) {
         0% {
@@ -342,8 +343,7 @@
         }
     }
     .circle-rotate{
-        @include animation-name(circle-rotate);
-        @extend %animated;
+        @include animation(circle-rotate 0.6s linear infinite);
     }
 }
 

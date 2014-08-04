@@ -16,9 +16,10 @@ $baseEnFont:                     "Helvetica Neue", Helvetica, Roboto, "Droid San
 //-----------------------------------------------------	
 $baseGap:                        10px !default;
 
-// header/footer的高度
+// header,footer等的高度
 //-----------------------------------------------------	
-$barHeight:                      44px !default; 
+$barHeight:                      44px !default;
+$barSubHeight:                   40px !default;
 
 // 基本颜色
 // https://github.com/mrmrs/colors
