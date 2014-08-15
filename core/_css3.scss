@@ -329,7 +329,7 @@ $flexMid:              true !default;
 // Transformations
 //------------------------------------
 // rotate
-@mixin rotate($degrees...) {
+@mixin rotate($degrees) {
     @include prefixer(transform, rotate($degrees));
 }
 
