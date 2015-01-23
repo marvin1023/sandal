@@ -1,12 +1,13 @@
 # Sandal
 
-**sandal2.0不再提供css3前缀文件，在这推荐使用[autoprefixer](https://github.com/postcss/autoprefixer)来智能生成前缀（有grunt和gulp版本，有些客户端编译软件也集成了这个功能），如果想继续使用之前的前缀，请使用1.0版本（不再更新）**
+**sandal2.0不再提供css3前缀文件，在这推荐使用[autoprefixer](https://github.com/postcss/autoprefixer)来智能生成前缀（有grunt和gulp版本，有些客户端编译软件也集成了这个功能），之前的css3文件已经独立到[css3 scss](https://github.com/marvin1023/css3-scss)**
 
-sandal取其“檀香”之意，针对`web app`，为前端人员提供了一些基础的重置，常用的`mixin`，如flex布局，等分，水平垂直居中，常用svg图标等，基于它你可以扩展出各种组件。
+sandal取其“檀香”之意，针对移动端站点为前端人员提供了一些基础的重置，常用的`mixin`，如flex布局，等分，水平垂直居中，常用图标等，基于它你可以扩展出更多你需要的组件。
 
 ## 更新说明
 
 * 去掉了`_css3.scss`文件
+* 增加了`_animation.scss`文件
 * 将变量文件`_setting.scss`改成`_variables.scss`文件
 * 升级了`_media-queries.scss`
 * 优化了`_mixin.scss`
