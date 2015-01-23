@@ -12,7 +12,7 @@
 //-----------------------------------------------------
 $fontFamily:            icomoon !default;
 $fontFilePath:          "../fonts/icomoon" !default;
-$fontClassPrefix:       if !default; // icon-font
+$fontClassPrefix:       icon !default; // icon-font
 $fontClassAllSwitch:    true !default;
 $fontClassOutput:       () !default;
 $fontPseudo:            true !default;
@@ -55,7 +55,6 @@ $fontClassAll:         (wifi:                "\e62f",
                         star:                "\f006",
                         voice:               "\f130",
                         voice-no:            "\f131",
-                        ellipsis:            "\f142",
                         pencil:              "\e61c",
                         list:                "\e61e",
                         lock:                "\e62c",
@@ -64,8 +63,6 @@ $fontClassAll:         (wifi:                "\e62f",
                         card:                "\e613",
                         checkmark:           "\e614",
                         cross:               "\e615",
-                        plus:                "\e619",
-                        minus:               "\e618",
                         angle-up:            "\e636",
                         angle-right:         "\e62a",
                         angle-down:          "\e629",
@@ -94,7 +91,7 @@ $fontClassAll:         (wifi:                "\e62f",
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;    
     @if $fontPseudo {
-        @extend %box-sizing-border;
+        box-sizing: border-box;
     }
 }
 

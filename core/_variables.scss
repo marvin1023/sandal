@@ -6,11 +6,11 @@
 
 // font相关
 //-----------------------------------------------------	
-$baseFontSize:                   1.4rem !default; 
+$baseFontSize:                   14px !default; 
 $baseLineHeight:                 1.5 !default;
 $baseFont:                       "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif !default;
-$baseCnFont:                     STHeiTi, Roboto, "Droid Sans Fallback", Arial !default; // ios华文黑体,Android 4.0之后,Android 4.0之前
-$baseEnFont:                     "Helvetica Neue", Helvetica, Roboto, "Droid Sans", Arial !default; // ios4.0+,ios4.0-,Android 4.0+,Android 4.0-
+$baseFontCn:                     STHeiTi, Roboto, "Droid Sans Fallback", Arial !default; // ios华文黑体,Android 4.0之后,Android 4.0之前
+$baseFontEn:                     "Helvetica Neue", Helvetica, Roboto, "Droid Sans", Arial !default; // ios4.0+,ios4.0-,Android 4.0+,Android 4.0-
 
 // 元素上下间距
 //-----------------------------------------------------	
@@ -19,7 +19,6 @@ $baseGap:                        10px !default;
 // header,footer等的高度
 //-----------------------------------------------------	
 $barHeight:                      44px !default;
-$barSubHeight:                   40px !default;
 
 // 基本颜色
 // https://github.com/mrmrs/colors
@@ -65,31 +64,24 @@ $linkColor:                      #08c !default;
 
 // scaffolding
 //-----------------------------------------------------	
-$bgColor:                    $white !default;
+$bgColor:                        $white !default;
 $textColor:                      $grayDarker !default;
+$borderColor:                    #dbdbdb !default;
 
 // placeholder
 //-----------------------------------------------------	
 // 变量分别为：是否输出表单的占位符placeholder样式，文本色
 $placeholder:                    true $gray !default;
 
-// 交互配色
-// 警告，错误，成功，提示
-//-----------------------------------------------------	
-// 每个变量都有三个颜色值，分别为：文本色，背景色，边框色
-$warningColor:                   #514721 #fff6bf #ffd324 !default;
-$errorColor:                     #8a1f11 #fbe3e4 #fbc2c4 !default;
-$successColor:                   #264409 #e6efc2 #c6d880 !default;
-$infoColor:                      #205791 #d5edf8 #92cae4 !default;
+
 
 // radius
 //-----------------------------------------------------	
-$baseRadius:                     5px !default;
-$smallRadius:                    3px !default;
+$radiusBase:                     5px !default;
 
 // z-index
 //-----------------------------------------------------	
 
-$zIndexHeader:                   960 !default;
-$zIndexFooter:                   940 !default;
+$zIndexHeader:                   940 !default;
+$zIndexFooter:                   900 !default;
 $zIndexOverlay:                  980 !default; // 默认高于header和footer部分
