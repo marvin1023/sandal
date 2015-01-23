@@ -3,3 +3,4 @@ global.scss
 global.css
 .gitattributes
 .DS_Store
+demo/
