@@ -10,16 +10,16 @@
 <p>sandal和<a href="https://github.com/marvin1023/sassCore">sassCore</a>一样，分核心文件和扩展文件两种。其中核心文件提供一些基础的样式和@mixin，%等方便调用；而扩展文件则提供一些模块的样式。</p>
 <h3 id="-">核心文件调用</h3>
 <p>第一种除提供基础功能外，会产生一份<code>reset</code>样式：</p>
-<pre><code>@import &quot;d:/sandal/base&quot;;
+<pre><code>@import &quot;d:/sandal/core&quot;;
 </code></pre><p>第二种不产生任何样式，只提供功能的调用：</p>
 <pre><code>@import &quot;d:/sandal/function&quot;;
 </code></pre><h3 id="-">扩展文件调用</h3>
 <p>根据需要调用，以<code>font-face</code>为例：</p>
 <pre><code>@import &quot;d:/sandal/ext/font-face/font-face&quot;;
-</code></pre><p>注：因为<code>sass</code>不能导入在线<code>sass</code>文件，而sandal也没有提供安装版的使用，所以默认统一放在D盘进行调用。如使用的是mac，可放在用户目录中，通过根目录路径<code>/users/username/sandal/base</code>调用，其中username为你的用户名</p>
+</code></pre><p>注：因为<code>sass</code>不能导入在线<code>sass</code>文件，而sandal也没有提供安装版的使用，所以默认统一放在D盘进行调用。如使用的是mac，可放在用户目录中，通过根目录路径<code>/users/username/sandal/core</code>调用，其中username为你的用户名</p>
 <h2 id="-">文件简述</h2>
-<p>sandal包括两个集合文件（base，function）和三个文件夹（core，ext，components）。其中core文件夹中为核心基础文件，包括variables，media-queries，mixin，animation，reset；ext文件夹中是一些扩展文件，目前只包括font-face 和 svg 两种icons；components文件夹为组件，这里暂不介绍。</p>
-<p>两个集合文件（base，function）导入的都是core中的文件，区别在于base除了提供基本功能之外还会生成一份reset样式，而function则只提供基本功能。至于ext中的文件则属于额外的一些模块扩展，可根据需求导入。</p>
+<p>sandal包括两个集合文件（core，function）和三个文件夹（core，ext，components）。其中core文件夹中为核心基础文件，包括variables，media-queries，mixin，animation，reset；ext文件夹中是一些扩展文件，目前只包括font-face 和 svg 两种icons；components文件夹为组件，这里暂不介绍。</p>
+<p>两个集合文件（core，function）导入的都是core中的文件，区别在于core除了提供基本功能之外还会生成一份reset样式，而function则只提供基本功能。至于ext中的文件则属于额外的一些模块扩展，可根据需求导入。</p>
 <h3 id="core-">core文件</h3>
 <h4 id="variables">variables</h4>
 <p>负责基础变量的文件，如常用的颜色，字体等变量。</p>

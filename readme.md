@@ -17,7 +17,7 @@ sandal和[sassCore](https://github.com/marvin1023/sassCore)一样，分核心文
 
 第一种除提供基础功能外，会产生一份`reset`样式：
 
-	@import "d:/sandal/base";
+	@import "d:/sandal/core";
 
 第二种不产生任何样式，只提供功能的调用：
 
@@ -29,13 +29,13 @@ sandal和[sassCore](https://github.com/marvin1023/sassCore)一样，分核心文
 
 	@import "d:/sandal/ext/font-face/font-face";
 
-注：因为`sass`不能导入在线`sass`文件，而sandal也没有提供安装版的使用，所以默认统一放在D盘进行调用。如使用的是mac，可放在用户目录中，通过根目录路径`/users/username/sandal/base`调用，其中username为你的用户名
+注：因为`sass`不能导入在线`sass`文件，而sandal也没有提供安装版的使用，所以默认统一放在D盘进行调用。如使用的是mac，可放在用户目录中，通过根目录路径`/users/username/sandal/core`调用，其中username为你的用户名
 
 ## 文件简述
 
-sandal包括两个集合文件（base，function）和三个文件夹（core，ext，components）。其中core文件夹中为核心基础文件，包括variables，media-queries，mixin，animation，reset；ext文件夹中是一些扩展文件，目前只包括font-face 和 svg 两种icons；components文件夹为组件，这里暂不介绍。
+sandal包括两个集合文件（core，function）和三个文件夹（core，ext，components）。其中core文件夹中为核心基础文件，包括variables，media-queries，mixin，animation，reset；ext文件夹中是一些扩展文件，目前只包括font-face 和 svg 两种icons；components文件夹为组件，这里暂不介绍。
 
-两个集合文件（base，function）导入的都是core中的文件，区别在于base除了提供基本功能之外还会生成一份reset样式，而function则只提供基本功能。至于ext中的文件则属于额外的一些模块扩展，可根据需求导入。
+两个集合文件（core，function）导入的都是core中的文件，区别在于core除了提供基本功能之外还会生成一份reset样式，而function则只提供基本功能。至于ext中的文件则属于额外的一些模块扩展，可根据需求导入。
 
 ### core文件
 
