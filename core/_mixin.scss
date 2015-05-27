@@ -48,36 +48,20 @@
     @include clearfix(false);
 }
 
-// Hide from both screenreaders and browsers: h5bp.com/u
-// 既隐藏于视觉也隐藏于屏幕浏览器
-@mixin hidden($extend: true) {
-    @if $extend {
-        @extend %hidden;
-    }
-    @else {
-        display: none !important;
-        visibility: hidden;
-    }
-}
-
-%hidden {
-    @include hidden(false);
-}
-
 // Hide only visually, but have it available for screenreaders
 // 只隐藏于视觉，屏幕浏览器可以阅读
-@mixin hidden-visually($extend: true) {
+@mixin hidden-clip($extend: true) {
     @if $extend {
-        @extend %visually-hidden;
+        @extend %hidden-clip;
     }
     @else {
         position: absolute;
-        clip: rect(1px, 1px, 1px, 1px); //standard
+        clip: rect(1px, 1px, 1px, 1px);
     }
 }
 
-%hidden-visually {
-    @include hidden-visually(false);
+%hidden-clip {
+    @include hidden-clip(false);
 }
 
 // fixed top & bottom
@@ -118,12 +102,12 @@
 
 // disabled
 // 禁用样式，加!important
-@mixin disabled($bgColor: #e6e6e6, $textColor: #ababab, $borderColor: false) {
+@mixin disabled($textColor: nth($colorDisabled, 1), $bgColor: nth($colorDisabled, 2), $borderColor: false) {
     background-color: $bgColor !important;
     color: $textColor !important;
     cursor: default !important;
     @if $borderColor {
-        border: 1px solid $borderColor;
+        border: 1px solid nth($colorDisabled, 3);
     }
 }
 
@@ -211,7 +195,7 @@
     overflow: hidden;
 }
 
-@mixin triangle($direction: top, $borderWidth: 6px, $borderColor: $gray) {
+@mixin triangle($direction: top, $borderWidth: 6px, $borderColor: $grayC) {
     @extend %triangle-basic;
     @if $direction == top {
         border-bottom: $borderWidth solid $borderColor;
@@ -236,7 +220,7 @@
 }
 
 // arrow 方向箭头
-@mixin arrow($size: 10px, $direction: right, $borderWidth: 2px, $borderColor: $gray) {
+@mixin arrow($size: 10px, $direction: right, $borderWidth: 2px, $borderColor: $grayC) {
     display: inline-block;
     vertical-align: middle;
     width: $size;
@@ -275,13 +259,13 @@
 // 3 Can be omitted if iPad versions prior to iOS 4.2 shouldn’t be supported. 
 // 4 The ttf fontfile. Necessary to support (Mobile) Safari and Opera. 
 // 5 The woff fontfile for all modern browsers (best choice).
-@mixin font-face($font-family, $file-path, $weight: normal, $style: normal) {
+@mixin font-face($fontFamily, $filePath, $weight: normal, $style: normal) {
     @font-face {
-        font-family: $font-family;
+        font-family: $fontFamily;
         font-weight: $weight;
         font-style: $style;
-        src: url("#{$file-path}.eot"); // 1
-        src: url("#{$file-path}.eot?#iefix") format("eot"), url("#{$file-path}.svg##{$font-family}") format("svg"), url("#{$file-path}.woff") format("woff"), url("#{$file-path}.ttf") format("truetype");
+        src: url("#{$filePath}.eot"); // 1
+        src: url("#{$filePath}.eot?#iefix") format("eot"), url("#{$filePath}.svg##{$font-family}") format("svg"), url("#{$filePath}.woff") format("woff"), url("#{$filePath}.ttf") format("truetype");
     }
 }
 
@@ -298,7 +282,7 @@
 
 // bar line
 %bar-line {
-    border-bottom: 1px solid $borderColor;
+    border-bottom: 1px solid $colorBorder;
     background-color: #fff;
     line-height: $barHeight - 11px;
     padding: 5px 10px;
@@ -306,10 +290,10 @@
     display: block;
     cursor: pointer;
     &:first-child {
-        border-top: 1px solid $borderColor;
+        border-top: 1px solid $colorBorder;
     }
     &:active, &:hover {
-        background-color: $grayLight;
+        background-color: $grayC;
     }
 }
 
@@ -394,7 +378,7 @@
 }
 
 // 默认只有背景色和文本色，无边框
-@mixin btn-color($bgColor: #fff, $textColor: #099fde, $borderColor: false) {
+@mixin btn-color($textColor: #099fde, $bgColor: #fff, $borderColor: false) {
     background-color: $bgColor;
     color: $textColor;
     @if $borderColor {

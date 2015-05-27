@@ -1,8 +1,8 @@
 @charset "UTF-8";
 //-----------------------------------------------------	
-// function scss
-// 提供所有的基础功能包括：变量设置，@media，基础mixin
-// 默认不会解析出任何样式
+// core scss
+// 提供所有的基础功能包括：变量设置，@media，基础mixin，reset样式
+// 默认会输出reset样式一份
 //-----------------------------------------------------
 
 //-----------------------------------------------------
@@ -13,9 +13,11 @@
 //-----------------------------------------------------
 
 
-// 导入所有功能类相关文件
+// 导入core中的基础文件
 //-----------------------------------------------------
-@import "core/variables";
-@import "core/media-queries";
-@import "core/mixin";
-@import "core/animation";
+// @import "core/variables";
+// @import "core/media-queries";
+// @import "core/mixin";
+// @import "core/animation";
+@import "function";
+@import "core/reset";

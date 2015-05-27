@@ -17,9 +17,9 @@ body {
 }
 
 // 0. sandal's style.
-// 1. Prevent iOS text size adjust after orientation change, without disabling user zoom.
+// 1. Prevent mobile text size adjust after orientation change, without disabling user zoom.
 html {
-    font-family: $baseFont; // 0
+    font-family: $fontFamily; // 0
     -ms-text-size-adjust: 100%; // 1
     -webkit-text-size-adjust: 100%; // 1
     font-size: 62.5%;
@@ -29,10 +29,9 @@ html {
 // 1. Remove default margin
 body {
     margin: 0; // 1
-    font-size: $baseFontSize; // 0
-    line-height: $baseLineHeight; // 0
-    color: $textColor; // 0
-    background-color: $bgColor; // 0
+    font: #{$fontSize}/#{$fontLineHeight}; // 0
+    color: $colorText; // 0
+    background-color: $colorBg; // 0
     overflow-x: hidden; 
 }
 
@@ -94,16 +93,16 @@ a {
     &:active {
         outline: 0; // 2
     }
-    @if length($linkColor) > 1 {
-        color: nth($linkColor, 1);
+    @if length($colorLink) > 1 {
+        color: nth($colorLink, 1);
         &:active {
-            color: nth($linkColor, 2);
+            color: nth($colorLink, 2);
         }
     }
     @else {
-        color: $linkColor;
+        color: $colorLink;
         &:active {
-            color: darken($linkColor, 10%);
+            color: darken($colorLink, 10%);
         }
     }
 }
@@ -346,7 +345,7 @@ button,
 input,
 select,
 textarea {
-    font-family: $baseFont;
+    font-family: $fontFamily;
 }
 
 h1,h2,h3,h4,h5,h6,p,figure,form,blockquote {
@@ -393,25 +392,32 @@ textarea, input {
     outline: none !important;
 }
 
+// ie10 clear & password
+input::-ms-clear,
+input::-ms-reveal {
+    display:none;
+}
+
 // 表单placeholder样式
 // 注意不可联合申明，否则无效
-@if nth($placeholder, 1) {
-    // Firefox 19+
-    input::-moz-placeholder,
-    textarea::-moz-placeholder {
-        color: nth($placeholder, 2);
-    }
-    // Internet Explorer 10+
-    input:-ms-input-placeholder,
-    textarea:-ms-input-placeholder {
-        color: nth($placeholder, 2);
-    }
-    // Safari and Chrome
-    input::-webkit-input-placeholder,
-    textarea::-webkit-input-placeholder {
-        color: nth($placeholder, 2);
-    }
+// Firefox 19+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: $colorPlaceholder;
 }
+
+// Internet Explorer 10+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: $colorPlaceholder;
+}
+
+// Safari and Chrome
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: $colorPlaceholder;
+}
+
 
 // 所有元素为border-box
 * {
