@@ -59,9 +59,10 @@ sandal包括两个集合文件（base，function）和三个文件夹（core，e
 
 #### icons
 
+从[icomoon](http://icomoon.io)提取了几个常用的图标，分为字体图标和svg图标，可根据自己需求选择哪种图标
+
 ![default icon svg](ext/svg/svg-icons.png)
 
-从[icomoon](http://icomoon.io)提取了几个常用的图标，分为字体图标和svg图标
 
 **font-face**
 

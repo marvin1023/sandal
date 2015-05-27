@@ -1,6 +1,7 @@
 .sass-cache/*
 global.scss
 global.css
+prepros.cfg
 .gitattributes
 .DS_Store
 demo/
