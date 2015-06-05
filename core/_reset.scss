@@ -10,30 +10,26 @@
 //-----------------------------------------------------
 
 
-// set height 100%.
-html,
-body {
-    height: 100%;
-}
-
 // 0. sandal's style.
 // 1. Prevent mobile text size adjust after orientation change, without disabling user zoom.
 html {
-    font-family: $fontFamily; // 0
     -ms-text-size-adjust: 100%; // 1
     -webkit-text-size-adjust: 100%; // 1
     font-size: 62.5%;
+    height: 100%;
 }
 
 // 0. sandal's style.
 // 1. Remove default margin
 body {
     margin: 0; // 1
-    font: #{$fontSize}/#{$fontLineHeight}; // 0
+    font-size: $fontSize; // 0
+    font-family: $fontFamily; // 0
+    line-height: $fontLineHeight; // 0
     color: $colorText; // 0
     background-color: $colorBg; // 0
-    overflow-x: hidden; 
-    -webkit-overflow-scrolling: touch; // 0
+    overflow-x: hidden; // 0
+    min-height: 100%; // 0
 }
 
 // HTML5 display definitions
@@ -216,6 +212,7 @@ textarea {
 // Address `overflow` set to `hidden` in IE 8/9/10/11.
 button {
     overflow: visible;
+    font-family: $fontFamily;
 }
 
 // Address inconsistent `text-transform` inheritance for `button` and `select`.
@@ -255,12 +252,8 @@ input::-moz-focus-inner {
 
 // 1. Address Firefox 4+ setting `line-height` on `input` using `!important` in
 //    the UA stylesheet.
-// 0. clear webkit add style
 input {
     line-height: normal; // 1
-    &:focus {
-        outline: 0 none; // 0
-    }
 }
 
 // It's recommended that you don't attempt to style these elements.
@@ -300,12 +293,6 @@ input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 
-// input's clear or reveal in IE 10+
-input::-ms-clear,
-input::-ms-reveal {
-    display: none;
-}
-
 // Define consistent border, margin, and padding.
 fieldset {
     border: 1px solid #c0c0c0;
@@ -333,6 +320,27 @@ optgroup {
     font-weight: bold;
 }
 
+// font-family & outline
+input,
+select,
+textarea {
+    font-family: $fontFamily;
+    outline: 0;
+}
+
+// Android 下 input focus 消除高亮外框
+textarea, 
+input {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);    
+    -webkit-user-modify: read-write-plaintext-only;
+}
+
+// ie10 clear & password
+input::-ms-clear,
+input::-ms-reveal {
+    display:none;
+}
+
 // Tables
 //-----------------------------------------------------
 // Remove most spacing between table cells.
@@ -348,12 +356,6 @@ th {
 
 // 根据使用习惯，对normalize上进行补充
 //-----------------------------------------------------
-button,
-input,
-select,
-textarea {
-    font-family: $fontFamily;
-}
 
 h1,h2,h3,h4,h5,h6,p,figure,form,blockquote {
     margin: 0;
@@ -392,19 +394,6 @@ i {
     font-style: normal;
 }
 
-// Android 下 input focus 消除高亮外框
-textarea, input {
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);    
-    -webkit-user-modify: read-write-plaintext-only;
-    outline: none !important;
-}
-
-// ie10 clear & password
-input::-ms-clear,
-input::-ms-reveal {
-    display:none;
-}
-
 // 表单placeholder样式
 // 注意不可联合申明，否则无效
 // Firefox 19+
@@ -427,9 +416,12 @@ textarea::-webkit-input-placeholder {
 
 
 // 所有元素为border-box
-* {
-    box-sizing: border-box;
+@if $boxSizingSwitch {
+    * {
+        box-sizing: border-box;
+    }    
 }
+
 
 // 清除子元素浮动
 .clearfix {

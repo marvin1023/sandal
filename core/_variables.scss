@@ -5,6 +5,11 @@
 //-----------------------------------------------------	
 
 
+// switch
+//-----------------------------------------------------	
+$boxSizingSwitch:                true !default; // true为*{box-sizing:border-box;}
+
+
 // font相关
 //-----------------------------------------------------	
 $fontSize:                       14px !default; 
@@ -74,6 +79,14 @@ $barHeight:                      44px !default;
 //-----------------------------------------------------	
 $radiusBase:                     5px !default;
 $radiusSmall:                    3px !default;
+
+
+// btn
+// 默认的按钮大小，颜色，圆角
+//-----------------------------------------------------	
+$btnSize:               16px $barHeight !default; // 默认按钮的左右padding，高度
+$btnColor:              #333 #e6e6e6 !default; // 默认按钮的textColor, bgColor
+$btnRadius:             false !default;
 
 
 // z-index

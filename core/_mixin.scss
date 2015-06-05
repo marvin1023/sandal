@@ -363,28 +363,57 @@
     @return mix(black, $color, $percent);
 }
 
+
 // btn
 //----------------------------------------------------
-
-%btn {
-    line-height: $barHeight;
-    height: $barHeight;
-    padding: 0 10px;
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    border-radius: $radiusBase;
-    cursor: pointer;
+// btn-basic
+// 按钮基本样式，联合申明
+%btn-basic{
+  @include inline-block;
+  cursor: pointer;
+  text-align:center;
+  border:0 none;
+  box-sizing: border-box;
+  user-select: none;
 }
 
-// 默认只有背景色和文本色，无边框
-@mixin btn-color($textColor: #099fde, $bgColor: #fff, $borderColor: false) {
-    background-color: $bgColor;
-    color: $textColor;
-    @if $borderColor {
-        border: 1px solid $borderColor;
+// btn-size
+// 按钮大小
+@mixin btn-size($padding:nth($btnSize,1), $height:nth($btnSize,2), $radius:$btnRadius, $border:false){
+  padding:0 $padding;
+  height: $height;
+  line-height: $height;
+  @if $radius {
+    border-radius: $btnRadius;
+  }
+  @if $border {
+    line-height: $height - 2;
+  }
+}
+
+// btn-color
+// 包括按钮背景色，文本色，是否有边框
+@mixin btn-color($textColor:nth($btnColor,1), $bgColor:nth($btnColor,2), $borderColor:false){
+  color:$textColor;
+  background-color: $bgColor;
+  @if $borderColor {
+    @if length($borderColor) == 1 { // $borderColor: #dbdbdb
+      border: 1px solid $borderColor;
+    }@else if length($borderColor) == 2 { // $borderColor: #dbdbdb #ccc => #dbdbdb
+      border: 1px solid nth($borderColor, 1);
+    }@else{
+      border: $borderColor; // $borderColor: 1px solid #dbdbdb
     }
-    &:active {
-        background: darken($bgColor, 10%);
+  }
+
+  &:hover{
+    @if lightness($bgColor) > 40% {
+      background-color: darken($bgColor,5%);
+    } @else {
+      background-color: lighten($bgColor,5%);
     }
+    @if length($borderColor) == 2 {
+      border-color: nth($borderColor, 2); // $borderColor: #dbdbdb #ccc => #ccc
+    }
+  }
 }
