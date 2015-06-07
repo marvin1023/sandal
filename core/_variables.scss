@@ -7,7 +7,7 @@
 
 // switch
 //-----------------------------------------------------	
-$boxSizingSwitch:                true !default; // true为*{box-sizing:border-box;}
+$borderBoxSwitch:                true !default; // true为*{box-sizing:border-box;}
 
 
 // font相关
@@ -67,7 +67,7 @@ $primary:                        #0078e7 !default;
 
 // 元素上下间距
 //-----------------------------------------------------	
-$gap:                            10px !default;
+$gap:                            20px !default;
 
 
 // header,footer等的高度
@@ -84,9 +84,9 @@ $radiusSmall:                    3px !default;
 // btn
 // 默认的按钮大小，颜色，圆角
 //-----------------------------------------------------	
-$btnSize:               16px $barHeight !default; // 默认按钮的左右padding，高度
-$btnColor:              #333 #e6e6e6 !default; // 默认按钮的textColor, bgColor
-$btnRadius:             false !default;
+$btnSize:                        16px $barHeight !default; // 默认按钮的左右padding，高度
+$btnColor:                       #333 #e6e6e6 !default; // 默认按钮的textColor, bgColor
+$btnRadius:                      false !default;
 
 
 // z-index

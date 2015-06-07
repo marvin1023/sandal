@@ -9,8 +9,6 @@
 // http://necolas.github.io/normalize.css/
 //-----------------------------------------------------
 
-
-// 0. sandal's style.
 // 1. Prevent mobile text size adjust after orientation change, without disabling user zoom.
 html {
     -ms-text-size-adjust: 100%; // 1
@@ -19,17 +17,16 @@ html {
     height: 100%;
 }
 
-// 0. sandal's style.
 // 1. Remove default margin
 body {
     margin: 0; // 1
-    font-size: $fontSize; // 0
-    font-family: $fontFamily; // 0
-    line-height: $fontLineHeight; // 0
-    color: $colorText; // 0
-    background-color: $colorBg; // 0
-    overflow-x: hidden; // 0
-    min-height: 100%; // 0
+    font-size: $fontSize;
+    font-family: $fontFamily;
+    line-height: $fontLineHeight;
+    color: $colorText;
+    background-color: $colorBg;
+    overflow-x: hidden;
+    min-height: 100%;
 }
 
 // HTML5 display definitions
@@ -82,7 +79,7 @@ template {
 
 // 1. Remove the gray background color from active links in IE 10.
 // 2. Improve readability when focused and also mouse hovered in all browsers.
-// 0. sandal's style.
+
 a {
     background: transparent; // 1
     text-decoration: none;
@@ -103,7 +100,6 @@ a {
         }
     }
 }
-
 
 // Text-level semantics
 //-----------------------------------------------------
@@ -157,10 +153,11 @@ sub {
 
 // 1. Remove border when inside `a` element in IE 8/9/10.
 // 2. Improve image quality when scaled in IE 7.
-// 0. sandal's style.
+
 img {
     border: 0; // 1
-    vertical-align: middle; // 0
+    vertical-align: middle;
+    
 }
 
 // Correct overflow not hidden in IE 9/10/11.
@@ -207,6 +204,8 @@ textarea {
     color: inherit; // 1
     font: inherit; // 2
     margin: 0; // 3
+    vertical-align: middle;
+    
 }
 
 // Address `overflow` set to `hidden` in IE 8/9/10/11.
@@ -280,8 +279,6 @@ input[type="number"]::-webkit-outer-spin-button {
 //    (include `-moz` to future-proof).
 input[type="search"] {
     -webkit-appearance: textfield; // 1
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box; // 2
     box-sizing: border-box;
 }
 
@@ -308,10 +305,10 @@ legend {
 }
 
 // 1. Remove default vertical scrollbar in IE 8/9/10/11.
-// 0. sandal's style
 textarea {
     overflow: auto; // 1
-    resize: vertical; // 0
+    resize: vertical;
+    
 }
 
 // Don't inherit the `font-weight` (applied by a rule above).
@@ -329,69 +326,16 @@ textarea {
 }
 
 // Android 下 input focus 消除高亮外框
-textarea, 
+textarea,
 input {
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);    
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-user-modify: read-write-plaintext-only;
 }
 
 // ie10 clear & password
 input::-ms-clear,
 input::-ms-reveal {
-    display:none;
-}
-
-// Tables
-//-----------------------------------------------------
-// Remove most spacing between table cells.
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-td,
-th {
-    padding: 0;
-}
-
-// 根据使用习惯，对normalize上进行补充
-//-----------------------------------------------------
-
-h1,h2,h3,h4,h5,h6,p,figure,form,blockquote {
-    margin: 0;
-}
-
-// ul ol dl
-ul,ol,li,dl,dd {
-    margin: 0;
-    padding: 0;
-}
-
-ul,ol {
-    list-style: none outside none;
-}
-
-// hn
-h1,h2,h3 {
-    line-height: 2;
-    font-weight: normal;
-}
-
-h1 {
-    font-size: 18px;
-}
-
-h2 {
-    font-size: 16px;
-}
-
-h3 {
-    font-size: 14px;
-}
-
-// icon 
-i {
-    font-style: normal;
+    display: none;
 }
 
 // 表单placeholder样式
@@ -414,14 +358,70 @@ textarea::-webkit-input-placeholder {
     color: $colorPlaceholder;
 }
 
-
-// 所有元素为border-box
-@if $boxSizingSwitch {
-    * {
-        box-sizing: border-box;
-    }    
+// 如不支持placeholder添加class
+.placeholder{
+    color: $colorPlaceholder;
 }
 
+// Tables
+//-----------------------------------------------------
+// Remove most spacing between table cells.
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,
+th {
+    padding: 0;
+}
+
+// 根据使用习惯，对normalize上进行补充
+//-----------------------------------------------------
+
+h1, h2, h3, h4, h5, h6, p, figure, form, blockquote {
+    margin: 0;
+}
+
+// ul ol dl
+ul, ol, li, dl, dd {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style: none outside none;
+}
+
+// hn
+h1, h2, h3 {
+    line-height: 2;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+// icon
+i {
+    font-style: normal;
+}
+
+// 所有元素为border-box
+@if $borderBoxSwitch {
+    * {
+        box-sizing: border-box;
+    }
+}
 
 // 清除子元素浮动
 .clearfix {

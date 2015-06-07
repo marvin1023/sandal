@@ -10,14 +10,14 @@
 
 // variables
 //-----------------------------------------------------
-$fontFamily:            icomoon !default;
-$fontFilePath:          "../fonts/icomoon" !default;
-$fontClassPrefix:       icon !default; // icon-font
-$fontClassAllSwitch:    true !default;
-$fontClassOutput:       () !default;
-$fontPseudo:            true !default;
+$ffFamily:              icomoon !default;
+$ffFilePath:            "../fonts/icomoon" !default;
+$ffClassPrefix:         icon !default; // icon-font
+$ffClassAllSwitch:      false !default;
+$ffClassOutput:         () !default;
+$ffPseudo:              true !default;
 
-$fontClassAll:         (wifi:                "\e62f",
+$ffClassAll:            (wifi:                "\e62f",
                         comment:             "\e601",
                         user:                "\e632",
                         map:                 "\e61b",
@@ -69,7 +69,7 @@ $fontClassAll:         (wifi:                "\e62f",
                         angle-left:          "\e61a") !default;
 
 // 申明@font-face
-@include font-face($fontFamily, $fontFilePath);
+@include font-face($ffFamily, $ffFilePath);
 
 // 定义mixin等基础功能
 //-----------------------------------------------------
@@ -78,8 +78,8 @@ $fontClassAll:         (wifi:                "\e62f",
 %font-basic {
     display: inline-block;
     vertical-align: -2px;
-    font-family: $fontFamily;
-    font-size: 1.8rem;
+    font-family: $ffFamily;
+    font-size: 18px;
     line-height: 1;
     speak: none;
     font-style: normal;
@@ -90,37 +90,37 @@ $fontClassAll:         (wifi:                "\e62f",
     // Better Font Rendering 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;    
-    @if $fontPseudo {
+    @if $ffPseudo {
         box-sizing: border-box;
     }
 }
 
 // icon mixin
 @mixin font-icon($class) {
-    .#{$fontClassPrefix}-#{$class} {
-        @if $fontPseudo {
+    .#{$ffClassPrefix}-#{$class} {
+        @if $ffPseudo {
             &::before {
                 @extend %font-basic;
-                content: map-get($fontClassAll, $class);
+                content: map-get($ffClassAll, $class);
             }
         }
-        @else{
+        @else {
             @extend %font-basic;
         }
     }
 }
 
 // 全部输出
-@if $fontClassAllSwitch {
-    @each $class, $content in $fontClassAll {
-        .#{$fontClassPrefix}-#{$class} {
-            @if $fontPseudo {
+@if $ffClassAllSwitch {
+    @each $class, $content in $ffClassAll {
+        .#{$ffClassPrefix}-#{$class} {
+            @if $ffPseudo {
                 &::before {
                     @extend %font-basic;
                     content: $content;
                 }
             }
-            @else{
+            @else {
                 @extend %font-basic;
             }
         }
@@ -128,8 +128,8 @@ $fontClassAll:         (wifi:                "\e62f",
 }
 @else {
     // 部分输出的class
-    @if length($fontClassOutput) >= 2 {
-        @each $class in $fontClassOutput {
+    @if length($ffClassOutput) >= 2 {
+        @each $class in $ffClassOutput {
             @include font-icon($class);
         }
     }

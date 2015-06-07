@@ -5,21 +5,20 @@
 // 提供三组动画 fade-in/out, up-in/out, down-in/out
 //-----------------------------------------------------
 
-%animation-basic{
+%animation-basic {
     animation-duration: 0.3s;
     animation-fill-mode: both;
 }
 
 @mixin animation-fade($className: fade, $from: 0.815, $to: 1.185) {
-    .#{$className}-in{
+    .#{$className}-in {
         animation-name: fadeIn;
         @extend %animation-basic;
     }
-    .#{$className}-out{
+    .#{$className}-out {
         animation-name: fadeOut;
         @extend %animation-basic;
     }
-
     @keyframes fadeIn {
         0% {
             opacity: 0;
@@ -38,7 +37,7 @@
         }
         100% {
             opacity: 0;
-            transform: scale($to); 
+            transform: scale($to);
         }
     }
 }
@@ -52,7 +51,6 @@
         animation-name: downOut;
         @extend %animation-basic;
     }
-
     @keyframes downIn {
         0% {
             opacity: 0;
@@ -73,7 +71,7 @@
             opacity: 0;
             transform: translate3d(0, $value, 0);
         }
-    }    
+    }
 }
 
 @mixin animation-up($className: up, $value: -100%) {
@@ -85,7 +83,6 @@
         animation-name: upOut;
         @extend %animation-basic;
     }
-
     @keyframes upIn {
         0% {
             opacity: 0;
