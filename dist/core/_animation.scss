@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// animate.scss
+// 提供三组动画 fade-in/out, up-in/out, down-in/out
+//-----------------------------------------------------
+
+%animation-basic {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+}
+
+@mixin animation-fade($className: fade, $from: 0.815, $to: 1.185) {
+    .#{$className}-in {
+        animation-name: fadeIn;
+        @extend %animation-basic;
+    }
+    .#{$className}-out {
+        animation-name: fadeOut;
+        @extend %animation-basic;
+    }
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: scale($from);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: scale($to);
+        }
+    }
+}
+
+@mixin animation-down($className: down, $value: 100%) {
+    .#{$className}-in {
+        animation-name: downIn;
+        @extend %animation-basic;
+    }
+    .#{$className}-out {
+        animation-name: downOut;
+        @extend %animation-basic;
+    }
+    @keyframes downIn {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, $value, 0);
+        }
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes downOut {
+        0% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            opacity: 0;
+            transform: translate3d(0, $value, 0);
+        }
+    }
+}
+
+@mixin animation-up($className: up, $value: -100%) {
+    .#{$className}-in {
+        animation-name: upIn;
+        @extend %animation-basic;
+    }
+    .#{$className}-out {
+        animation-name: upOut;
+        @extend %animation-basic;
+    }
+    @keyframes upIn {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, $value, 0);
+        }
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes upOut {
+        0% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            opacity: 0;
+            transform: translate3d(0, $value, 0);
+        }
+    }
+}

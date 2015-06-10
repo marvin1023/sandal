@@ -1,0 +1,28 @@
+{
+  "name": "sandal-sass",
+  "version": "2.1.1",
+  "description": "A sass libray for mobile",
+  "keywords": [
+    "sass",
+    "scss",
+    "sandal"
+  ],
+  "homepage": "https://github.com/litten/sandal",
+  "author": {
+    "name": "litten",
+    "email": "tengfeiok@gmail.com",
+    "url": "https://github.com/litten/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/litten/sandal.git"
+  },
+  "main": "dist/_core.scss",
+  "devDependencies": {
+  },
+  "_id": "sandal@2.1.0",
+  "_npmUser": {
+    "name": "litten",
+    "email": "tengfeiok@gmail.com"
+  }
+}
