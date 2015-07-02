@@ -515,7 +515,7 @@
 }
 
 @mixin filter-gradient($startColor, $endColor) {
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#{#{ie-hex-str($startColor)}}', endColorstr='#{#{ie-hex-str($endColor)}}');
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#{ie-hex-str($startColor)}', endColorstr='#{ie-hex-str($endColor)}');
     :root & {
         @extend %filter-gradient-none;
     }
