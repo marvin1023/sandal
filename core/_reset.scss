@@ -10,10 +10,12 @@
 //-----------------------------------------------------
 
 // 1. Prevent mobile text size adjust after orientation change, without disabling user zoom.
+// 2. Remove the gray background color from tap, default value is inherit
 html {
     -ms-text-size-adjust: 100%; // 1
     -webkit-text-size-adjust: 100%; // 1
-    font-size: 62.5%;
+    -webkit-tap-highlight-color: transparent; // 2
+    font-size: 625%;
     height: 100%;
 }
 
@@ -25,7 +27,6 @@ body {
     line-height: $fontLineHeight;
     color: $colorText;
     background-color: $colorBg;
-    overflow-x: hidden;
     min-height: 100%;
 }
 
@@ -44,6 +45,7 @@ footer,
 header,
 hgroup,
 main,
+menu,
 nav,
 section,
 summary {
@@ -83,19 +85,19 @@ template {
 a {
     background: transparent; // 1
     text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
+    
     &:active {
         outline: 0; // 2
     }
     @if length($colorLink) > 1 {
         color: nth($colorLink, 1);
-        &:active {
+        &:hover {
             color: nth($colorLink, 2);
         }
     }
     @else {
         color: $colorLink;
-        &:active {
+        &:hover {
             color: darken($colorLink, 10%);
         }
     }
@@ -152,8 +154,6 @@ sub {
 //-----------------------------------------------------
 
 // 1. Remove border when inside `a` element in IE 8/9/10.
-// 2. Improve image quality when scaled in IE 7.
-
 img {
     border: 0; // 1
     vertical-align: middle;
@@ -211,7 +211,6 @@ textarea {
 // Address `overflow` set to `hidden` in IE 8/9/10/11.
 button {
     overflow: visible;
-    font-family: $fontFamily;
 }
 
 // Address inconsistent `text-transform` inheritance for `button` and `select`.
@@ -229,7 +228,7 @@ select {
 // 3. Improve usability and consistency of cursor style between image-type
 //    `input` and others.
 button,
-html input[type="button"],
+html input[type="button"], // 1
 input[type="reset"],
 input[type="submit"] {
     -webkit-appearance: button; // 2
@@ -308,7 +307,7 @@ legend {
 textarea {
     overflow: auto; // 1
     resize: vertical;
-    
+    vertical-align: top;
 }
 
 // Don't inherit the `font-weight` (applied by a rule above).
@@ -317,18 +316,16 @@ optgroup {
     font-weight: bold;
 }
 
-// font-family & outline
+// webkit focus outline
 input,
 select,
 textarea {
-    font-family: $fontFamily;
     outline: 0;
 }
 
 // Android 下 input focus 消除高亮外框
 textarea,
 input {
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-user-modify: read-write-plaintext-only;
 }
 
