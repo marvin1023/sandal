@@ -81,11 +81,11 @@
 }
 
 // 只有webkit支持多行省略号
-@mixin ellipsis-line($line: 2) {
+@mixin ellipsis-lines($lines: 2) {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: $line;
+    -webkit-line-clamp: $lines;
     -webkit-box-orient: vertical;
 }
 
@@ -320,8 +320,8 @@
 }
 
 // rem
-@mixin rem($px: 1.4, $property: font-size) {
-    #{$property}: $px * 10px;
+@mixin rem($px: 0.14, $property: font-size) {
+    #{$property}: $px * 100px;
     #{$property}: #{$px}rem;
 }
 
@@ -467,6 +467,7 @@
         }
     }
     &:hover {
+        color: $textColor;
         @if lightness($bgColor) > 40% {
             background-color: darken($bgColor, 5%);
         }
@@ -527,8 +528,8 @@
     }
     @else {
         background-color: rgb(red($bgcolor), green($bgcolor), blue($bgcolor));
-        background-color: $bgcolor;
     }
+    background-color: $bgcolor;
 }
 
 %bgcolor-rgba {

@@ -84,7 +84,7 @@ $radiusSmall:                    3px !default;
 // btn
 // 默认的按钮大小，颜色，圆角
 //-----------------------------------------------------	
-$btnSize:                        16px $barHeight !default; // 默认按钮的左右padding，高度
+$btnSize:                        1em $barHeight !default; // 默认按钮的左右padding，高度
 $btnColor:                       #333 #e6e6e6 !default; // 默认按钮的textColor, bgColor
 $btnRadius:                      false !default;
 
@@ -93,4 +93,5 @@ $btnRadius:                      false !default;
 //-----------------------------------------------------	
 $zIndexHeader:                   1000 !default;
 $zIndexFooter:                   2000 !default;
-$zIndexOverlay:                  3000 !default; // 默认高于header和footer部分
+$zIndexPopup:					 3000 !default;                     
+$zIndexOverlay:                  4000 !default; // 默认高于header和footer部分
