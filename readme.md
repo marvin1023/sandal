@@ -1,13 +1,19 @@
 # Sandal
 
-**sandal2.1不再提供css3前缀文件，在这推荐使用[autoprefixer](https://github.com/postcss/autoprefixer)来智能生成前缀（有grunt和gulp版本，有些客户端编译软件也集成了这个功能），之前的css3文件已经独立到[css3 scss](https://github.com/marvin1023/css3-scss)**
-
 sandal取其“檀香”之意，针对移动端站点为前端人员提供了一些基础的重置，常用的`mixin`，如flex布局，等分，水平垂直居中，常用图标等，基于它你可以扩展出更多你需要的组件。
 
 ## 更新说明
+### 3.0版本
+* 升级了语法，引入map函数，selector函数等
+* 优化了mixin文件，优化了btn的mixin, 添加了retina 1px等
+* icons采用绘制及svg制作
+* 新增helper及grid文件
+* 优化了animation动画
 
+### 2.1版本
 * 优化了变量，详见`_variables.scss`文件
 * 将`_base.scss`改成`_core.scss`文件
+* 不再提供css3前缀文件，推荐使用[autoprefixer](https://github.com/postcss/autoprefixer)来智能生成前缀（有grunt和gulp版本，有些客户端编译软件也集成了这个功能）。如果你还需要前缀文件请访问独立的[css3 scss](https://github.com/marvin1023/css3-scss)
 
 
 ## 如何使用
@@ -25,11 +31,10 @@ sandal和[sassCore](https://github.com/marvin1023/sassCore)一样，分核心文
 
 ### 扩展文件调用
 
-根据需要调用，以`font-face`为例：
+根据需要调用，以`grid`为例：
 
-	@import "d:/sandal/ext/font-face/font-face";
+	@import "d:/sandal/ext/grid";
 
-注：因为`sass`不能导入在线`sass`文件，而sandal也没有提供安装版的使用，所以默认统一放在D盘进行调用。如使用的是mac，可放在用户目录中，通过根目录路径`/users/username/sandal/core`调用，其中username为你的用户名
 
 ## 文件简述
 
@@ -50,43 +55,32 @@ sandal包括两个集合文件（core，function）和三个文件夹（core，e
 
 #### animation
 
-提供三组简单实用动画：fade-in/out, up-in/out, down-in/out。默认不产生样式，通过include调用
+提供四组简单实用动画：fade-in/out, shrink-in/out, up-in/out, down-in/out。默认不产生样式，通过include调用
 
 ### reset
 在[normalize](http://necolas.github.io/normalize.css/)的基础上，根据目前我们大家的使用习惯进行了一些归零行动，及设置文字字体颜色。严格来说这并不是专门针对移动端的重置，而是ie8+的重置，因为考虑到有些是专门做移动端，而有些则是移动为先，再则重置的东西也比较少，所以就没有进一步砍掉。当然有代码洁癖的可以进一步优化。
 
 ### ext文件
 
+#### helper
+
+提供常用的基础class，如overlay, full-width等
+
+#### grid
+
+移动端的网格系统，分为row和col，具体使用参考[3分钟13行代码搭建sass版移动端网格系统](http://imweb.io/topic/570b33f806f2400432c139b3)
+
 #### icons
 
-从[icomoon](http://icomoon.io)提取了几个常用的图标，分为字体图标和svg图标，可根据自己需求选择哪种图标
+分为绘制的icon和svg图标两种，可参考icons文件夹中的demo
 
-![default icon svg](ext/svg/svg-icons.png)
+![default icon svg](ext/icons/svg-icons.png)
 
-
-**font-face**
-
-默认输出所有的icon class，可根据实际需求输出其中的某些icon。使用可参考[sassCore 字体图标的使用](http://www.w3cplus.com/sasscore/font-face.html)
-
-**svg**
+**svg 图标调用**
 
 从[icomoon](http://icomoon.io)提取了几个常用的svg图标，使用方法可参考demo中的demo.html，这里以home图标为例：
 
-先在html顶部定义svg icon，
-
-	<svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-		<defs>
-			<symbol id="icon-home" viewBox="0 0 1024 1024">
-				<title>home</title>
-				<path class="path1" d="M1024 590.444l-512-397.426-512 397.428v-162.038l512-397.426 512 397.428zM896 576v384h-256v-256h-256v256h-256v-384l384-288z"></path>
-			</symbol>
-			...
-		</defs>
-	</svg>
-
-然后在需要使用该icon时，调用
-
-	<svg class="icon icon-home"><use xlink:href="#icon-home"></use></svg>
+	<svg class="icon icon-home"><use xlink:href="icons.svg#icon-home"></use></svg>
 
 如需改变颜色，可以通过css的fill属性来定义
 

@@ -33,12 +33,12 @@
         @extend %clearfix;
     }
     @else {
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             content: "";
             display: table;
         }
-        &:after {
+        &::after {
             clear: both;
         }
     }
@@ -80,7 +80,8 @@
     @include ellipsis(false);
 }
 
-// 只有webkit支持多行省略号
+// ellipsis lines
+// only old webkit flex box
 @mixin ellipsis-lines($lines: 2) {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -90,7 +91,6 @@
 }
 
 // word-break
-// 用于链接地址强制换行
 @mixin word-break($extend: true) {
     @if $extend {
         @extend %word-break;
@@ -107,14 +107,14 @@
 }
 
 // disabled
-// 禁用样式，加!important
-@mixin disabled($textColor: nth($colorDisabled, 1), $bgColor: nth($colorDisabled, 2), $borderColor: false) {
+// add !important
+@mixin disabled($textColor: map-get($colorDisabled, text), $bgColor: map-get($colorDisabled, bg), $borderColor: false) {
     background-color: $bgColor !important;
     color: $textColor !important;
     cursor: default !important;
     pointer-events: none !important;
     @if $borderColor {
-        border: 1px solid nth($colorDisabled, 3);
+        border: 1px solid map-get($colorDisabled, border);
     }
 }
 
@@ -122,15 +122,34 @@
     @include disabled;
 }
 
-// fixed top & bottom
+// image replace text
+@mixin ir($extend: true) {
+    @if $extend {
+        @extend %ir;
+    }
+    @else {
+        font: 0/0 a;
+        text-shadow: none;
+        border: 0 none;
+        color: transparent;
+    }
+}
+
+%ir {
+    @include ir(false);
+}
+
+// fixed top or bottom or bottom & top
 @mixin fixed($pos: 0) {
     position: fixed;
     left: 0;
     right: 0;
     @if $pos == bottom {
         bottom: 0;
-    }
-    @else {
+    } @else if $pos == all {
+        top: 0;
+        bottom: 0;
+    } @else {
         top: $pos;
     }
 }
@@ -140,10 +159,11 @@
 }
 
 %fixed-bottom {
-    @include fixed($pos: bottom);
+    @include fixed(bottom);
 }
 
-// justify
+// justify 
+// 左右对齐
 @mixin justify($extend: true) {
     @if $extend {
         @extend %justify;
@@ -158,33 +178,122 @@
     @include justify(false);
 }
 
+// 安卓4.3- 不支持background-size的百分比
+@mixin retina-one-px-bg($direction: top, $color: $colorBorder) {
+    background-repeat: no-repeat;
+    @if $direction == top {
+        background-image: linear-gradient(to bottom, $color 50%, transparent 50%);
+        background-size: 100% 1px;
+    }
+    @if $direction == bottom {
+        background-image: linear-gradient(to top, $color 50%, transparent 50%);
+        background-size: 100% 1px;
+        background-position: left bottom;
+    }
+    @if $direction == left {
+        background-image: linear-gradient(to right, $color 50%, transparent 50%);
+        background-size: 1px 100%;
+    }
+    @if $direction == bottom {
+        background-image: linear-gradient(to left, $color 50%, transparent 50%);
+        background-size: 1px 100%;
+        background-position: right top;
+    }
+    @if $direction == v { // 左右两个边框
+        background-image: linear-gradient(to right, $color 50%, transparent 50%),linear-gradient(to left, $color 50%, transparent 50%);
+        background-size: 1px 100%;
+        background-position: left top, right top;
+    }
+    @if $direction == h { // 上下两个边框
+        background-image: linear-gradient(to bottom, $color 50%, transparent 50%), linear-gradient(to top, $color 50%, transparent 50%);
+        background-size: 100% 1px;
+        background-position: left top, left bottom;
+    }
+    @if $direction == all { // 上下左右四个边框
+        background-image: linear-gradient(to bottom, $color 50%, transparent 50%), linear-gradient(to top, $color 50%, transparent 50%), linear-gradient(to right, $color 50%, transparent 50%),linear-gradient(to left, $color 50%, transparent 50%);
+        background-size: 100% 1px, 100% 1px, 1px 100%, 1px 100%;
+        background-position: left top, left bottom, left top, right top;
+    }
+}
+
+// retina border
+// 注意before和after的层级问题
+@mixin retina-one-px-border($direction: top) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+
+    @if $direction == top or $direction == bottom{    
+        width: 100%;
+        height: 0;
+        transform: scaleY(0.5);
+        border-top: 1px solid $colorBorder;
+    }
+    @if $direction == bottom {
+        top: auto;
+        bottom: 0;
+    }
+    @if $direction == right or $direction == left{
+        width: 0;
+        height: 100%;
+        transform: scaleX(0.5);
+        border-left: 1px solid $colorBorder;
+    }
+    @if $direction == right {
+        left: auto;
+        right: 0;
+    }
+    @if $direction == all {
+        width: 200%;
+        height: 200%;
+        transform-origin: left top;
+        transform: scale(0.5);
+        border: 1px solid $colorBorder;
+    }
+}
+
+%border-tb {
+    position: relative;
+    &::before {
+        content: "";
+        @include retina-one-px-border(top);
+        z-index: 1;
+    }
+    &::after {
+        content: "";
+        @include retina-one-px-border(bottom);
+    }
+}
+
+%border-all {
+    position: relative;
+    &::before {
+        content: "";
+        @include retina-one-px-border(all);
+        z-index: -1;
+    }
+}
+
 // bar line
-%bar-line-basic {
-    border-bottom: 1px solid $colorBorder;
-    background-color: #fff;
-    line-height: $barHeight - 11px;
+%bar-line {
+    line-height: $barHeight - 10px;
     padding: 5px 10px;
     position: relative;
     display: block;
-    cursor: pointer;
-    &:active, &:hover {
-        background-color: $grayC;
+    &:active,
+    &:hover {
+        background-color: $colorF;
     }
-}
-
-// 第一个和最后一个都有边框
-@mixin bar-line-outer {
-    @extend %bar-line-basic;
-    &::first-child {
-        border-top: 1px solid $colorBorder;
+    &::before {
+        content: "";
+        @include retina-one-px-border;
+        // left: 10px;
     }
-}
-
-// 第一个和最后一个都没有边框
-@mixin bar-line-inner {
-    @extend %bar-line-basic;
-    &::last-child {
-        border-bottom: none;
+    &:first-child {
+        &::before {
+            display: none;
+        }
     }
 }
 
@@ -217,11 +326,13 @@
     @if index($childrenEle, $children) {
         #{$children} {
             flex: 1;
+            width: 1%;
         }
     }
     @else {
         .#{$children} {
             flex: 1;
+            width: 1%;
         }
     }
 }
@@ -267,7 +378,7 @@
     overflow: hidden;
 }
 
-@mixin triangle($direction: top, $borderWidth: 6px, $borderColor: $grayC) {
+@mixin triangle($direction: top, $borderWidth: 6px, $borderColor: $colorC) {
     @extend %triangle-basic;
     @if $direction == top {
         border-bottom: $borderWidth solid $borderColor;
@@ -291,30 +402,30 @@
     }
 }
 
-// arrow 方向箭头
-@mixin arrow($size: 10px, $direction: right, $borderWidth: 2px, $borderColor: $grayC) {
+// v arrow 方向箭头
+@mixin v-arrow($size: 10px, $direction: right, $borderWidth: 2px) {
     display: inline-block;
     vertical-align: middle;
     width: $size;
     height: $size;
     @if $direction == top {
-        border-top: $borderWidth solid $borderColor;
-        border-right: $borderWidth solid $borderColor;
+        border-top: $borderWidth solid currentColor;
+        border-right: $borderWidth solid currentColor;
         transform: rotate(-45deg);
     }
     @else if $direction == right {
-        border-top: $borderWidth solid $borderColor;
-        border-right: $borderWidth solid $borderColor;
+        border-top: $borderWidth solid currentColor;
+        border-right: $borderWidth solid currentColor;
         transform: rotate(45deg);
     }
     @else if $direction == bottom {
-        border-left: $borderWidth solid $borderColor;
-        border-bottom: $borderWidth solid $borderColor;
+        border-left: $borderWidth solid currentColor;
+        border-bottom: $borderWidth solid currentColor;
         transform: rotate(-45deg);
     }
     @if $direction == left {
-        border-left: $borderWidth solid $borderColor;
-        border-bottom: $borderWidth solid $borderColor;
+        border-left: $borderWidth solid currentColor;
+        border-bottom: $borderWidth solid currentColor;
         transform: rotate(45deg);
     }
 }
@@ -325,40 +436,28 @@
     #{$property}: #{$px}rem;
 }
 
-// http://www.css3files.com/font/
-// 1 The eot fontfile. Can be omitted if you don`t want to support Internet Explorer prior to version 9 (including semicolon).
-// 2 Can also be omitted for Internet Explorer < 9. ?iefix prevents IE6 from interpreting all of the following. If the whole IE family (6 to 9) should be supported, 1 and 2 are needed.
-// 3 Can be omitted if iPad versions prior to iOS 4.2 shouldn’t be supported. 
-// 4 The ttf fontfile. Necessary to support (Mobile) Safari and Opera. 
-// 5 The woff fontfile for all modern browsers (best choice).
-@mixin font-face($fontFaceFamily, $fontFacePath, $weight: normal, $style: normal) {
-    @font-face {
-        font-family: $fontFaceFamily;
-        font-weight: $weight;
-        font-style: $style;
-        src: url("#{$fontFacePath}.eot"); // 1
-        src: url("#{$fontFacePath}.eot?#iefix") format("eot"), url("#{$fontFacePath}.svg##{$fontFaceFamily}") format("svg"), url("#{$fontFacePath}.woff") format("woff"), url("#{$fontFacePath}.ttf") format("truetype");
+// selector
+// 改变父元素状态，如:hover或.active
+// 父元素不能有组合选择器，如.a, .b{}
+// .parent{
+//     .child{
+//         @include parent-state(":hover"){
+//             color: #f00;
+//         }
+//     }
+// }
+// .parent :hover .child {
+//     color: #f00;
+// }
+@mixin parent-state($states...) {
+    $parent: nth(nth(&, 1), (length(nth(&, 1))-1));
+    
+    @each $state in $states {    
+      @at-root #{selector-replace(&, $parent, ($parent#{$state}))} {
+          @content;
+      }
     }
 }
-
-// selector
-// 父元素不能有组合选择器
-// 详见 https://github.com/W3cplus/Sass-Resources/blob/master/mixins/_selector-replace.scss
-// @mixin selector-context($selectorOld, $selectorNew) {
-//     @at-root #{selector-replace(&, $selectorOld, $selectorNew)} {
-//         @content;
-//     }
-// }
-
-// @mixin selector-parent-state($states...) {
-//     $parent: nth(nth(&, 1), (length(nth(&, 1))-1));
-    
-//     @each $state in $states {    
-//       @at-root #{selector-replace(&, $parent, ($parent#{$state}))} {
-//           @content;
-//       }
-//     }
-// }
 
 // %
 // 只定义了%，所以只能通过@extend来调用
@@ -366,14 +465,15 @@
 // 等分列
 // 可以使用equal-flex或equal-table，默认子元素为li
 %equal-col {
-    @include equal-table;
+    @include equal-flex;
 }
 
 // item arrow, 右侧箭头跳转指向
-%item-arrow {
+%item-v-right {
     &::after {
         content: "";
-        @include arrow;
+        @include v-arrow;
+        color: $colorC;
         position: absolute;
         right: 15px;
         top: 50%;
@@ -431,107 +531,48 @@
     vertical-align: middle;
     cursor: pointer;
     text-align: center;
-    border: 0 none;
+    border: 1px solid transparent;
     box-sizing: border-box;
     user-select: none;
+    padding: 0 1em;
+    white-space: nowrap;
 }
 
 // btn-size
 // 按钮大小
-@mixin btn-size($padding: nth($btnSize, 1), $height: nth($btnSize, 2), $radius: $btnRadius, $border: false) {
+@mixin btn-size($padding: 1em, $height: $barHeight, $radius: 3px) {
     padding: 0 $padding;
-    height: $height;
-    line-height: $height;
+    line-height: $height - 2px; // 减掉2px的上下高度
     @if $radius {
-        border-radius: $btnRadius;
-    }
-    @if $border {
-        line-height: $height - 2;
+        border-radius: $radius;
     }
 }
 
 // btn-color
 // 包括按钮背景色，文本色，是否有边框
-@mixin btn-color($textColor: nth($btnColor, 1), $bgColor: nth($btnColor, 2), $borderColor: false) {
-    color: $textColor;
-    background-color: $bgColor;
+@mixin btn-color($textColor: #333, $bgColor: #666, $borderColor: false) {
+    color: nth($textColor, 1);
+    background-color: nth($bgColor, 1);
     @if $borderColor {
-        @if length($borderColor) == 1 { // $borderColor: #dbdbdb
-            border: 1px solid $borderColor;
-        }
-        @else if length($borderColor) == 2 { // $borderColor: #dbdbdb #ccc => #dbdbdb
-            border: 1px solid nth($borderColor, 1);
-        }
-        @else {
-            border: $borderColor; // $borderColor: 1px solid #dbdbdb
-        }
+        border-color: nth($borderColor, 1);
     }
-    &:hover {
-        color: $textColor;
-        @if lightness($bgColor) > 40% {
-            background-color: darken($bgColor, 5%);
+    &:hover,
+    &:active {
+        @if length($textColor) == 2 {
+            color: nth($textColor, 2);
         }
-        @else {
-            background-color: lighten($bgColor, 5%);
+        @if length($bgColor) == 2 {
+            background-color: nth($bgColor, 2);
+        } @else {
+            @if lightness($bgColor) > 40% {
+                background-color: darken($bgColor, 5%);
+            }
+            @else {
+                background-color: lighten($bgColor, 5%);
+            }
         }
-        @if length($borderColor) == 2 {
+        @if $borderColor and length($borderColor) == 2 {
             border-color: nth($borderColor, 2); // $borderColor: #dbdbdb #ccc => #ccc
         }
     }
-}
-
-// pc ie8+
-//----------------------------------------------------
-// 图片替换文字
-// 高级浏览器直接2就可以
-// 原生7,8不支持color的transparent，所以采用1;
-@mixin ir($extend: true) {
-    @if $extend {
-        @extend %ir;
-    }
-    @else {
-        font: 0/0 a; // 1
-        text-shadow: none;
-        border: 0 none;
-        color: transparent; // 2
-    }
-}
-
-%ir {
-    @include ir(false);
-}
-
-
-// opacity
-@mixin opacity($opacity: 50, $filter: true) {
-    opacity: $opacity / 100;
-    @if $filter {
-        filter: alpha(opacity = $opacity);
-    }
-}
-
-// rgba 兼容ie8
-%filter-gradient-none {
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled='false');
-}
-
-@mixin filter-gradient($startColor, $endColor) {
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#{ie-hex-str($startColor)}', endColorstr='#{ie-hex-str($endColor)}');
-    :root & {
-        @extend %filter-gradient-none;
-    }
-}
-
-@mixin background-rgba($bgcolor: rgba(0, 0, 0, 0.5), $filter: true) {
-    @if $filter {
-        @include filter-gradient($bgcolor, $bgcolor);
-    }
-    @else {
-        background-color: rgb(red($bgcolor), green($bgcolor), blue($bgcolor));
-    }
-    background-color: $bgcolor;
-}
-
-%bgcolor-rgba {
-    @include background-rgba;
 }

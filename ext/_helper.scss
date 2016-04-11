@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------	
+// helper scss
+//-----------------------------------------------------	
+
+
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.fs12 {
+	font-size: 12px;
+}
+.grayc {
+	color: #ccc;
+}
+.gray9 {
+	color: #999;
+}
+.gray6 {
+	color: #666;
+}
+.p10 {
+	padding: 10px;
+}
+.plr10 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.mt10 {
+	margin-top: 10px;
+}
+.mb10 {
+	margin-bottom: 10px;
+}
+.mlr10 {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+// 左右两端对齐
+.justify {
+	@extend %justify;
+}
+// 红数字提醒
+.remind-num {
+    position: absolute;
+    border-radius: 10px;
+    min-width: 17px;
+    color: #fff;
+    font-size: 12px;
+    background-color: $orange;
+    line-height: 1.2;
+    text-align: center;
+    padding: 0 4px;
+    letter-spacing: 1px;
+    // transform: scale(0.9);
+}
+// 红点提醒
+.remind-circle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: $orange;
+}
+.remind-wrap {
+    position: relative;
+    .remind-num {
+    	top: 0;
+    	right: 0;
+    }
+    .remind-circle {
+    	top: 0;
+    	right: 0;
+    }
+}
+.ellipsis {
+	@extend %ellipsis;
+}
+.full-width {
+	width: 100%;
+}
+.pos-s {
+	position: static !important;
+}
+.fixed-bottom {
+    @include fixed(bottom);
+}
+// 上下 1px的边框
+.border-tb {
+    @extend %border-tb;
+}
+// 上下左右1px边框
+.border-all {
+    @extend %border-all;
+}
+
+// overlay
+.overlay {
+	display: none;
+	background: $colorOverlay;
+	@include fixed(all);
+	z-index: $zIndexOverlay;
+	&.active {
+		display: block;
+	}
+    &.overlay--no-header {
+        top: $barHeight;
+    }
+	&.overlay--transparent {
+		background:rgba(0,0,0,0);
+	}
+}
+.full-center-wrap {
+	@include fixed(all);
+	@include center-flex;
+}

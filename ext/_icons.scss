@@ -1,0 +1,259 @@
+@charset "UTF-8";
+
+//----------------------------------------------------- 
+// icon.scss
+//-----------------------------------------------------
+
+.icon-svg{
+    width: 16px;
+    height: 16px;
+    fill: #333;
+}
+
+.icon-loading {
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// icon draw 
+//----------------------------------------------------- 
+
+// icon checkbox & radio
+.icon-checkbox, .icon-radio {
+    display: inline-block;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    color: #999;
+    border: 1px solid currentColor;
+    background-color: #fff;
+    position: relative;
+    top: -1px;
+    margin-right: 5px;
+    box-sizing: border-box;
+    &.active {
+        color: $blue;
+    }
+    &.disabled {
+        color: map-get($colorDisabled, border);
+    }
+}
+
+.icon-checkbox{
+    &::after {
+        content: "";
+        height: 4px;
+        width: 10px;
+        border: 1px solid currentColor;
+        border-width: 0 0 2px 2px;
+        position: absolute;
+        top: 1px;
+        left: 3px;
+        transform: rotate(-52deg);
+    }
+    &::before {
+        content: "";
+        width: 5px;
+        height: 6px;
+        background-color: #fff;
+        position: absolute;
+        right: -1px;
+        top: -1px;
+    }
+}
+
+.icon-radio {
+    border-radius: 10px;
+    &::before{
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+// icon switch
+.icon-switch {
+    $iconToggleSize: 30px;
+    height: $iconToggleSize;
+    width: $iconToggleSize * 2 - 10px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #ccc;
+    border-radius: $iconToggleSize / 2;
+    overflow: hidden;
+    z-index: 1;
+    &::before {
+        content: "";
+        height: $iconToggleSize;
+        width: $iconToggleSize * 2 - 10px;
+        position: absolute;
+        left: -$iconToggleSize * 2 + 10px;
+        background-color: #099FDE;
+        border-radius: $iconToggleSize / 2;
+        transition: left 0.2s ease 0s;
+        z-index: 2;
+    }
+    &::after {
+        content: "";
+        height: $iconToggleSize - 4px;
+        width: $iconToggleSize - 4px;
+        background-color: #fff;
+        border-radius: $iconToggleSize / 2;
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        transition: left 0.2s ease 0s;
+        z-index: 3;
+    }
+    &.active{
+        &::before {
+            left: 0;
+        }
+        &::after {
+            left: $iconToggleSize - 8px;
+        }
+    }
+}
+
+// icon-v-right
+.icon-v-right {
+    position: relative;
+    &::after {
+        content: "";
+        @include v-arrow;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -2px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        box-sizing: border-box;
+    }
+}
+
+// icon-v-left
+.icon-v-left {
+    position: relative;
+    &::after {
+        content: "";
+        @include v-arrow($direction: left);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: 2px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        box-sizing: border-box;
+    }
+}
+
+// icon search
+.icon-search {
+    position: relative;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid currentColor;
+        height: 12px;
+        width: 12px;
+        box-sizing: border-box;
+        border-radius: 50%;
+        margin-left: -2px;
+        margin-top: -2px;
+    }
+    &::after {
+        content: "";
+        background: currentColor;
+        height: 6px;
+        width: 2px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: 4px;
+        margin-top: 4px;
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}
+
+.icon-cross{
+    position: relative;
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 2px;
+        height: 14px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        background-color: currentColor;
+    }
+    &::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}
+
+// icon list
+.icon-dots {
+    // display: inline-block;
+    // width: 30px;
+    // height: 30px;
+    // line-height: 25px;
+    // vertical-align: middle;
+    // text-align: center;
+    position: relative;
+    &::before {
+        content: "";
+        @include center-translate;
+        width: 5px;
+        height: 5px;
+        border-radius: 3px;
+        background-color: #fff;
+        box-shadow: 10px 0 0 #fff, -10px 0 0 #fff;
+    }
+}
+
+.icon-plus {
+    position: relative;
+    &::before, &::after {
+        content: "";
+        width: 16px;
+        height: 2px;
+        background-color: currentColor;
+        @include center-translate;
+    }
+    &::after {
+        width: 2px;
+        height: 16px;
+    }
+}
+
+.icon-right{
+    position: relative;
+    &::before{
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 14px;
+        height: 8px;
+        border-bottom: 2px solid currentColor;
+        border-left: 2px solid currentColor;
+        transform: translate(-50%, -50%) rotate(-52deg);
+        box-sizing: border-box;
+        margin-top: -1px;
+    }
+}
+

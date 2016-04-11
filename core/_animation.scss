@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------
 // animate.scss
-// 提供三组动画 fade-in/out, up-in/out, down-in/out
+// 提供三组动画 fade-in/out, up-in/out, down-in/out, left-in/out, right-in/out
 //-----------------------------------------------------
 
 %animation-basic {
@@ -10,16 +10,52 @@
     animation-fill-mode: both;
 }
 
-@mixin animation-fade($className: fade, $from: 0.815, $to: 1.185) {
+// fade in/out
+//-----------------------------------------------------
+
+@mixin animation-fade-in($className: fade, $from: 0) {
+    
     .#{$className}-in {
         animation-name: fadeIn;
         @extend %animation-basic;
     }
+    @keyframes fadeIn {
+        0% {
+            opacity: $from;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+@mixin animation-fade-out($className: fade, $to: 0) {
+
     .#{$className}-out {
         animation-name: fadeOut;
         @extend %animation-basic;
     }
-    @keyframes fadeIn {
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: $to;
+        }
+    }
+}
+
+// shrink in/out
+//-----------------------------------------------------
+
+@mixin animation-shrink-in($className: shrink, $from: 0.815) {
+    
+    .#{$className}-in {
+        animation-name: shrinkIn;
+        @extend %animation-basic;
+    }
+    @keyframes shrinkIn {
         0% {
             opacity: 0;
             transform: scale($from);
@@ -29,8 +65,16 @@
             transform: scale(1);
         }
     }
+}
 
-    @keyframes fadeOut {
+@mixin animation-shrink-out($className: shrink, $to: 1.185) {
+
+    .#{$className}-out {
+        animation-name: shrinkOut;
+        @extend %animation-basic;
+    }
+
+    @keyframes shrinkOut {
         0% {
             opacity: 1;
             transform: scale(1);
@@ -42,66 +86,166 @@
     }
 }
 
-@mixin animation-down($className: down, $value: 100%) {
+// down in/out
+//-----------------------------------------------------
+
+@mixin animation-down-in($className: down, $value: 100%) {
+    
     .#{$className}-in {
         animation-name: downIn;
         @extend %animation-basic;
     }
-    .#{$className}-out {
-        animation-name: downOut;
-        @extend %animation-basic;
-    }
+
     @keyframes downIn {
         0% {
             opacity: 0;
-            transform: translate3d(0, $value, 0);
+            transform: translate(0, $value);
         }
         100% {
             opacity: 1;
-            transform: translate3d(0, 0, 0);
+            transform: translate(0, 0);
         }
+    }
+}
+
+@mixin animation-down-out($className: down, $value: 100%) {
+
+    .#{$className}-out {
+        animation-name: downOut;
+        @extend %animation-basic;
     }
 
     @keyframes downOut {
         0% {
             opacity: 1;
-            transform: translate3d(0, 0, 0);
+            transform: translate(0, 0);
         }
         100% {
             opacity: 0;
-            transform: translate3d(0, $value, 0);
+            transform: translate(0, $value);
         }
     }
 }
 
-@mixin animation-up($className: up, $value: -100%) {
+// up in/out
+//-----------------------------------------------------
+
+@mixin animation-up-in($className: up, $value: -100%) {
+    
     .#{$className}-in {
         animation-name: upIn;
         @extend %animation-basic;
     }
-    .#{$className}-out {
-        animation-name: upOut;
-        @extend %animation-basic;
-    }
+
     @keyframes upIn {
         0% {
             opacity: 0;
-            transform: translate3d(0, $value, 0);
+            transform: translate(0, $value);
         }
         100% {
             opacity: 1;
-            transform: translate3d(0, 0, 0);
+            transform: translate(0, 0);
         }
+    }
+}
+
+@mixin animation-up-out($className: up, $value: -100%) {
+
+    .#{$className}-out {
+        animation-name: upOut;
+        @extend %animation-basic;
     }
 
     @keyframes upOut {
         0% {
             opacity: 1;
-            transform: translate3d(0, 0, 0);
+            transform: translate(0, 0);
         }
         100% {
             opacity: 0;
-            transform: translate3d(0, $value, 0);
+            transform: translate(0, $value);
+        }
+    }
+}
+
+// left in/out
+//-----------------------------------------------------
+
+@mixin animation-left-in($className: left, $value: -100%) {
+    
+    .#{$className}-in {
+        animation-name: leftIn;
+        @extend %animation-basic;
+    }
+
+    @keyframes leftIn {
+        0% {
+            opacity: 0;
+            transform: translate($value, 0);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    }
+}
+
+@mixin animation-left-out($className: left, $value: -100%) {
+
+    .#{$className}-out {
+        animation-name: leftOut;
+        @extend %animation-basic;
+    }
+
+    @keyframes leftOut {
+        0% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        100% {
+            opacity: 0;
+            transform: translate($value, 0);
+        }
+    }
+}
+
+// right in/out
+//-----------------------------------------------------
+
+@mixin animation-right-in($className: right, $value: 100%) {
+    
+    .#{$className}-in {
+        animation-name: rightIn;
+        @extend %animation-basic;
+    }
+
+    @keyframes rightIn {
+        0% {
+            opacity: 0;
+            transform: translate($value, 0);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    }
+}
+
+@mixin animation-right-out($className: right, $value: 100%) {
+
+    .#{$className}-out {
+        animation-name: rightOut;
+        @extend %animation-basic;
+    }
+
+    @keyframes rightOut {
+        0% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        100% {
+            opacity: 0;
+            transform: translate($value, 0);
         }
     }
 }

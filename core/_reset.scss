@@ -5,7 +5,7 @@
 // 包括normalize，清零重置
 //-----------------------------------------------------
 
-// normalize 3.1
+// normalize 4.0
 // http://necolas.github.io/normalize.css/
 //-----------------------------------------------------
 
@@ -15,7 +15,6 @@ html {
     -ms-text-size-adjust: 100%; // 1
     -webkit-text-size-adjust: 100%; // 1
     -webkit-tap-highlight-color: transparent; // 2
-    font-size: 625%;
     height: 100%;
 }
 
@@ -52,14 +51,12 @@ summary {
     display: block;
 }
 
-// 1. Correct `inline-block` display not defined in IE 8/9.
-// 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+// 1. Correct `inline-block` display not defined in IE 9-.
 audio,
 canvas,
 progress,
 video {
     display: inline-block; // 1
-    vertical-align: baseline; // 2
 }
 
 // Prevent modern browsers from displaying `audio` without controls.
@@ -67,6 +64,11 @@ video {
 audio:not([controls]) {
     display: none;
     height: 0;
+}
+
+// Add the correct vertical alignment in Chrome, Firefox, and Opera.
+progress {
+  vertical-align: baseline;
 }
 
 // Address `[hidden]` styling not present in IE 8/9/10.
@@ -85,21 +87,10 @@ template {
 a {
     background: transparent; // 1
     text-decoration: none;
+    color: nth($colorLink, 1);
     
     &:active {
         outline: 0; // 2
-    }
-    @if length($colorLink) > 1 {
-        color: nth($colorLink, 1);
-        &:hover {
-            color: nth($colorLink, 2);
-        }
-    }
-    @else {
-        color: $colorLink;
-        &:hover {
-            color: darken($colorLink, 10%);
-        }
     }
 }
 
@@ -205,11 +196,14 @@ textarea {
     font: inherit; // 2
     margin: 0; // 3
     vertical-align: middle;
-    
 }
 
-// Address `overflow` set to `hidden` in IE 8/9/10/11.
-button {
+// Show the overflow in IE.
+// 1. Show the overflow in Edge.
+// 2. Show the overflow in Edge, Firefox, and IE.
+button,
+input, // 1
+select { // 2
     overflow: visible;
 }
 
@@ -236,8 +230,7 @@ input[type="submit"] {
 }
 
 // Re-set default cursor for disabled elements.
-button[disabled],
-html input[disabled] {
+[disabled] {
     cursor: default;
 }
 
@@ -355,7 +348,7 @@ textarea::-webkit-input-placeholder {
     color: $colorPlaceholder;
 }
 
-// 如不支持placeholder添加class
+// 如不支持placeholder添加class 或者 设置提示的placeholder
 .placeholder{
     color: $colorPlaceholder;
 }
@@ -414,10 +407,8 @@ i {
 }
 
 // 所有元素为border-box
-@if $borderBoxSwitch {
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
 }
 
 // 清除子元素浮动
