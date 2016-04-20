@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sandal by marvin1023</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Sandal</h1>
+      <h2 class="project-tagline">sandal is a basic sass library for mobile sites</h2>
+      <a href="https://github.com/marvin1023/sandal" class="btn">View on GitHub</a>
+      <a href="https://github.com/marvin1023/sandal/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/marvin1023/sandal/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="sandal" class="anchor" href="#sandal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sandal</h1>
+
+<p>sandal取其“檀香”之意，针对移动端站点为前端人员提供了一些基础的重置，常用的<code>mixin</code>，如flex布局，等分，水平垂直居中，常用图标等，基于它你可以扩展出更多你需要的组件。</p>
+
+<h2>
+<a id="更新说明" class="anchor" href="#%E6%9B%B4%E6%96%B0%E8%AF%B4%E6%98%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>更新说明</h2>
+
+<h3>
+<a id="30版本" class="anchor" href="#30%E7%89%88%E6%9C%AC" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.0版本</h3>
+
+<ul>
+<li>升级了语法，引入map函数，selector函数等</li>
+<li>优化了mixin文件，优化了btn的mixin, 添加了retina 1px等</li>
+<li>icons采用绘制及svg制作</li>
+<li>新增helper及grid文件</li>
+<li>优化了animation动画</li>
+</ul>
+
+<h3>
+<a id="21版本" class="anchor" href="#21%E7%89%88%E6%9C%AC" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.1版本</h3>
+
+<ul>
+<li>优化了变量，详见<code>_variables.scss</code>文件</li>
+<li>将<code>_base.scss</code>改成<code>_core.scss</code>文件</li>
+<li>不再提供css3前缀文件，推荐使用<a href="https://github.com/postcss/autoprefixer">autoprefixer</a>来智能生成前缀（有grunt和gulp版本，有些客户端编译软件也集成了这个功能）。如果你还需要前缀文件请访问独立的<a href="https://github.com/marvin1023/css3-scss">css3 scss</a>
+</li>
+</ul>
+
+<h2>
+<a id="如何使用" class="anchor" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>如何使用</h2>
+
+<p>sandal和<a href="https://github.com/marvin1023/sassCore">sassCore</a>一样，分核心文件和扩展文件两种。其中核心文件提供一些基础的样式和<a href="https://github.com/mixin" class="user-mention">@mixin</a>，%等方便调用；而扩展文件则提供一些模块的样式。</p>
+
+<h3>
+<a id="核心文件调用" class="anchor" href="#%E6%A0%B8%E5%BF%83%E6%96%87%E4%BB%B6%E8%B0%83%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>核心文件调用</h3>
+
+<p>第一种除提供基础功能外，会产生一份<code>reset</code>样式：</p>
+
+<pre><code>@import "d:/sandal/core";
+</code></pre>
+
+<p>第二种不产生任何样式，只提供功能的调用：</p>
+
+<pre><code>@import "d:/sandal/function";
+</code></pre>
+
+<h3>
+<a id="扩展文件调用" class="anchor" href="#%E6%89%A9%E5%B1%95%E6%96%87%E4%BB%B6%E8%B0%83%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>扩展文件调用</h3>
+
+<p>根据需要调用，以<code>grid</code>为例：</p>
+
+<pre><code>@import "d:/sandal/ext/grid";
+</code></pre>
+
+<h2>
+<a id="文件简述" class="anchor" href="#%E6%96%87%E4%BB%B6%E7%AE%80%E8%BF%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>文件简述</h2>
+
+<p>sandal包括两个集合文件（core，function）和三个文件夹（core，ext，components）。其中core文件夹中为核心基础文件，包括variables，media-queries，mixin，animation，reset；ext文件夹中是一些扩展文件，目前只包括font-face 和 svg 两种icons；components文件夹为组件，这里暂不介绍。</p>
+
+<p>两个集合文件（core，function）导入的都是core中的文件，区别在于core除了提供基本功能之外还会生成一份reset样式，而function则只提供基本功能。至于ext中的文件则属于额外的一些模块扩展，可根据需求导入。</p>
+
+<h3>
+<a id="core文件" class="anchor" href="#core%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>core文件</h3>
+
+<h4>
+<a id="variables" class="anchor" href="#variables" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>variables</h4>
+
+<p>负责基础变量的文件，如常用的颜色，字体等变量。</p>
+
+<h4>
+<a id="media-queries" class="anchor" href="#media-queries" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>media-queries</h4>
+
+<p>负责响应式宽度判断的文件。主要是对响应式布局的一些宽度判断，来自paranoida的<a href="https://github.com/paranoida/sass-mediaqueries">sass-mediaqueries</a>。</p>
+
+<h4>
+<a id="mixin" class="anchor" href="#mixin" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>mixin</h4>
+
+<p>负责功能方面的文件。这里我们大概分成三个部分，一个是混合部分即mixin（主要定义了一些常用的<code>flex</code>,<code>translate</code>等），一个是placeholder选择器部分即%，最后就是我们的function函数部分。常用的include及extend就是在这里定义的。</p>
+
+<h4>
+<a id="animation" class="anchor" href="#animation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>animation</h4>
+
+<p>提供四组简单实用动画：fade-in/out, shrink-in/out, up-in/out, down-in/out。默认不产生样式，通过include调用</p>
+
+<h3>
+<a id="reset" class="anchor" href="#reset" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>reset</h3>
+
+<p>在<a href="http://necolas.github.io/normalize.css/">normalize</a>的基础上，根据目前我们大家的使用习惯进行了一些归零行动，及设置文字字体颜色。严格来说这并不是专门针对移动端的重置，而是ie8+的重置，因为考虑到有些是专门做移动端，而有些则是移动为先，再则重置的东西也比较少，所以就没有进一步砍掉。当然有代码洁癖的可以进一步优化。</p>
+
+<h3>
+<a id="ext文件" class="anchor" href="#ext%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ext文件</h3>
+
+<h4>
+<a id="helper" class="anchor" href="#helper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>helper</h4>
+
+<p>提供常用的基础class，如overlay, full-width等</p>
+
+<h4>
+<a id="grid" class="anchor" href="#grid" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>grid</h4>
+
+<p>移动端的网格系统，分为row和col，具体使用参考<a href="http://imweb.io/topic/570b33f806f2400432c139b3">3分钟13行代码搭建sass版移动端网格系统</a></p>
+
+<h4>
+<a id="icons" class="anchor" href="#icons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>icons</h4>
+
+<p>分为绘制的icon和svg图标两种，可参考icons文件夹中的demo</p>
+
+<p><img src="ext/icons/svg-icons.png" alt="default icon svg"></p>
+
+<p><strong>svg 图标调用</strong></p>
+
+<p>从<a href="http://icomoon.io">icomoon</a>提取了几个常用的svg图标，使用方法可参考demo中的demo.html，这里以home图标为例：</p>
+
+<pre><code>&lt;svg class="icon icon-home"&gt;&lt;use xlink:href="icons.svg#icon-home"&gt;&lt;/use&gt;&lt;/svg&gt;
+</code></pre>
+
+<p>如需改变颜色，可以通过css的fill属性来定义</p>
+
+<pre><code>.icon-home{
+    fill:#f00;
+}
+</code></pre>
+
+<p>最后可根据实际需求定义需要的icon， 然后使用。</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/marvin1023/sandal">Sandal</a> is maintained by <a href="https://github.com/marvin1023">marvin1023</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
