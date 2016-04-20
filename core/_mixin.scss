@@ -178,6 +178,17 @@
     @include justify(false);
 }
 
+// retina border
+// 0.5px实现 ios9
+@mixin retina-one-px() {
+    @supports (border-width: 0.5px) {
+    	@media only screen and (-webkit-min-device-pixel-ratio: 2), screen and (-webkit-min-device-pixel-ratio: 3) {
+    		@content;
+    	}
+    }
+}
+
+// linear-gradient实现
 // 安卓4.3- 不支持background-size的百分比
 @mixin retina-one-px-bg($direction: top, $color: $colorBorder) {
     background-repeat: no-repeat;
@@ -216,7 +227,7 @@
     }
 }
 
-// retina border
+// border和transform实现
 // 注意before和after的层级问题
 @mixin retina-one-px-border($direction: top) {
     position: absolute;
