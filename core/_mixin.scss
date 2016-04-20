@@ -292,6 +292,7 @@
     padding: 5px 10px;
     position: relative;
     display: block;
+    overflow: hidden;
     &:active,
     &:hover {
         background-color: $colorF;
