@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sandal - mobile sass liabrary - marvin1023</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Sandal</h1>
+      <h2 class="project-tagline">sandal is a basic sass library for mobile sites</h2>
+      <a href="http://marvin1023.github.io/sandal/" class="btn">Index</a>
+      <a href="http://marvin1023.github.io/sandal/reset.html" class="btn active">Reset</a>
+      <a href="http://marvin1023.github.io/sandal/mixin.html" class="btn">Mixin</a>
+      <a href="http://marvin1023.github.io/sandal/others.html" class="btn">Others</a>
+    </section>
+    <section class="main-content">
+      <h2>
+<a id="reset-文件" class="anchor" href="#reset-%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>reset 文件</h2>
+
+<p>负责生成一份重置样式，在<a href="https://necolas.github.io/normalize.css/" target="_blank">normalize.css</a>的基础上，根据目前我们大家的使用习惯进行了一些归零行动，设置所有元素的<code>box-sizing</code>为<code>border-box</code>，外加一个clearfix。</p>
+
+<div class="highlight highlight-source-css"><pre><span class="pl-ent">html</span> {
+  <span class="pl-c1">-ms-<span class="pl-c1">text</span>-<span class="pl-c1">size-adjust</span></span>: <span class="pl-c1">100<span class="pl-k">%</span></span>;
+  <span class="pl-c1">-webkit-<span class="pl-c1">text</span>-<span class="pl-c1">size-adjust</span></span>: <span class="pl-c1">100<span class="pl-k">%</span></span>;
+  <span class="pl-c1">-webkit-tap-highlight-<span class="pl-c1">color</span></span>: <span class="pl-c1">transparent</span>;
+  <span class="pl-c1"><span class="pl-c1">height</span></span>: <span class="pl-c1">100<span class="pl-k">%</span></span>;
+}
+<span class="pl-ent">body</span> {
+  <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">0</span>;
+  <span class="pl-c1"><span class="pl-c1">font-size</span></span>: <span class="pl-c1">14<span class="pl-k">px</span></span>;
+  <span class="pl-c1"><span class="pl-c1">font-family</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Helvetica Neue<span class="pl-pds">"</span></span>, <span class="pl-c1">Helvetica</span>, STHeiTi, <span class="pl-c1">Arial</span>, <span class="pl-c1">sans-serif</span>;
+  <span class="pl-c1"><span class="pl-c1">line-height</span></span>: <span class="pl-c1">1.5</span>;
+  <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">#333</span>;
+  <span class="pl-c1"><span class="pl-c1">background-color</span></span>: <span class="pl-c1">#fff</span>;
+  <span class="pl-c1"><span class="pl-c1">min-height</span></span>: <span class="pl-c1">100<span class="pl-k">%</span></span>;
+}
+<span class="pl-ent">article</span>, <span class="pl-ent">aside</span>, <span class="pl-ent">details</span>, <span class="pl-ent">figcaption</span>, <span class="pl-ent">figure</span>, <span class="pl-ent">footer</span>, <span class="pl-ent">header</span>, <span class="pl-ent">hgroup</span>, main, <span class="pl-ent">menu</span>, <span class="pl-ent">nav</span>, <span class="pl-ent">section</span>, <span class="pl-ent">summary</span> {
+  <span class="pl-c1"><span class="pl-c1">display</span></span>: <span class="pl-c1">block</span>;
+}
+<span class="pl-ent">audio</span>, <span class="pl-ent">canvas</span>, <span class="pl-ent">progress</span>, <span class="pl-ent">video</span> {
+  <span class="pl-c1"><span class="pl-c1">display</span></span>: <span class="pl-c1">inline-block</span>;
+}
+<span class="pl-ent">audio</span><span class="pl-e">:not</span>([controls]) {
+  <span class="pl-c1"><span class="pl-c1">display</span></span>: <span class="pl-c1">none</span>;
+  <span class="pl-c1"><span class="pl-c1">height</span></span>: <span class="pl-c1">0</span>;
+}
+<span class="pl-ent">progress</span> {
+  <span class="pl-c1"><span class="pl-c1">vertical-align</span></span>: <span class="pl-c1">baseline</span>;
+}
+[hidden], template {
+  <span class="pl-c1"><span class="pl-c1">display</span></span>: <span class="pl-c1">none</span>;
+}
+<span class="pl-ent">a</span> {
+  <span class="pl-c1"><span class="pl-c1">background</span></span>: <span class="pl-c1">transparent</span>;
+  <span class="pl-c1"><span class="pl-c1">text-decoration</span></span>: <span class="pl-c1">none</span>;
+  <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">#08c</span>;
+}
+<span class="pl-ent">a</span><span class="pl-e">:active</span> {
+  <span class="pl-c1"><span class="pl-c1">outline</span></span>: <span class="pl-c1">0</span>;
+}
+<span class="pl-ent">abbr</span>[<span class="pl-ent">title</span>] {
+  <span class="pl-c1"><span class="pl-c1">border-bottom</span></span>: <span class="pl-c1">1<span class="pl-k">px</span></span> <span class="pl-c1">dotted</span>;
+}
+<span class="pl-ent">b</span>, <span class="pl-ent">strong</span> {
+  <span class="pl-c1"><span class="pl-c1">font-weight</span></span>: <span class="pl-c1">bold</span>;
+}
+<span class="pl-ent">dfn</span> {
+  <span class="pl-c1"><span class="pl-c1">font-style</span></span>: <span class="pl-c1">italic</span>;
+}
+<span class="pl-ent">mark</span> {
+  <span class="pl-c1"><span class="pl-c1">background</span></span>: <span class="pl-c1">#ff0</span>;
+  <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">#000</span>;
+}
+<span class="pl-ent">small</span> {
+  <span class="pl-c1"><span class="pl-c1">font-size</span></span>: <span class="pl-c1">80<span class="pl-k">%</span></span>;
+}
+<span class="pl-ent">sub</span>, <span class="pl-ent">sup</span> {
+  <span class="pl-c1"><span class="pl-c1">font-size</span></span>: <span class="pl-c1">75<span class="pl-k">%</span></span>;
+  <span class="pl-c1"><span class="pl-c1">line-height</span></span>: <span class="pl-c1">0</span>;
+  <span class="pl-c1"><span class="pl-c1">position</span></span>: <span class="pl-c1">relative</span>;
+  <span class="pl-c1"><span class="pl-c1">vertical-align</span></span>: <span class="pl-c1">baseline</span>;
+}
+<span class="pl-ent">sup</span> {
+  <span class="pl-c1"><span class="pl-c1">top</span></span>: <span class="pl-c1">-0.5<span class="pl-k">em</span></span>;
+}
+<span class="pl-ent">sub</span> {
+  <span class="pl-c1"><span class="pl-c1">bottom</span></span>: <span class="pl-c1">-0.25<span class="pl-k">em</span></span>;
+}
+<span class="pl-ent">img</span> {
+  <span class="pl-c1"><span class="pl-c1">border</span></span>: <span class="pl-c1">0</span>;
+  <span class="pl-c1"><span class="pl-c1">vertical-align</span></span>: <span class="pl-c1">middle</span>;
+}
+svg<span class="pl-e">:not</span>(<span class="pl-e">:root</span>) {
+  <span class="pl-c1"><span class="pl-c1">overflow</span></span>: <span class="pl-c1">hidden</span>;
+}
+<span class="pl-ent">pre</span> {
+  <span class="pl-c1"><span class="pl-c1">overflow</span></span>: <span class="pl-c1">auto</span>;
+  <span class="pl-c1"><span class="pl-c1">white-space</span></span>: <span class="pl-c1">pre</span>;
+  <span class="pl-c1"><span class="pl-c1">white-space</span></span>: <span class="pl-c1">pre-wrap</span>;
+  <span class="pl-c1"><span class="pl-c1">word-wrap</span></span>: <span class="pl-c1">break-word</span>;
+}
+<span class="pl-ent">code</span>, <span class="pl-ent">kbd</span>, <span class="pl-ent">pre</span>, <span class="pl-ent">samp</span> {
+  <span class="pl-c1"><span class="pl-c1">font-family</span></span>: <span class="pl-c1">monospace</span>, <span class="pl-c1">monospace</span>;
+  <span class="pl-c1"><span class="pl-c1">font-size</span></span>: <span class="pl-c1">1<span class="pl-k">em</span></span>;
+}
+<span class="pl-ent">button</span>, <span class="pl-ent">input</span>, <span class="pl-ent">optgroup</span>, <span class="pl-ent">select</span>, <span class="pl-ent">textarea</span> {
+  <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">inherit</span>;
+  <span class="pl-c1"><span class="pl-c1">font</span></span>: <span class="pl-c1">inherit</span>;
+  <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">0</span>;
+  <span class="pl-c1"><span class="pl-c1">vertical-align</span></span>: <span class="pl-c1">middle</span>;
+}
+<span class="pl-ent">button</span>, <span class="pl-ent">input</span>, <span class="pl-ent">select</span> {
+  <span class="pl-c1"><span class="pl-c1">overflow</span></span>: <span class="pl-c1">visible</span>;
+}
+<span class="pl-ent">button</span>, <span class="pl-ent">select</span> {
+  <span class="pl-c1"><span class="pl-c1">text-transform</span></span>: <span class="pl-c1">none</span>;
+}
+<span class="pl-ent">button</span>, <span class="pl-ent">html</span> <span class="pl-ent">input</span>[type="<span class="pl-ent">button</span>"], <span class="pl-ent">input</span>[type="reset"], <span class="pl-ent">input</span>[type="submit"] {
+  <span class="pl-c1">-webkit-<span class="pl-c1">appearance</span></span>: button;
+  <span class="pl-c1"><span class="pl-c1">cursor</span></span>: <span class="pl-c1">pointer</span>;
+}
+[disabled] {
+  <span class="pl-c1"><span class="pl-c1">cursor</span></span>: <span class="pl-c1">default</span>;
+}
+<span class="pl-ent">button</span>::-moz-focus-inner, <span class="pl-ent">input</span>::-moz-focus-inner {
+  <span class="pl-c1"><span class="pl-c1">border</span></span>: <span class="pl-c1">0</span>;
+  <span class="pl-c1"><span class="pl-c1">padding</span></span>: <span class="pl-c1">0</span>;
+}
+<span class="pl-ent">input</span> {
+  <span class="pl-c1"><span class="pl-c1">line-height</span></span>: <span class="pl-c1">normal</span>;
+}
+<span class="pl-ent">input</span>[type="checkbox"], <span class="pl-ent">input</span>[type="radio"] {
+  <span class="pl-c1"><span class="pl-c1">box-sizing</span></span>: border-box;
+  <span class="pl-c1"><span class="pl-c1">padding</span></span>: <span class="pl-c1">0</span>;
+}
+<span class="pl-ent">input</span>[type="number"]::-webkit-inner-spin-<span class="pl-ent">button</span>, <span class="pl-ent">input</span>[type="number"]::-webkit-outer-spin-<span class="pl-ent">button</span> {
+  <span class="pl-c1"><span class="pl-c1">height</span></span>: <span class="pl-c1">auto</span>;
+}
+<span class="pl-ent">input</span>[type="search"] {
+  <span class="pl-c1">-webkit-<span class="pl-c1">appearance</span></span>: textfield;
+  <span class="pl-c1"><span class="pl-c1">box-sizing</span></span>: border-box;
+}
+<span class="pl-ent">input</span>[type="search"]::-webkit-search-cancel-<span class="pl-ent">button</span>, <span class="pl-ent">input</span>[type="search"]::-webkit-search-decoration {
+  <span class="pl-c1">-webkit-<span class="pl-c1">appearance</span></span>: <span class="pl-c1">none</span>;
+}
+<span class="pl-ent">fieldset</span> {
+  <span class="pl-c1"><span class="pl-c1">border</span></span>: <span class="pl-c1">1<span class="pl-k">px</span></span> <span class="pl-c1">solid</span> <span class="pl-c1">#c0c0c0</span>;
+  <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">0</span> <span class="pl-c1">2<span class="pl-k">px</span></span>;
+  <span class="pl-c1"><span class="pl-c1">padding</span></span>: <span class="pl-c1">0.35<span class="pl-k">em</span></span> <span class="pl-c1">0.625<span class="pl-k">em</span></span> <span class="pl-c1">0.75<span class="pl-k">em</span></span>;
+}
+<span class="pl-ent">legend</span> {
+  <span class="pl-c1"><span class="pl-c1">border</span></span>: <span class="pl-c1">0</span>;
+  <span class="pl-c1"><span class="pl-c1">padding</span></span>: <span class="pl-c1">0</span>;
+}
+<span class="pl-ent">textarea</span> {
+  <span class="pl-c1"><span class="pl-c1">overflow</span></span>: <span class="pl-c1">auto</span>;
+  <span class="pl-c1"><span class="pl-c1">resize</span></span>: <span class="pl-c1">vertical</span>;
+  <span class="pl-c1"><span class="pl-c1">vertical-align</span></span>: <span class="pl-c1">top</span>;
+}
+<span class="pl-ent">optgroup</span> {
+  <span class="pl-c1"><span class="pl-c1">font-weight</span></span>: <span class="pl-c1">bold</span>;
+}
+<span class="pl-ent">input</span>, <span class="pl-ent">select</span>, <span class="pl-ent">textarea</span> {
+  <span class="pl-c1"><span class="pl-c1">outline</span></span>: <span class="pl-c1">0</span>;
+}
+<span class="pl-ent">textarea</span>, <span class="pl-ent">input</span> {
+  <span class="pl-c1">-webkit-user-modify</span>: read-write-plaintext-only;
+}
+<span class="pl-ent">input</span>::-ms-clear, <span class="pl-ent">input</span>::-ms-reveal {
+  <span class="pl-c1"><span class="pl-c1">display</span></span>: <span class="pl-c1">none</span>;
+}
+<span class="pl-ent">input</span>::-moz-placeholder, <span class="pl-ent">textarea</span>::-moz-placeholder {
+  <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">#999</span>;
+}
+<span class="pl-ent">input</span>:-ms-<span class="pl-ent">input</span>-placeholder, <span class="pl-ent">textarea</span>:-ms-<span class="pl-ent">input</span>-placeholder {
+  <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">#999</span>;
+}
+<span class="pl-ent">input</span>::-webkit-<span class="pl-ent">input</span>-placeholder, <span class="pl-ent">textarea</span>::-webkit-<span class="pl-ent">input</span>-placeholder {
+  <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">#999</span>;
+}
+<span class="pl-e">.placeholder</span> {
+  <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">#999</span>;
+}
+<span class="pl-ent">table</span> {
+  <span class="pl-c1"><span class="pl-c1">border-collapse</span></span>: <span class="pl-c1">collapse</span>;
+  <span class="pl-c1"><span class="pl-c1">border-spacing</span></span>: <span class="pl-c1">0</span>;
+}
+<span class="pl-ent">td</span>, <span class="pl-ent">th</span> {
+  <span class="pl-c1"><span class="pl-c1">padding</span></span>: <span class="pl-c1">0</span>;
+}
+<span class="pl-ent">h1</span>, <span class="pl-ent">h2</span>, <span class="pl-ent">h3</span>, <span class="pl-ent">h4</span>, <span class="pl-ent">h5</span>, <span class="pl-ent">h6</span>, <span class="pl-ent">p</span>, <span class="pl-ent">figure</span>, <span class="pl-ent">form</span>, <span class="pl-ent">blockquote</span> {
+  <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">0</span>;
+}
+<span class="pl-ent">ul</span>, <span class="pl-ent">ol</span>, <span class="pl-ent">li</span>, <span class="pl-ent">dl</span>, <span class="pl-ent">dd</span> {
+  <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">0</span>;
+  <span class="pl-c1"><span class="pl-c1">padding</span></span>: <span class="pl-c1">0</span>;
+}
+<span class="pl-ent">ul</span>, <span class="pl-ent">ol</span> {
+  <span class="pl-c1"><span class="pl-c1">list-style</span></span>: <span class="pl-c1">none</span> <span class="pl-c1">outside</span> <span class="pl-c1">none</span>;
+}
+<span class="pl-ent">h1</span>, <span class="pl-ent">h2</span>, <span class="pl-ent">h3</span> {
+  <span class="pl-c1"><span class="pl-c1">line-height</span></span>: <span class="pl-c1">2</span>;
+  <span class="pl-c1"><span class="pl-c1">font-weight</span></span>: <span class="pl-c1">normal</span>;
+}
+<span class="pl-ent">h1</span> {
+  <span class="pl-c1"><span class="pl-c1">font-size</span></span>: <span class="pl-c1">18<span class="pl-k">px</span></span>;
+}
+<span class="pl-ent">h2</span> {
+  <span class="pl-c1"><span class="pl-c1">font-size</span></span>: <span class="pl-c1">16<span class="pl-k">px</span></span>;
+}
+<span class="pl-ent">h3</span> {
+  <span class="pl-c1"><span class="pl-c1">font-size</span></span>: <span class="pl-c1">14<span class="pl-k">px</span></span>;
+}
+<span class="pl-ent">i</span> {
+  <span class="pl-c1"><span class="pl-c1">font-style</span></span>: <span class="pl-c1">normal</span>;
+}
+<span class="pl-ent">*</span> {
+  <span class="pl-c1"><span class="pl-c1">box-sizing</span></span>: border-box;
+}
+<span class="pl-e">.clearfix</span><span class="pl-e">::before</span>, <span class="pl-e">.clearfix</span><span class="pl-e">::after</span> {
+  <span class="pl-c1"><span class="pl-c1">content</span></span>: <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>;
+  <span class="pl-c1"><span class="pl-c1">display</span></span>: table;
+}
+<span class="pl-e">.clearfix</span><span class="pl-e">::after</span> {
+  <span class="pl-c1"><span class="pl-c1">clear</span></span>: <span class="pl-c1">both</span>;
+}</pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/marvin1023/sandal">Sandal</a> is maintained by <a href="https://github.com/marvin1023">marvin1023</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  </body>
+</html>

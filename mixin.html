@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sandal - mobile sass liabrary - marvin1023</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Sandal</h1>
+      <h2 class="project-tagline">sandal is a basic sass library for mobile sites</h2>
+      <a href="http://marvin1023.github.io/sandal/" class="btn">Index</a>
+      <a href="http://marvin1023.github.io/sandal/reset.html" class="btn">Reset</a>
+      <a href="http://marvin1023.github.io/sandal/mixin.html" class="btn active">Mixin</a>
+      <a href="http://marvin1023.github.io/sandal/others.html" class="btn">Others</a>
+    </section>
+<section class="main-content">
+      <h2>mixin文件</h2>
+      <p><code>_mixin.scss</code>文件中除了定义了一些<code>@mixin</code>，还定义了一些<code>%</code>和<code>@function</code>，总的来说就是定义了一些平常可应用到的实际功能。</p>
+
+<p>三者的调用方式分别为：</p>
+
+<ul>
+<li>
+<code>@mixin</code>通过<code>@include</code>来调用；</li>
+<li>
+<code>%</code>通过<code>@extend</code>来调用；</li>
+<li>
+<code>@function</code>则是返回一个值。</li>
+</ul>
+
+<p><code>@mixin</code>和<code>%</code>的区别在于，调用<code>%</code>解析后的css是联合申明的。详细解说请参考：<a href="http://www.w3cplus.com/preprocessor/sass-mixins-function-placeholder.html">sass揭秘之@mixin，%，@function</a>。</p>
+
+<p>某些代码既定义了<code>@mixin</code>，也定义了<code>%</code>，开发者可以根据自己的需求或喜好调用。<code>@mixin</code>如果定义了多个参数，我们可以针对有默认值的参数进行hash方式的传参，具体参考下面的代码。</p>
+
+<h3>
+<a id="center-block" class="anchor" href="#center-block" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>center-block</h3>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">center</span><span class="pl-c1">-</span><span class="pl-c1">block</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">center-block</span>(<span class="pl-c1">false</span>);
+
+<span class="pl-k">@extend</span> <span class="pl-e">%center-block</span>;</pre></div>
+
+<h3>
+<a id="clearfix" class="anchor" href="#clearfix" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>clearfix</h3>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">clearfix</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">clearfix</span>(<span class="pl-c1">false</span>);
+
+<span class="pl-k">@extend</span> <span class="pl-e">%clearfix</span>;</pre></div>
+
+<h3>
+<a id="hidden-clip" class="anchor" href="#hidden-clip" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>hidden-clip</h3>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">hidden</span><span class="pl-c1">-</span><span class="pl-c1">clip</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">hidden-clip</span>(<span class="pl-c1">false</span>);
+
+<span class="pl-k">@extend</span> <span class="pl-e">%hidden-clip</span>;</pre></div>
+
+<h3>
+<a id="ellipsis" class="anchor" href="#ellipsis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ellipsis</h3>
+
+<p>ellipsis-lines定义了多行省略，只支持老版本的<code>flex-box</code></p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">ellipsis</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">ellipsis</span>(<span class="pl-c1">false</span>);
+
+<span class="pl-k">@extend</span> <span class="pl-e">%ellipsis</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">ellipsis-lines</span>(<span class="pl-c1">2</span>);<span class="pl-c"> // line num</span></pre></div>
+
+<h3>
+<a id="word-break" class="anchor" href="#word-break" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>word-break</h3>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">word-break</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">word-break</span>(<span class="pl-c1">false</span>);
+
+<span class="pl-k">@extend</span> <span class="pl-e">%word-break</span>;</pre></div>
+
+<h3>
+<a id="disabled" class="anchor" href="#disabled" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>disabled</h3>
+
+<p>可传入三个变量<code>$textColor</code>, <code>$bgColor</code>, <code>$borderColor</code> 分别表示文本色，背景色，边框色</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">disabled</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">disabled</span>(<span class="pl-smi">$borderColor</span><span class="pl-v">:</span> <span class="pl-c1">#ccc</span>);<span class="pl-c"> // 设置边框颜色</span>
+
+<span class="pl-k">@extend</span> <span class="pl-e">%disabled</span>;</pre></div>
+
+<h3>
+<a id="ir" class="anchor" href="#ir" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ir</h3>
+
+<p>图片替换文字</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">ir</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">ir</span>(<span class="pl-c1">false</span>);
+
+<span class="pl-k">@extend</span> <span class="pl-e">%ir</span>;</pre></div>
+
+<h3>
+<a id="fixed" class="anchor" href="#fixed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>fixed</h3>
+
+<p>变量<code>$pos</code>可设置length值，也可以是bottom或all关键词</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">fixed</span>(<span class="pl-c1">44</span><span class="pl-k">px</span>);<span class="pl-c"> // top值为44px</span>
+
+<span class="pl-k">@include</span> <span class="pl-c1">fixed</span>(<span class="pl-v">all</span>);<span class="pl-c"> // top和bottom都为0</span>
+
+<span class="pl-k">@extend</span> <span class="pl-e">%fixed-bottom</span>;
+
+<span class="pl-k">@extend</span> <span class="pl-e">%fixed-top</span>;</pre></div>
+
+<h3>
+<a id="justify" class="anchor" href="#justify" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>justify</h3>
+
+<p>左右对齐</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">justify</span> ;
+
+<span class="pl-k">@include</span> <span class="pl-c1">justify</span>(<span class="pl-c1">false</span>);
+
+<span class="pl-k">@extend</span> <span class="pl-e">%justify</span>;</pre></div>
+
+<h3>
+<a id="retina-one-px" class="anchor" href="#retina-one-px" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>retina one px</h3>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-c">// ios9  0.5px</span>
+<span class="pl-k">@include</span> <span class="pl-c1">retina-one-px</span> {
+    <span class="pl-e">.demo</span> {<span class="pl-c1"><span class="pl-c1">border-width</span></span>: <span class="pl-c1">0.5</span><span class="pl-k">px</span>;}
+}
+
+<span class="pl-c">// 使用linear-gradient实现</span>
+<span class="pl-c">// 安卓4.3- 不支持background-size的百分比</span>
+<span class="pl-c">// 参数$direction(可取值top/right/bottom/left/v/h/all，v表示top&amp;bottom，h表示left&amp;right，all表示四边，默认为top), $color(边框颜色，默认为全局变量$colorBorder)</span>
+<span class="pl-k">@include</span> <span class="pl-c1">retina-one-px-bg</span>(<span class="pl-v">v</span>);
+
+<span class="pl-c">// 使用border及transform实现</span>
+<span class="pl-c">// 通过before 和 after 生成，请注意层级问题</span>
+<span class="pl-c">// 参数$direction(可取值top/right/bottom/left/all，默认为top), $color(边框颜色，默认为全局变量$colorBorder)</span>
+<span class="pl-k">@include</span> <span class="pl-c1">retina-one-px-border</span>(<span class="pl-c1">bottom</span>);
+
+<span class="pl-c">// 使用上面第三种方案实现</span>
+<span class="pl-k">@extend</span> <span class="pl-e">%border-tb</span>;
+<span class="pl-k">@extend</span> <span class="pl-e">%border-all</span>;</pre></div>
+
+<h3>
+<a id="equal" class="anchor" href="#equal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>equal</h3>
+
+<p>等分实现，分为table方法和flex方法</p>
+
+<p>参数<code>$children</code>，默认为<code>li</code>，可传入参数<code>$children</code>，默认为<code>li</code>，如果传入<code>li div p a span strong</code>则为元素，否则为class</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">equal-table</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">equal-flex</span>(<span class="pl-v">item</span>);<span class="pl-c"> // 子元素的class为`.item`</span></pre></div>
+
+<h3>
+<a id="center" class="anchor" href="#center" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>center</h3>
+
+<p>实现水平或垂直居中，分为translate方法和flex方法</p>
+
+<p>参数<code>$direction</code>，默认为<code>both</code>水平垂直都居中，可传入<code>x/y</code>两种值，表示水平或垂直方向</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">center-translate</span>(<span class="pl-v">x</span>);
+
+<span class="pl-k">@include</span> <span class="pl-c1">center</span><span class="pl-c1">-</span><span class="pl-c1">flex</span>;</pre></div>
+
+<h3>
+<a id="arrow" class="anchor" href="#arrow" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>arrow</h3>
+
+<h3>
+<a id="triangle-arrow" class="anchor" href="#triangle-arrow" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>triangle arrow</h3>
+
+<p>参数<code>$direction</code>,  <code>$borderWidth</code>, <code>$borderColor</code>，分别表示方向、大小、颜色</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">triangle</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">triangle</span>(<span class="pl-smi">$borderWidth</span><span class="pl-v">:</span><span class="pl-c1"> 8</span><span class="pl-k">px</span>);</pre></div>
+
+<h3>
+<a id="v-arrow" class="anchor" href="#v-arrow" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>v arrow</h3>
+
+<p>参数<code>$direction</code>, <code>$borderWidth</code>, <code>$size</code>,，分别表示方向，箭头粗细， 大小</p>
+
+<p>箭头颜色采用currentColor</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">v-arrow</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">v-arrow</span>(<span class="pl-smi">$direction</span><span class="pl-v">:</span> <span class="pl-c1">left</span>);</pre></div>
+
+<h3>
+<a id="timing-function" class="anchor" href="#timing-function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>timing-function</h3>
+
+<p>页面切换的一个timing-function，默认为<code>transition-timing-function</code>，可设置参数<code>$name</code>值为a，表示<code>animation-timing-function</code></p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">timing-function</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">timing-function</span>(<span class="pl-v">a</span>);</pre></div>
+
+<h3>
+<a id="parent-state" class="anchor" href="#parent-state" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>parent state</h3>
+
+<p>父元素状态</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-e">.parent</span>{
+    <span class="pl-e">.child</span>{
+         <span class="pl-k">@include</span> <span class="pl-c1">parent-state</span>(<span class="pl-s"><span class="pl-pds">"</span>:hover<span class="pl-pds">"</span></span>)<span class="pl-ii">{</span>
+             <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">#f00</span>;
+         }
+    }
+ }
+
+<span class="pl-c"> // css</span>
+ <span class="pl-e">.parent</span><span class="pl-e">:hover</span> <span class="pl-e">.child</span> {
+     <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">#f00</span>;
+ }</pre></div>
+
+<h3>
+<a id="item-v-right" class="anchor" href="#item-v-right" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>item-v-right</h3>
+
+<p>右侧箭头跳转指向</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@extend</span> <span class="pl-e">%item-v-right</span></pre></div>
+
+<h3>
+<a id="bar-line" class="anchor" href="#bar-line" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>bar-line</h3>
+
+<p>具体使用场景见line-list.html</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@extend</span> <span class="pl-e">%bar-line</span>;</pre></div>
+
+<h3>
+<a id="css3" class="anchor" href="#css3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>css3</h3>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@extend</span> <span class="pl-e">%display-flex</span>;
+<span class="pl-k">@extend</span> <span class="pl-e">%transition-all</span>;
+<span class="pl-k">@extend</span> <span class="pl-e">%translate3d</span>;</pre></div>
+
+<h3>
+<a id="btn" class="anchor" href="#btn" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>btn</h3>
+
+<h3>
+<a id="基础样式" class="anchor" href="#%E5%9F%BA%E7%A1%80%E6%A0%B7%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>基础样式</h3>
+
+<p>默认设置了1px的border，颜色为transparent（这样可以透过看到背景色，跟没有设置border一样），这样对视觉上的有无border都可以兼容</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@extend</span> <span class="pl-e">%btn-basic</span>;</pre></div>
+
+<h3>
+<a id="按钮大小" class="anchor" href="#%E6%8C%89%E9%92%AE%E5%A4%A7%E5%B0%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>按钮大小</h3>
+
+<p>参数<code>$padding</code>, <code>$height</code>, <code>$radius</code>，分别表示左右的padding，按钮高度，圆角</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">btn-size</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">btn-size</span>(<span class="pl-smi">$radius</span><span class="pl-v">:</span><span class="pl-c1"> 5</span><span class="pl-k">px</span>);
+
+<span class="pl-k">@include</span> <span class="pl-c1">btn-size</span>(<span class="pl-smi">$height</span><span class="pl-v">:</span><span class="pl-c1"> 60</span><span class="pl-k">px</span>);</pre></div>
+
+<h3>
+<a id="按钮颜色" class="anchor" href="#%E6%8C%89%E9%92%AE%E9%A2%9C%E8%89%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>按钮颜色</h3>
+
+<p>参数<code>$textColor</code>, <code>$bgColor</code>, <code>$borderColor</code>，分别表示文本色，背景色，边框色（默认没有边框色）。</p>
+
+<p>三个颜色都可以只传入一个值或者传入两个值，如传入两个值，则第二个值表示滑过颜色</p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">btn-color</span>;
+
+<span class="pl-k">@include</span> <span class="pl-c1">btn-color</span>(<span class="pl-c1">#fff</span>, <span class="pl-c1">#188eee</span>);
+
+<span class="pl-k">@include</span> <span class="pl-c1">btn-color</span>(<span class="pl-c1">#333</span>, <span class="pl-c1">#666</span> <span class="pl-c1">#eee</span>);<span class="pl-c"> // #eee表示滑过的背景色</span></pre></div>
+
+<h3>
+<a id="tint" class="anchor" href="#tint" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>tint</h3>
+
+<p>为颜色添加白色，以百分比形式</p>
+
+<p>参数<code>$color</code>, <code>$percent</code></p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-e">.demo</span> {
+    <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">tint</span>(<span class="pl-c1">#333</span>,<span class="pl-c1"> 30</span><span class="pl-k">%</span>);
+}</pre></div>
+
+<h3>
+<a id="shade" class="anchor" href="#shade" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>shade</h3>
+
+<p>为颜色添加黑色，以百分比形式</p>
+
+<p>参数<code>$color</code>, <code>$percent</code></p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-e">.demo</span> {
+    <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">shade</span>(<span class="pl-c1">#eee</span>,<span class="pl-c1"> 30</span><span class="pl-k">%</span>);
+}</pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/marvin1023/sandal">Sandal</a> is maintained by <a href="https://github.com/marvin1023">marvin1023</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+      </body>
+</html>
