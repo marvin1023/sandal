@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------
 // animate.scss
-// 提供三组动画 fade-in/out, up-in/out, down-in/out, left-in/out, right-in/out
+// 提供6组动画 fade-in/out, shrink-in/out, up-in/out, down-in/out, left-in/out, right-in/out
 //-----------------------------------------------------
 
 %animation-basic {
@@ -14,12 +14,13 @@
 //-----------------------------------------------------
 
 @mixin animation-fade-in($className: fade, $from: 0) {
-    
+    $name: str-insert(In, $className, 0);
+
     .#{$className}-in {
-        animation-name: fadeIn;
+        animation-name: $name;
         @extend %animation-basic;
     }
-    @keyframes fadeIn {
+    @keyframes #{$name} {
         0% {
             opacity: $from;
         }
@@ -30,13 +31,14 @@
 }
 
 @mixin animation-fade-out($className: fade, $to: 0) {
+    $name: str-insert(Out, $className, 0);
 
     .#{$className}-out {
-        animation-name: fadeOut;
+        animation-name: $name;
         @extend %animation-basic;
     }
 
-    @keyframes fadeOut {
+    @keyframes #{$name} {
         0% {
             opacity: 1;
         }
@@ -50,12 +52,13 @@
 //-----------------------------------------------------
 
 @mixin animation-shrink-in($className: shrink, $from: 0.815) {
+    $name: str-insert(In, $className, 0);
     
     .#{$className}-in {
-        animation-name: shrinkIn;
+        animation-name: $name;
         @extend %animation-basic;
     }
-    @keyframes shrinkIn {
+    @keyframes #{$name} {
         0% {
             opacity: 0;
             transform: scale($from);
@@ -68,13 +71,14 @@
 }
 
 @mixin animation-shrink-out($className: shrink, $to: 1.185) {
+    $name: str-insert(Out, $className, 0);
 
     .#{$className}-out {
-        animation-name: shrinkOut;
+        animation-name: $name;
         @extend %animation-basic;
     }
 
-    @keyframes shrinkOut {
+    @keyframes #{$name} {
         0% {
             opacity: 1;
             transform: scale(1);
@@ -90,13 +94,14 @@
 //-----------------------------------------------------
 
 @mixin animation-down-in($className: down, $value: 100%) {
+    $name: str-insert(In, $className, 0);
     
     .#{$className}-in {
-        animation-name: downIn;
+        animation-name: $name;
         @extend %animation-basic;
     }
 
-    @keyframes downIn {
+    @keyframes #{$name} {
         0% {
             opacity: 0;
             transform: translate(0, $value);
@@ -109,13 +114,14 @@
 }
 
 @mixin animation-down-out($className: down, $value: 100%) {
+    $name: str-insert(Out, $className, 0);
 
     .#{$className}-out {
-        animation-name: downOut;
+        animation-name: $name;
         @extend %animation-basic;
     }
 
-    @keyframes downOut {
+    @keyframes #{$name} {
         0% {
             opacity: 1;
             transform: translate(0, 0);
@@ -131,13 +137,14 @@
 //-----------------------------------------------------
 
 @mixin animation-up-in($className: up, $value: -100%) {
+    $name: str-insert(In, $className, 0);
     
     .#{$className}-in {
-        animation-name: upIn;
+        animation-name: $name;
         @extend %animation-basic;
     }
 
-    @keyframes upIn {
+    @keyframes #{$name} {
         0% {
             opacity: 0;
             transform: translate(0, $value);
@@ -150,13 +157,14 @@
 }
 
 @mixin animation-up-out($className: up, $value: -100%) {
+    $name: str-insert(Out, $className, 0);
 
     .#{$className}-out {
-        animation-name: upOut;
+        animation-name: $name;
         @extend %animation-basic;
     }
 
-    @keyframes upOut {
+    @keyframes #{$name} {
         0% {
             opacity: 1;
             transform: translate(0, 0);
@@ -172,13 +180,14 @@
 //-----------------------------------------------------
 
 @mixin animation-left-in($className: left, $value: -100%) {
+    $name: str-insert(In, $className, 0);
     
     .#{$className}-in {
-        animation-name: leftIn;
+        animation-name: $name;
         @extend %animation-basic;
     }
 
-    @keyframes leftIn {
+    @keyframes #{$name} {
         0% {
             opacity: 0;
             transform: translate($value, 0);
@@ -191,13 +200,14 @@
 }
 
 @mixin animation-left-out($className: left, $value: -100%) {
+    $name: str-insert(Out, $className, 0);
 
     .#{$className}-out {
-        animation-name: leftOut;
+        animation-name: $name;
         @extend %animation-basic;
     }
 
-    @keyframes leftOut {
+    @keyframes #{$name} {
         0% {
             opacity: 1;
             transform: translate(0, 0);
@@ -213,13 +223,14 @@
 //-----------------------------------------------------
 
 @mixin animation-right-in($className: right, $value: 100%) {
+    $name: str-insert(In, $className, 0);
     
     .#{$className}-in {
-        animation-name: rightIn;
+        animation-name: $name;
         @extend %animation-basic;
     }
 
-    @keyframes rightIn {
+    @keyframes #{$name} {
         0% {
             opacity: 0;
             transform: translate($value, 0);
@@ -232,13 +243,14 @@
 }
 
 @mixin animation-right-out($className: right, $value: 100%) {
+    $name: str-insert(Out, $className, 0);
 
     .#{$className}-out {
-        animation-name: rightOut;
+        animation-name: $name;
         @extend %animation-basic;
     }
 
-    @keyframes rightOut {
+    @keyframes #{$name} {
         0% {
             opacity: 1;
             transform: translate(0, 0);

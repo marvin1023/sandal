@@ -108,12 +108,12 @@
 
 // disabled
 // add !important
-@mixin disabled($textColor: map-get($colorDisabled, text), $bgColor: map-get($colorDisabled, bg), $borderColor: false) {
-    background-color: $bgColor !important;
-    color: $textColor !important;
+@mixin disabled($colorText: map-get($colorDisabled, text), $colorBg: map-get($colorDisabled, bg), $colorBorder: false) {
+    background-color: $colorBg !important;
+    color: $colorText !important;
     cursor: default !important;
     pointer-events: none !important;
-    @if $borderColor {
+    @if $colorBorder {
         border: 1px solid map-get($colorDisabled, border);
     }
 }
@@ -183,7 +183,8 @@
 @mixin retina-one-px() {
     @supports (border-width: 0.5px) {
     	@media only screen and (-webkit-min-device-pixel-ratio: 2), screen and (-webkit-min-device-pixel-ratio: 3) {
-    		@content;
+    		border-width: 0.5px;
+            // @content;
     	}
     }
 }
@@ -205,7 +206,7 @@
         background-image: linear-gradient(to right, $color 50%, transparent 50%);
         background-size: 1px 100%;
     }
-    @if $direction == bottom {
+    @if $direction == right {
         background-image: linear-gradient(to left, $color 50%, transparent 50%);
         background-size: 1px 100%;
         background-position: right top;
@@ -229,7 +230,7 @@
 
 // border和transform实现
 // 注意before和after的层级问题
-@mixin retina-one-px-border($direction: top) {
+@mixin retina-one-px-border($direction: top, $color: $colorBorder) {
     position: absolute;
     left: 0;
     top: 0;
@@ -239,7 +240,7 @@
         width: 100%;
         height: 0;
         transform: scaleY(0.5);
-        border-top: 1px solid $colorBorder;
+        border-top: 1px solid $color;
     }
     @if $direction == bottom {
         top: auto;
@@ -249,7 +250,7 @@
         width: 0;
         height: 100%;
         transform: scaleX(0.5);
-        border-left: 1px solid $colorBorder;
+        border-left: 1px solid $color;
     }
     @if $direction == right {
         left: auto;
@@ -260,10 +261,11 @@
         height: 200%;
         transform-origin: left top;
         transform: scale(0.5);
-        border: 1px solid $colorBorder;
+        border: 1px solid $color;
     }
 }
 
+// border top & bottom
 %border-tb {
     position: relative;
     &::before {
@@ -277,35 +279,13 @@
     }
 }
 
+// border all
 %border-all {
     position: relative;
     &::before {
         content: "";
         @include retina-one-px-border(all);
         z-index: -1;
-    }
-}
-
-// bar line
-%bar-line {
-    line-height: $barHeight - 10px;
-    padding: 5px 10px;
-    position: relative;
-    display: block;
-    overflow: hidden;
-    &:active,
-    &:hover {
-        background-color: $colorF;
-    }
-    &::before {
-        content: "";
-        @include retina-one-px-border;
-        // left: 10px;
-    }
-    &:first-child {
-        &::before {
-            display: none;
-        }
     }
 }
 
@@ -383,6 +363,7 @@
 }
 
 // triangle 三角箭头
+// 可采用空元素或伪元素生成，具体定位这里不涉及
 %triangle-basic {
     content: "";
     height: 0;
@@ -415,7 +396,7 @@
 }
 
 // v arrow 方向箭头
-@mixin v-arrow($size: 10px, $direction: right, $borderWidth: 2px) {
+@mixin v-arrow($direction: right, $borderWidth: 2px, $size: 10px) {
     display: inline-block;
     vertical-align: middle;
     width: $size;
@@ -442,10 +423,22 @@
     }
 }
 
-// rem
-@mixin rem($px: 0.14, $property: font-size) {
-    #{$property}: $px * 100px;
-    #{$property}: #{$px}rem;
+// 页面切换的一个timing-function
+// 进入时间延迟0.1s 以达到错位切换的效果
+// .page-in {
+//     transition: transform 0.4s 0.1s;
+//     @include timing-function;
+// }
+// .page-out {
+//     transition: transform 0.3s;
+//     @include timing-function;
+// }
+@mixin timing-function($name: t) {
+    @if $name == t {
+        transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    } @else {
+        animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+    }
 }
 
 // selector
@@ -458,14 +451,14 @@
 //         }
 //     }
 // }
-// .parent :hover .child {
+// .parent:hover .child {
 //     color: #f00;
 // }
 @mixin parent-state($states...) {
     $parent: nth(nth(&, 1), (length(nth(&, 1))-1));
     
     @each $state in $states {    
-      @at-root #{selector-replace(&, $parent, ($parent#{$state}))} {
+      @at-root #{selector-replace(&, $parent, str-insert($state, $parent, 0))} {
           @content;
       }
     }
@@ -474,10 +467,28 @@
 // %
 // 只定义了%，所以只能通过@extend来调用
 //-----------------------------------------------------
-// 等分列
-// 可以使用equal-flex或equal-table，默认子元素为li
-%equal-col {
-    @include equal-flex;
+
+// bar line
+%bar-line {
+    line-height: $barHeight - 10px;
+    padding: 5px 10px;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    &:active,
+    &:hover {
+        background-color: $colorF;
+    }
+    &::before {
+        content: "";
+        @include retina-one-px-border;
+        // left: 10px;
+    }
+    &:first-child {
+        &::before {
+            display: none;
+        }
+    }
 }
 
 // item arrow, 右侧箭头跳转指向
@@ -512,27 +523,6 @@
     transform: translate3d(0, 0, 0);
 }
 
-// page switch
-%page-out {
-    transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1) 0.1s;
-}
-
-%page-in {
-    transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1);
-}
-
-//function
-//-----------------------------------------------------
-
-// 为颜色添加白色，以百分比形式
-@function tint($color, $percent) {
-    @return mix(white, $color, $percent);
-}
-
-// 为颜色添加黑色，以百分比形式
-@function shade($color, $percent) {
-    @return mix(black, $color, $percent);
-}
 
 // btn
 //----------------------------------------------------
@@ -562,29 +552,43 @@
 
 // btn-color
 // 包括按钮背景色，文本色，是否有边框
-@mixin btn-color($textColor: #333, $bgColor: #666, $borderColor: false) {
-    color: nth($textColor, 1);
-    background-color: nth($bgColor, 1);
-    @if $borderColor {
-        border-color: nth($borderColor, 1);
+@mixin btn-color($colorText: #333, $colorBg: #666, $colorBorder: false) {
+    color: nth($colorText, 1);
+    background-color: nth($colorBg, 1);
+    @if $colorBorder {
+        border-color: nth($colorBorder, 1);
     }
     &:hover,
     &:active {
-        @if length($textColor) == 2 {
-            color: nth($textColor, 2);
+        @if length($colorText) == 2 {
+            color: nth($colorText, 2);
         }
-        @if length($bgColor) == 2 {
-            background-color: nth($bgColor, 2);
+        @if length($colorBg) == 2 {
+            background-color: nth($colorBg, 2);
         } @else {
-            @if lightness($bgColor) > 40% {
-                background-color: darken($bgColor, 5%);
+            @if lightness($colorBg) > 40% {
+                background-color: darken($colorBg, 5%);
             }
             @else {
-                background-color: lighten($bgColor, 5%);
+                background-color: lighten($colorBg, 5%);
             }
         }
-        @if $borderColor and length($borderColor) == 2 {
-            border-color: nth($borderColor, 2); // $borderColor: #dbdbdb #ccc => #ccc
+        @if $colorBorder and length($colorBorder) == 2 {
+            border-color: nth($colorBorder, 2); // $colorBorder: #dbdbdb #ccc => #ccc
         }
     }
+}
+
+
+//function
+//-----------------------------------------------------
+
+// 为颜色添加白色，以百分比形式
+@function tint($color, $percent) {
+    @return mix(white, $color, $percent);
+}
+
+// 为颜色添加黑色，以百分比形式
+@function shade($color, $percent) {
+    @return mix(black, $color, $percent);
 }

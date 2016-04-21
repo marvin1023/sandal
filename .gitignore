@@ -6,3 +6,5 @@ prepros.cfg
 .DS_Store
 demo/
 css/
+node_modules/
+gulpfile.js

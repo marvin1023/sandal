@@ -5,10 +5,6 @@
 //-----------------------------------------------------	
 
 
-// switch
-//-----------------------------------------------------	
-$switchFlex:                     true !default; // 开启flex布局
-
 // font相关
 //-----------------------------------------------------	
 $fontSize:                       14px !default; 
@@ -19,12 +15,13 @@ $fontCn:                         STHeiTi, Roboto, "Droid Sans Fallback", Arial !
 // ios4.0+,ios4.0-,Android 4.0+,Android 4.0-
 $fontEn:                         "Helvetica Neue", Helvetica, Roboto, "Droid Sans", Arial !default; 
 
+
 // 背景色，文本色，边框色，链接色
 //-----------------------------------------------------	
 $colorText:                      #333 !default;
 $colorBg:                        #fff !default;
 $colorBorder:                    #dbdbdb !default;
-$colorLink:                      #08c !default; // 如果只有一个值则滑过的值为这个值的darken 5%，如果有两个值则第二个值为滑过的值
+$colorLink:                      #08c !default;
 $colorPlaceholder:               #999 !default; // input placeholder color
 $colorDisabled:                  (text: #999, bg: #e3e3e3, border: #dbdbdb) !default; // textColor bgColor borderColor
 $colorOverlay:                   rgba(0,0,0,.7) !default; // 遮罩层颜色
@@ -41,7 +38,7 @@ $color3:                          #333;
 $color6:                          #666;
 $color9:                          #999;
 $colorC:                          #ccc;
-$colorF:                          #f5f5f5 !default;
+$colorF:                          #f5f5f5;
 
 $blue:                            #0074d9 !default;
 $orange:                          #fe9455 !default;
@@ -57,20 +54,12 @@ $gap:                             20px !default;
 // header,footer等的高度
 //-----------------------------------------------------	
 $barHeight:                       44px !default;
-$barFtHeight:                     48px !default;
 
 
 // radius
 //-----------------------------------------------------	
 $radiusBase:                      5px !default;
 $radiusSmall:                     3px !default;
-
-
-// btn
-// 默认的按钮大小，颜色，圆角
-//-----------------------------------------------------	
-$btnSize:                         (s: 30px, m: $barHeight) !default; // 默认按钮的左右padding，高度
-$btnColor:                        #333 #e6e6e6 !default; // 默认按钮的textColor, bgColor
 
 
 // z-index
