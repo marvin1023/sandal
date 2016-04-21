@@ -19,118 +19,138 @@
     </section>
 
     <section class="main-content">
-      <h2>
-<a id="variables-文件" class="anchor" href="#variables-%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>variables 文件</h2>
+      <h1>
+<a id="sandal" class="anchor" href="#sandal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sandal</h1>
 
-<p>提供了全局的常用变量，大概包括字体，颜色，圆角，z-index等，具体请查看源码</p>
-
-<h2>
-<a id="media-queries" class="anchor" href="#media-queries" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>media queries</h2>
-
-<p>负责响应式断点判断的文件。来自paranoida的<a href="https://github.com/paranoida/sass-mediaqueries">sass-mediaqueries</a>，具体使用可以参考<a href="http://paranoida.github.io/sass-mediaqueries/">其站点</a>，（安装除外）</p>
+<p>sandal取其“檀香”之意，针对移动端站点为前端人员提供了一些基础的重置，常用的<code>mixin</code>，如flex布局，等分，水平垂直居中，常用图标等，基于它你可以扩展出更多你需要的组件。</p>
 
 <h2>
-<a id="animation" class="anchor" href="#animation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>animation</h2>
+<a id="如何使用" class="anchor" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>如何使用</h2>
 
-<p>提供6组简单实用动画：fade-in/out, shrink-in/out, up-in/out, down-in/out，left-in/out，right-in/out。默认不产生样式，通过<code>@include</code>调用，以fade-in/out为例：</p>
+<p>sandal，分核心文件和扩展文件两种。其中核心文件包括重置样式，<code>@mixin</code>，<code>%</code>等方便调用；而扩展文件则提供基础原子类class，图标，网格系统。</p>
 
-<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">animation-fade-in</span>;
-<span class="pl-k">@include</span> <span class="pl-c1">animation-fade-out</span>;</pre></div>
+<p>核心文件提供两个集合文件以供调用，分别为<code>_function.scss</code>， <code>_core.scss</code>。两者的区别为function仅提供功能，而core除了提供function的功能，还会会生成一份重置样式</p>
 
-<div class="highlight highlight-source-css"><pre><span class="pl-e">.fade-in</span>, <span class="pl-e">.fade-out</span> {
-  <span class="pl-c1">-webkit-<span class="pl-c1">animation-duration</span></span>: <span class="pl-c1">0.3<span class="pl-k">s</span></span>;
-  <span class="pl-c1"><span class="pl-c1">animation-duration</span></span>: <span class="pl-c1">0.3<span class="pl-k">s</span></span>;
-  <span class="pl-c1">-webkit-<span class="pl-c1">animation</span>-<span class="pl-c1">fill</span>-mode</span>: <span class="pl-c1">both</span>;
-  <span class="pl-c1"><span class="pl-c1">animation</span>-<span class="pl-c1">fill</span>-mode</span>: <span class="pl-c1">both</span>;
-}
-
-<span class="pl-e">.fade-in</span> {
-  <span class="pl-c1">-webkit-<span class="pl-c1">animation-name</span></span>: fadeIn;
-  <span class="pl-c1"><span class="pl-c1">animation-name</span></span>: fadeIn;
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    <span class="pl-c1"><span class="pl-c1">opacity</span></span>: <span class="pl-c1">0</span>;
-  }
-  100% {
-    <span class="pl-c1"><span class="pl-c1">opacity</span></span>: <span class="pl-c1">1</span>;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    <span class="pl-c1"><span class="pl-c1">opacity</span></span>: <span class="pl-c1">0</span>;
-  }
-  100% {
-    <span class="pl-c1"><span class="pl-c1">opacity</span></span>: <span class="pl-c1">1</span>;
-  }
-}
-
-<span class="pl-e">.fade-out</span> {
-  <span class="pl-c1">-webkit-<span class="pl-c1">animation-name</span></span>: fadeOut;
-  <span class="pl-c1"><span class="pl-c1">animation-name</span></span>: fadeOut;
-}
-
-@-webkit-keyframes fadeOut {
-  0% {
-    <span class="pl-c1"><span class="pl-c1">opacity</span></span>: <span class="pl-c1">1</span>;
-  }
-  100% {
-    <span class="pl-c1"><span class="pl-c1">opacity</span></span>: <span class="pl-c1">0</span>;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    <span class="pl-c1"><span class="pl-c1">opacity</span></span>: <span class="pl-c1">1</span>;
-  }
-  100% {
-    <span class="pl-c1"><span class="pl-c1">opacity</span></span>: <span class="pl-c1">0</span>;
-  }
-}</pre></div>
-
-<h2>
-<a id="icons-文件" class="anchor" href="#icons-%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>icons 文件</h2>
-
-<p>icons包括绘制icons及svg icons两种，对retina屏毫无压力。</p>
-
-<p><img src="images/svg-icons.png" alt="icon 图标"></p>
+<p>扩展文件有三个，分别为<code>_icons.scss</code>，<code>_helper.scss</code>，<code>_grid.scss</code>，可根据需要调用</p>
 
 <h3>
-<a id="绘制icons" class="anchor" href="#%E7%BB%98%E5%88%B6icons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>绘制icons</h3>
+<a id="npm-调用" class="anchor" href="#npm-%E8%B0%83%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>npm 调用</h3>
+
+<h4>
+<a id="安装" class="anchor" href="#%E5%AE%89%E8%A3%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>安装</h4>
+
+<pre><code>npm install sass-sandal --save-dev
+</code></pre>
+
+<h4>
+<a id="调用" class="anchor" href="#%E8%B0%83%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>调用</h4>
+
+<pre><code>@import 'node_modules/sass-sandal/core';
+
+@import 'node_modules/sass-sandal/function';
+
+@import 'node_modules/sass-sandal/ext/icons';
+
+@import 'node_modules/sass-sandal/ext/helper';
+
+@import 'node_modules/sass-sandal/ext/grid';
+</code></pre>
+
+<h3>
+<a id="普通使用" class="anchor" href="#%E6%99%AE%E9%80%9A%E4%BD%BF%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>普通使用</h3>
+
+<p>在github上下载<a href="https://github.com/marvin1023/sandal">sandal</a>，解压拷贝到项目目录</p>
+
+<pre><code>@import 'sandal/core';
+
+@import 'sandal/function';
+
+@import 'sandal/ext/icons';
+
+@import 'sandal/ext/helper';
+
+@import 'sandal/ext/grid';
+</code></pre>
+
+<h2>
+<a id="文件简述" class="anchor" href="#%E6%96%87%E4%BB%B6%E7%AE%80%E8%BF%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>文件简述</h2>
+
+<p>sandal包括两个集合文件（core，function）和两个文件夹（core，ext）。其中core文件夹中为核心基础文件，包括variables，media-queries，mixin，animation，reset；ext文件夹中是一些扩展文件，目前包括svg icons，grid网格系统，helper基础class。</p>
+
+<p>两个集合文件（core，function）导入的都是core中的文件，区别在于core除了提供基本功能之外还会生成一份reset样式，而function则只提供基本功能。至于ext中的文件则属于额外的一些模块扩展，可根据需求导入。</p>
+
+<h3>
+<a id="core文件" class="anchor" href="#core%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>core文件</h3>
+
+<h4>
+<a id="variables" class="anchor" href="#variables" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>variables</h4>
+
+<p>负责基础变量的文件，如常用的颜色，字体等变量。</p>
+
+<h4>
+<a id="media-queries" class="anchor" href="#media-queries" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>media-queries</h4>
+
+<p>负责响应式断点判断的文件，来自paranoida的<a href="https://github.com/paranoida/sass-mediaqueries">sass-mediaqueries</a>。</p>
+
+<h4>
+<a id="mixin" class="anchor" href="#mixin" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>mixin</h4>
+
+<p>负责功能方面的文件。这里我们大概分成三个部分，一个是混合部分即mixin（主要定义了一些常用的<code>flex</code>,<code>translate</code>等），一个是placeholder选择器部分即%，最后就是我们的function函数部分。常用的include及extend就是在这里定义的。</p>
+
+<h4>
+<a id="animation" class="anchor" href="#animation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>animation</h4>
+
+<p>提供六组简单实用动画：fade-in/out, shrink-in/out, up-in/out, down-in/out，left-in/out，right-in/out。默认不产生样式，通过include调用</p>
+
+<h3>
+<a id="reset" class="anchor" href="#reset" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>reset</h3>
+
+<p>在<a href="http://necolas.github.io/normalize.css/">normalize</a>的基础上，根据目前我们大家的使用习惯进行了一些归零行动，及基础文字颜色，clearfix，box-sizing等。</p>
+
+<h3>
+<a id="ext文件" class="anchor" href="#ext%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ext文件</h3>
+
+<h4>
+<a id="helper" class="anchor" href="#helper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>helper</h4>
+
+<p>提供常用的基础class，如overlay, full-width等</p>
+
+<h4>
+<a id="grid" class="anchor" href="#grid" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>grid</h4>
+
+<p>移动端的网格系统，分为row和col，具体使用参考<a href="http://imweb.io/topic/570b33f806f2400432c139b3">3分钟13行代码搭建sass版移动端网格系统</a></p>
+
+<h4>
+<a id="icons" class="anchor" href="#icons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>icons</h4>
+
+<p>分为绘制的icon和svg图标两种，可参考icons文件夹中的<code>icons.html</code></p>
+
+<p><img src="ext/icons/svg-icons.png" alt="default icon svg"></p>
+
+<p><strong>绘制icon</strong></p>
 
 <ul>
 <li>icon颜色一般使用<code>currentColor</code>颜色，可以方便设置标签的color颜色来改变</li>
 <li>对于不变的icon，如radio &amp; checkbox直接设置大小，而一些可变的icon，通过标签的伪元素来绘制，标签本身没有设置大小，可根据实际情况设置大小（设置大点可扩大点击范围），伪元素绘制的会保持水平垂直居中</li>
 </ul>
 
-<h3>
-<a id="svg-icons" class="anchor" href="#svg-icons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>svg icons</h3>
+<p><strong>svg 图标调用</strong></p>
 
 <p>从<a href="https://icomoon.io/">icomoon</a>提取了几个常用的svg图标，使用方法可参考ext/icons/icons.html，这里以home图标为例：</p>
 
-<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">svg</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>icon icon-home<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">use</span> <span class="pl-e">xlink:href</span>=<span class="pl-s"><span class="pl-pds">"</span>icons.svg#icon-home<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">use</span>&gt;&lt;/<span class="pl-ent">svg</span>&gt;</pre></div>
+<pre><code>&lt;svg class="icon icon-home"&gt;&lt;use xlink:href="icons.svg#icon-home"&gt;&lt;/use&gt;&lt;/svg&gt;
+</code></pre>
 
-<p>如需改变颜色，可以通过设置<code>css</code>的<code>fill</code>属性来定义</p>
+<p>如需改变颜色，可以通过设置css的fill属性来定义</p>
 
-<div class="highlight highlight-source-css"><pre><span class="pl-e">.icon-home</span>{
-    <span class="pl-c1"><span class="pl-c1">fill</span></span>:<span class="pl-c1">#f00</span>;
-}</pre></div>
+<pre><code>.icon-home{
+    fill:#f00;
+}
+</code></pre>
 
 <p>最后可根据实际需求对icons.svg进行增删改， 然后使用。</p>
 
 <p>注：使用时请把icons.svg拷贝至images目录或其他目录，方便调用</p>
-
-<h2>
-<a id="grid" class="anchor" href="#grid" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>grid</h2>
-
-<p>移动端的网格系统，分为row和col，具体使用参考<a href="http://imweb.io/topic/570b33f806f2400432c139b3">3分钟13行代码搭建sass版移动端网格系统</a></p>
-
-<h2>
-<a id="helper-文件" class="anchor" href="#helper-%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>helper 文件</h2>
-
-<p>提供常用的基础class，具体请查看源码</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/marvin1023/sandal">Sandal</a> is maintained by <a href="https://github.com/marvin1023">marvin1023</a>.</span>
