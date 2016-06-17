@@ -237,7 +237,7 @@
     box-sizing: border-box;
 
     @if $direction == top or $direction == bottom{    
-        width: 100%;
+        right: 0;
         height: 0;
         transform: scaleY(0.5);
         border-top: 1px solid $color;
@@ -248,7 +248,7 @@
     }
     @if $direction == right or $direction == left{
         width: 0;
-        height: 100%;
+        bottom: 0;
         transform: scaleX(0.5);
         border-left: 1px solid $color;
     }
