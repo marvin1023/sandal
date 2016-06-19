@@ -312,7 +312,8 @@ optgroup {
 // webkit focus outline
 input,
 select,
-textarea {
+textarea,
+button {
     outline: 0;
 }
 

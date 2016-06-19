@@ -423,24 +423,6 @@
     }
 }
 
-// 页面切换的一个timing-function
-// 进入时间延迟0.1s 以达到错位切换的效果
-// .page-in {
-//     transition: transform 0.4s 0.1s;
-//     @include timing-function;
-// }
-// .page-out {
-//     transition: transform 0.3s;
-//     @include timing-function;
-// }
-@mixin timing-function($name: t) {
-    @if $name == t {
-        transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
-    } @else {
-        animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
-    }
-}
-
 // selector
 // 改变父元素状态，如:hover或.active
 // 父元素不能有组合选择器，如.a, .b{}
@@ -503,6 +485,21 @@
         margin-top: -1px;
         transform: rotate(45deg) translate(0, -50%);
         box-sizing: border-box;
+    }
+}
+
+// 间隔列表
+%gap-item{
+    position: relative;
+    background: #fff;
+    margin: 10px 0;
+    &::before{
+        content: "";
+        @include retina-one-px-border;
+    }
+    &::after{
+        content: "";
+        @include retina-one-px-border(bottom);
     }
 }
 
