@@ -468,7 +468,7 @@
         @include retina-one-px-border;
         // left: 10px;
     }
-    &:first-child {
+    &:first-of-type {
         &::before {
             display: none;
         }
