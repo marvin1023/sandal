@@ -460,18 +460,12 @@
     @if $activeStateSwitch{
         &:active,
         &:hover {
-            background-color: $colorF;
+            background-color: darken($colorF, 3%);
         }
     }
-    &::before {
+    &:not(:first-of-type)::before {
         content: "";
         @include retina-one-px-border;
-        // left: 10px;
-    }
-    &:first-of-type {
-        &::before {
-            display: none;
-        }
     }
 }
 
@@ -498,7 +492,7 @@
     @if $activeStateSwitch{
         &:active,
         &:hover {
-            background-color: $colorF;
+            background-color: darken($colorF, 3%);
         }
     }
     &::before{
