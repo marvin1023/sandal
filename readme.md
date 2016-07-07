@@ -2,6 +2,12 @@
 
 sandal取其“檀香”之意，针对移动端站点为前端人员提供了一些基础的重置，常用的`mixin`，如flex布局，等分，水平垂直居中，常用图标等，基于它你可以扩展出更多你需要的UI组件，[sheral](https://github.com/imweb/sheral)就是基于sandal的移动端UI库。
 
+sandal的整体设计思想如下图：
+
+![sandal](http://7tszky.com1.z0.glb.clouddn.com/Fo_FAyG7ErQn1aJNiagpV98JhYp0)
+
+`_function.scss`集成了所有的基础功能，并且不输出任何样式，而`_core.scss`则在function的基础上加入了重置样式，ext文件夹则包含了三个扩展文件，可根据个人需要自由导入，具体介绍及使用请参考[sandal 文档](http://marvin1023.github.io/sandal/)
+
 ## 如何使用
 sandal，分核心文件和扩展文件两种。其中核心文件包括重置样式，`@mixin`，`%`等方便调用；而扩展文件则提供基础原子类class，图标，网格系统。
 

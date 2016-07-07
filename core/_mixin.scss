@@ -329,6 +329,45 @@
     }
 }
 
+// line equal gap
+@mixin line-equal-gap($gap: 10px, $lr: true, $children: li) {
+    display: flex;
+    @if $lr {
+        padding-left: $gap;
+        padding-right: $gap;
+    }
+    @if $children == li {
+        #{$children} {
+            flex: 1;
+            width: 1%;
+            &:not(:first-of-type){
+                margin-left: $gap;
+            }
+        }
+    }
+    @else {
+        .#{$children} {
+            flex: 1;
+            width: 1%;
+            &:not(:first-of-type){
+                margin-left: $gap;
+            }
+        }
+    }
+}
+
+// line equal item
+@mixin line-equal-item($lr: true) {
+    display: flex;
+    justify-content: space-between;
+    @if $lr {
+        &::before,
+        &::after {
+            content: "";
+        }
+    }
+}
+
 // flex center
 @mixin center-flex($direction: both) {
     display: flex;
