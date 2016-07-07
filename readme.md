@@ -4,7 +4,7 @@ sandal取其“檀香”之意，针对移动端站点为前端人员提供了�
 
 sandal的整体设计思想如下图：
 
-![sandal](http://7tszky.com1.z0.glb.clouddn.com/Fo_FAyG7ErQn1aJNiagpV98JhYp0)
+<img src="http://7tszky.com1.z0.glb.clouddn.com/Fo_FAyG7ErQn1aJNiagpV98JhYp0" alt="sandal" width="600">
 
 `_function.scss`集成了所有的基础功能，并且不输出任何样式，而`_core.scss`则在function的基础上加入了重置样式，ext文件夹则包含了三个扩展文件，可根据个人需要自由导入，具体介绍及使用请参考[sandal 文档](http://marvin1023.github.io/sandal/)
 
