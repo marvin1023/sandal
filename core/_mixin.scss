@@ -182,10 +182,9 @@
 // 0.5px实现 ios9
 @mixin retina-one-px() {
     @supports (border-width: 0.5px) {
-    	@media only screen and (-webkit-min-device-pixel-ratio: 2), screen and (-webkit-min-device-pixel-ratio: 3) {
-    		border-width: 0.5px;
-            // @content;
-    	}
+        @media only screen and (-webkit-min-device-pixel-ratio: 2), screen and (-webkit-min-device-pixel-ratio: 3) {
+            border-width: 0.5px;
+        }
     }
 }
 
@@ -293,65 +292,44 @@
 // 只定义了mixin，所以只能通过@include来调用
 //-----------------------------------------------------
 
-// table 等分
-@mixin equal-table($children: li) {
+// table 等
+// $child 参数请使用单引号，因为用于子元素选择器
+@mixin equal-table($child: 'li') {
     display: table;
     table-layout: fixed;
     width: 100%;
-    $childrenEle: li div p a span strong;
-    @if index($childrenEle, $children) {
-        #{$children} {
-            display: table-cell;
-        }
-    }
-    @else {
-        .#{$children} {
-            display: table-cell;
-        }
+
+    #{unquote($child)} {
+        display: table-cell;
     }
 }
 
 // flex 等分
-@mixin equal-flex($children: li) {
+// $child 参数请使用单引号，因为用于子元素选择器
+@mixin equal-flex($child: 'li') {
     display: flex;
-    $childrenEle: li div p a span strong;
-    @if index($childrenEle, $children) {
-        #{$children} {
-            flex: 1;
-            width: 1%;
-        }
-    }
-    @else {
-        .#{$children} {
-            flex: 1;
-            width: 1%;
-        }
+
+    #{unquote($child)} {
+        flex: 1;
+        width: 1%;
     }
 }
 
 // line equal gap
-@mixin line-equal-gap($gap: 10px, $lr: true, $children: li) {
+// $child 参数请使用单引号，因为用于子元素选择器
+@mixin line-equal-gap($gap: 10px, $child: 'li', $lr: true) {
     display: flex;
+
     @if $lr {
         padding-left: $gap;
         padding-right: $gap;
     }
-    @if $children == li {
-        #{$children} {
-            flex: 1;
-            width: 1%;
-            &:not(:first-of-type){
-                margin-left: $gap;
-            }
-        }
-    }
-    @else {
-        .#{$children} {
-            flex: 1;
-            width: 1%;
-            &:not(:first-of-type){
-                margin-left: $gap;
-            }
+
+    #{unquote($child)} {
+        flex: 1;
+        width: 1%;
+        &:not(:first-of-type){
+            margin-left: 10px;
         }
     }
 }
@@ -398,6 +376,22 @@
     @else if $direction == y {
         top: 50%;
         transform: translate3d(0, -50%, 0);
+    }
+}
+
+// object wrap
+// $child 参数请使用单引号，因为用于子元素选择器
+@mixin object-wrap($percent: 100%, $child: 'img') {
+    position: relative;
+    padding-top: $percent;
+    height: 0;
+
+    #{unquote($child)} {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 }
 

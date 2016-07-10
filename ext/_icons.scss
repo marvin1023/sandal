@@ -7,7 +7,8 @@
 .icon-svg{
     width: 16px;
     height: 16px;
-    fill: #333;
+    color: #333;
+    fill: currentColor;
 }
 
 .icon-loading {
@@ -257,3 +258,50 @@
     }
 }
 
+.icon-alert,
+.icon-info,
+.icon-question,
+.icon-ok{
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    line-height: 16px;
+    text-align: center;
+}
+.icon-alert{
+    color: $red;
+    &::after{
+        content: "!";
+    }
+}
+.icon-info{
+    color: $blue;
+    &::after{
+        content: "i";
+    }
+}
+.icon-question{
+    color: $blue;
+    &::after{
+        content: "?";
+    }
+}
+.icon-ok{
+    color: $green;
+    &::after{
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 2px;
+        border-bottom: 1px solid currentColor;
+        border-left: 1px solid currentColor;
+        transform: translate(-50%, -50%) rotate(-52deg) scale(1.5);
+        margin-top: -1px;
+    }
+}
