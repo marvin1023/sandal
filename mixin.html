@@ -244,6 +244,25 @@
 <span class="pl-k">@include</span> <span class="pl-c1">object-wrap</span>(<span class="pl-c1">75</span><span class="pl-k">%</span>);</pre></div>
 
 <h3>
+<a id="animation-fade" class="anchor" href="#animation-fade" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>animation fade</h3>
+
+<p>定义了fade in/out 的<code>@keyframes</code></p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">animation-fade</span>
+<span class="pl-k">@include</span> <span class="pl-c1">animation-fade</span>(<span class="pl-smi">$from</span><span class="pl-v">:</span> <span class="pl-c1">false</span>, <span class="pl-smi">$to</span><span class="pl-v">:</span><span class="pl-c1"> .5</span>);
+<span class="pl-k">@include</span> <span class="pl-c1">animation-fade</span>(<span class="pl-smi">$from</span><span class="pl-v">:</span><span class="pl-c1"> 1</span>, <span class="pl-smi">$to</span><span class="pl-v">:</span><span class="pl-c1"> 0</span>);</pre></div>
+
+<h3>
+<a id="animation-translate" class="anchor" href="#animation-translate" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>animation translate</h3>
+
+<p>定义了<code>translate</code>的<code>@keyframes</code></p>
+
+<div class="highlight highlight-source-scss"><pre><span class="pl-k">@include</span> <span class="pl-c1">animation-translate</span>
+<span class="pl-k">@include</span> <span class="pl-c1">animation-translate</span>(<span class="pl-smi">$from</span><span class="pl-v">:</span> <span class="pl-v">x</span> <span class="pl-c1">-100</span><span class="pl-k">%</span>);
+<span class="pl-k">@include</span> <span class="pl-c1">animation-translate</span>(<span class="pl-smi">$from</span><span class="pl-v">:</span> <span class="pl-v">xy</span> <span class="pl-c1">-50</span><span class="pl-k">%</span> <span class="pl-c1">-50</span><span class="pl-k">%</span>, <span class="pl-smi">$to</span><span class="pl-v">:</span> <span class="pl-v">y</span> <span class="pl-c1">-100</span><span class="pl-k">%</span>);
+<span class="pl-k">@include</span> <span class="pl-c1">animation-translate</span>(<span class="pl-smi">$from</span><span class="pl-v">:</span> <span class="pl-v">y</span><span class="pl-c1"> 100</span><span class="pl-k">px</span>, <span class="pl-smi">$to</span><span class="pl-v">:</span> <span class="pl-v">y</span><span class="pl-c1"> 0</span><span class="pl-k">px</span>);</pre></div>
+
+<h3>
 <a id="gap-item" class="anchor" href="#gap-item" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>gap item</h3>
 
 <p>用于item整行的间隔列表</p>
