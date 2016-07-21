@@ -6,14 +6,14 @@ sandal的整体设计思想如下图：
 
 <img src="http://7tszky.com1.z0.glb.clouddn.com/Fo_FAyG7ErQn1aJNiagpV98JhYp0" alt="sandal" width="600">
 
-`_function.scss`集成了所有的基础功能，并且不输出任何样式，而`_core.scss`则在function的基础上加入了重置样式，ext文件夹则包含了三个扩展文件，可根据个人需要自由导入，具体介绍及使用请参考[sandal 文档](http://marvin1023.github.io/sandal/)
+`_function.scss`集成了所有的基础功能，并且不输出任何样式，而`_core.scss`则在function的基础上加入了重置样式，ext文件夹则包含了四个扩展文件，可根据个人需要自由导入，具体介绍及使用请参考[sandal 文档](http://marvin1023.github.io/sandal/)
 
 ## 如何使用
 sandal，分核心文件和扩展文件两种。其中核心文件包括重置样式，`@mixin`，`%`等方便调用；而扩展文件则提供基础原子类class，图标，网格系统。
 
 核心文件提供两个集合文件以供调用，分别为`_function.scss`， `_core.scss`。两者的区别为function仅提供功能，而core除了提供function的功能，还会会生成一份重置样式
 
-扩展文件有三个，分别为`_icons.scss`，`_helper.scss`，`_grid.scss`，可根据需要调用
+扩展文件有四个，分别为`_icons.scss`，`_helper.scss`，`_grid.scss`，`_page-slide.scss`可根据需要调用
 
 ### npm 调用
 
@@ -33,6 +33,8 @@ sandal，分核心文件和扩展文件两种。其中核心文件包括重置�
 
     @import 'node_modules/sass-sandal/ext/grid';
 
+    @import 'node_modules/sass-sandal/ext/page-slide';
+
 ### 普通使用
 
 在github上下载[sandal](https://github.com/marvin1023/sandal)，解压拷贝到项目目录
@@ -47,10 +49,12 @@ sandal，分核心文件和扩展文件两种。其中核心文件包括重置�
 
     @import 'sandal/ext/grid';
 
+    @import 'sandal/ext/page-slide';
+
 
 ## 文件简述
 
-sandal包括两个集合文件（core，function）和两个文件夹（core，ext）。其中core文件夹中为核心基础文件，包括variables，media-queries，mixin，animation，reset；ext文件夹中是一些扩展文件，目前包括svg icons，grid网格系统，helper基础class。
+sandal包括两个集合文件（core，function）和两个文件夹（core，ext）。其中core文件夹中为核心基础文件，包括variables，media-queries，mixin，animation，reset；ext文件夹中是一些扩展文件，目前包括svg icons，grid网格系统，helper基础class，page-slide为页面切换class。
 
 两个集合文件（core，function）导入的都是core中的文件，区别在于core除了提供基本功能之外还会生成一份reset样式，而function则只提供基本功能。至于ext中的文件则属于额外的一些模块扩展，可根据需求导入。
 
@@ -76,7 +80,7 @@ sandal包括两个集合文件（core，function）和两个文件夹（core，e
 
 #### helper
 
-提供常用的基础class，如overlay, full-width等
+提供常用的基础class，如clearfix, full-width等
 
 #### grid
 
@@ -108,6 +112,10 @@ sandal包括两个集合文件（core，function）和两个文件夹（core，e
 最后可根据实际需求对icons.svg进行增删改， 然后使用。
 
 注：使用时请把icons.svg拷贝至images目录或其他目录，方便调用
+
+#### page slide
+
+用于页面切换的动画class，共四个class，分两组：右进左出（页面进入）；左进右出（后退）,具体使用可参看[移动端重构实战系列4——进入离开动画](http://imweb.io/topic/577e7cf17c99347163ec0b16)
 
 
 
