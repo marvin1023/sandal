@@ -479,6 +479,61 @@
     }
 }
 
+// animation-fade
+// @include animation-fade
+// @include animation-fade($from: false, $to: .5);
+// @include animation-fade($from: 1, $to: 0);
+@mixin animation-fade($name: animationFade, $from: 0, $to: false){
+  @keyframes #{animationFade} {
+    @if $from {
+      from {
+        opacity: $from;
+      }
+    }
+    @if $to {
+      to {
+        opacity: $to;
+      }
+    }
+  }
+}
+
+// animation-translate
+// @include animation-translate
+// @include animation-translate($from: x -100%);
+// @include animation-translate($from: xy -50% -50%, $to: y -100%);
+// @include animation-translate($from: y 100px, $to: y 0px);
+@mixin animation-translate($name: animationTranslate, $from: y -100%, $to: false) {
+    @keyframes #{$name} {
+        @if $from and length($from) > 1 {
+            from {
+                @if nth($from, 1) == x {
+                  transform: translate(nth($from, 2), 0);
+                }
+                @if nth($from, 1) == y {
+                  transform: translate(0, nth($from, 2));
+                }
+                @if nth($from, 1) == xy or nth($from, 1) == both {
+                  transform: translate(nth($from, 2), nth($from, 3));
+                }
+            }
+        }
+        @if $to andd length($to) > 1 {
+            to {
+                @if nth($to, 1) == x {
+                  transform: translate(nth($to, 2), 0);
+                }
+                @if nth($to, 1) == y {
+                  transform: translate(0, nth($to, 2));
+                }
+                @if nth($to, 1) == xy or nth($to, 1) == both {
+                  transform: translate(nth($to, 2), nth($to, 3));
+                }
+            }
+        }
+    }
+}
+
 // %
 // 只定义了%，所以只能通过@extend来调用
 //-----------------------------------------------------

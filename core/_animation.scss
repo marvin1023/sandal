@@ -20,14 +20,7 @@
         animation-name: $name;
         @extend %animation-basic;
     }
-    @keyframes #{$name} {
-        0% {
-            opacity: $from;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
+    @include animation-fade($name: $name, $from: $from);
 }
 
 @mixin animation-fade-out($className: fade, $to: 0) {
@@ -38,14 +31,7 @@
         @extend %animation-basic;
     }
 
-    @keyframes #{$name} {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: $to;
-        }
-    }
+    @include animation-fade($name: $name, $from: 1, $to: $to);
 }
 
 // shrink in/out
