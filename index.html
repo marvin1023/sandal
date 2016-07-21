@@ -17,13 +17,20 @@
       <a href="http://marvin1023.github.io/sandal/reset.html" class="btn">Reset</a>
       <a href="http://marvin1023.github.io/sandal/mixin.html" class="btn">Mixin</a>
       <a href="http://marvin1023.github.io/sandal/others.html" class="btn">Others</a>
+      <a href="https://github.com/marvin1023/sandal" class="btn" target="_blank">GitHub</a>
     </section>
 
     <section class="main-content">
       <h1>
 <a id="sandal" class="anchor" href="#sandal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sandal</h1>
 
-<p>sandal取其“檀香”之意，针对移动端站点为前端人员提供了一些基础的重置，常用的<code>mixin</code>，如flex布局，等分，水平垂直居中，常用图标等，基于它你可以扩展出更多你需要的组件。</p>
+<p>sandal取其“檀香”之意，针对移动端站点为前端人员提供了一些基础的重置，常用的<code>mixin</code>，如flex布局，等分，水平垂直居中，常用图标等，基于它你可以扩展出更多你需要的UI组件，<a href="https://github.com/imweb/sheral">sheral</a>就是基于sandal的移动端UI库。</p>
+
+<p>sandal的整体设计思想如下图：</p>
+
+<p><img src="http://7tszky.com1.z0.glb.clouddn.com/Fo_FAyG7ErQn1aJNiagpV98JhYp0" alt="sandal" width="600"></p>
+
+<p><code>_function.scss</code>集成了所有的基础功能，并且不输出任何样式，而<code>_core.scss</code>则在function的基础上加入了重置样式，ext文件夹则包含了四个扩展文件，可根据个人需要自由导入，具体介绍及使用请参考<a href="http://marvin1023.github.io/sandal/">sandal 文档</a></p>
 
 <h2>
 <a id="如何使用" class="anchor" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>如何使用</h2>
@@ -32,7 +39,7 @@
 
 <p>核心文件提供两个集合文件以供调用，分别为<code>_function.scss</code>， <code>_core.scss</code>。两者的区别为function仅提供功能，而core除了提供function的功能，还会会生成一份重置样式</p>
 
-<p>扩展文件有三个，分别为<code>_icons.scss</code>，<code>_helper.scss</code>，<code>_grid.scss</code>，可根据需要调用</p>
+<p>扩展文件有四个，分别为<code>_icons.scss</code>，<code>_helper.scss</code>，<code>_grid.scss</code>，<code>_page-slide.scss</code>可根据需要调用</p>
 
 <h3>
 <a id="npm-调用" class="anchor" href="#npm-%E8%B0%83%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>npm 调用</h3>
@@ -55,6 +62,8 @@
 @import 'node_modules/sass-sandal/ext/helper';
 
 @import 'node_modules/sass-sandal/ext/grid';
+
+@import 'node_modules/sass-sandal/ext/page-slide';
 </code></pre>
 
 <h3>
@@ -71,12 +80,14 @@
 @import 'sandal/ext/helper';
 
 @import 'sandal/ext/grid';
+
+@import 'sandal/ext/page-slide';
 </code></pre>
 
 <h2>
 <a id="文件简述" class="anchor" href="#%E6%96%87%E4%BB%B6%E7%AE%80%E8%BF%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>文件简述</h2>
 
-<p>sandal包括两个集合文件（core，function）和两个文件夹（core，ext）。其中core文件夹中为核心基础文件，包括variables，media-queries，mixin，animation，reset；ext文件夹中是一些扩展文件，目前包括svg icons，grid网格系统，helper基础class。</p>
+<p>sandal包括两个集合文件（core，function）和两个文件夹（core，ext）。其中core文件夹中为核心基础文件，包括variables，media-queries，mixin，animation，reset；ext文件夹中是一些扩展文件，目前包括svg icons，grid网格系统，helper基础class，page-slide为页面切换class。</p>
 
 <p>两个集合文件（core，function）导入的都是core中的文件，区别在于core除了提供基本功能之外还会生成一份reset样式，而function则只提供基本功能。至于ext中的文件则属于额外的一些模块扩展，可根据需求导入。</p>
 
@@ -114,7 +125,7 @@
 <h4>
 <a id="helper" class="anchor" href="#helper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>helper</h4>
 
-<p>提供常用的基础class，如overlay, full-width等</p>
+<p>提供常用的基础class，如clearfix, full-width等</p>
 
 <h4>
 <a id="grid" class="anchor" href="#grid" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>grid</h4>
@@ -126,7 +137,7 @@
 
 <p>分为绘制的icon和svg图标两种，可参考icons文件夹中的<code>icons.html</code></p>
 
-<p><img src="images/svg-icons.png" width="310px" alt="default icon svg"></p>
+<p><img src="ext/icons/svg-icons.png" alt="default icon svg"></p>
 
 <p><strong>绘制icon</strong></p>
 
@@ -152,6 +163,11 @@
 <p>最后可根据实际需求对icons.svg进行增删改， 然后使用。</p>
 
 <p>注：使用时请把icons.svg拷贝至images目录或其他目录，方便调用</p>
+
+<h4>
+<a id="page-slide" class="anchor" href="#page-slide" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>page slide</h4>
+
+<p>用于页面切换的动画class，共四个class，分两组：右进左出（页面进入）；左进右出（后退）,具体使用可参看<a href="http://imweb.io/topic/577e7cf17c99347163ec0b16">移动端重构实战系列4——进入离开动画</a></p>
 
 
       <footer class="site-footer">
