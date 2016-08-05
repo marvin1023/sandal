@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+//----------------------------------------------------- 
+// dots.scss
+//-----------------------------------------------------
+
+$iconDotsBg:     #fff !default;
+
+.icon-dots {
+    position: relative;
+    &::before {
+        content: "";
+        @include center-translate;
+        width: 5px;
+        height: 5px;
+        border-radius: 3px;
+        background-color: $iconDotsBg;
+        box-shadow: 10px 0 0 $iconDotsBg, -10px 0 0 $iconDotsBg;
+    }
+}

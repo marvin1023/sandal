@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+//----------------------------------------------------- 
+// radio-checkbox.scss
+//-----------------------------------------------------
+
+$iconRaido:                        true !default;
+$iconCheckbox:                     true !default;
+$iconRadioCheckboxColor:           #999 !default;
+$iconRadioCheckboxColorActive:     $blue !default;
+
+%rc-basic{
+    display: inline-block;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    color: $iconRadioCheckboxColor;
+    border: 1px solid currentColor;
+    background-color: #fff;
+    position: relative;
+    top: -1px;
+    margin-right: 5px;
+    box-sizing: border-box;
+    &.active {
+        color: $iconRadioCheckboxColorActive;
+    }
+    &.disabled {
+        color: map-get($colorDisabled, border);
+    }
+}
+
+@if $iconRaido {
+    .icon-radio {
+        @extend %rc-basic;
+        border-radius: 10px;
+        &::before{
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+@if $iconCheckbox {
+    .icon-checkbox{
+        @extend %rc-basic;
+        &::after {
+            content: "";
+            height: 4px;
+            width: 10px;
+            border: 1px solid currentColor;
+            border-width: 0 0 2px 2px;
+            position: absolute;
+            top: 1px;
+            left: 3px;
+            transform: rotate(-52deg);
+        }
+        &::before {
+            content: "";
+            width: 5px;
+            height: 6px;
+            background-color: #fff;
+            position: absolute;
+            right: -1px;
+            top: -1px;
+        }
+    }
+}
+
+

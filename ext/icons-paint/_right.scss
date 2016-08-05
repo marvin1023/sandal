@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+//----------------------------------------------------- 
+// right.scss
+//-----------------------------------------------------
+
+.icon-right{
+    position: relative;
+    &::before{
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 14px;
+        height: 8px;
+        border-bottom: 2px solid currentColor;
+        border-left: 2px solid currentColor;
+        transform: translate(-50%, -50%) rotate(-52deg);
+        box-sizing: border-box;
+        margin-top: -1px;
+    }
+}

@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+//----------------------------------------------------- 
+// tips.scss
+//-----------------------------------------------------
+
+$iconAlert:                  true !default;
+$iconAlertColor:             $red !default;
+
+$iconInfo:                  true !default;
+$iconInfoColor:             $blue !default;
+
+$iconQuestion:                  true !default;
+$iconQuestionColor:             $blue !default;
+
+$iconOk:                  true !default;
+$iconOkColor:             $green !default;
+
+%tips-basic{
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    line-height: 16px;
+    text-align: center;
+}
+
+@if $iconAlert {
+    .icon-alert{
+        color: $red;
+        @extend %tips-basic;
+        &::after{
+            content: "!";
+        }
+    }
+}
+
+@if $iconInfo {
+    .icon-info{
+        color: $blue;
+        @extend %tips-basic;
+        &::after{
+            content: "i";
+        }
+    }
+}
+
+@if $iconQuestion {
+    .icon-question{
+        color: $blue;
+        @extend %tips-basic;
+        &::after{
+            content: "?";
+        }
+    }
+}
+
+@if $iconOk {
+    .icon-ok{
+        color: $green;
+        @extend %tips-basic;
+        &::after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 2px;
+            border-bottom: 1px solid currentColor;
+            border-left: 1px solid currentColor;
+            transform: translate(-50%, -50%) rotate(-52deg) scale(1.5);
+            margin-top: -1px;
+        }
+    }
+}

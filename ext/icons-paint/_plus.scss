@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+//----------------------------------------------------- 
+// plus.scss
+//-----------------------------------------------------
+
+$iconPLusSize:      16px 2px !default;
+
+.icon-plus {
+    position: relative;
+    &::before, &::after {
+        content: "";
+        width: nth($iconPLusSize, 1);
+        height: nth($iconPLusSize, 2);
+        background-color: currentColor;
+        @include center-translate;
+    }
+    &::after {
+        width: nth($iconPLusSize, 2);
+        height: nth($iconPLusSize, 1);
+    }
+}

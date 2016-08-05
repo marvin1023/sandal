@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+//----------------------------------------------------- 
+// v-right.scss
+//-----------------------------------------------------
+
+.icon-v-right {
+    position: relative;
+    &::after {
+        content: "";
+        @include v-arrow;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -2px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        box-sizing: border-box;
+    }
+}

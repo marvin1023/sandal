@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+//----------------------------------------------------- 
+// cross.scss
+//-----------------------------------------------------
+
+.icon-cross{
+    position: relative;
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 2px;
+        height: 14px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        background-color: currentColor;
+    }
+    &::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}
