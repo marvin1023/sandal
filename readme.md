@@ -90,7 +90,7 @@ sandal包括两个集合文件（core，function）和两个文件夹（core，e
 
 分为绘制的icon和svg图标两种，可参考icons文件夹中的`icons.html`
 
-![default icon svg](ext/icons/svg-icons.png)
+![default icon svg](http://marvin1023.github.io/sandal/images/svg-icons.png)
 
 **绘制icon**
 
