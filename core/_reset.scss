@@ -408,8 +408,10 @@ i {
 }
 
 // 所有元素为border-box
-* {
-    box-sizing: border-box;
+@if $borderBoxSwitch {
+    * {
+        box-sizing: border-box;
+    }
 }
 
 // 清除子元素浮动

@@ -593,6 +593,15 @@
     }
 }
 
+// fullscreen center
+%fullscreen-center{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
 // 下面的几个%，由于版本或前缀，所以设计成%
 //-----------------------------------------------------
 // flex
