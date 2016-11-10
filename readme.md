@@ -1,4 +1,4 @@
-# Sandal
+# Sandal 3.0
 
 **sandal2.1不再提供css3前缀文件，在这推荐使用[autoprefixer](https://github.com/postcss/autoprefixer)来智能生成前缀（有grunt和gulp版本，有些客户端编译软件也集成了这个功能），之前的css3文件已经独立到[css3 scss](https://github.com/marvin1023/css3-scss)**
 
