@@ -1,0 +1,536 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------  
+// mixin scss
+// 包括常用的mixin, %, @function 及辅助的btn和背景图片icon
+// mixin，通过@include调用，样式通过拷贝的方式使用，尤其适用于传递参数
+// %，通过@extend调用，样式通过组合申明的方式使用，适用于不传参数的代码片段  
+// @function，返回一个值，用于调用
+//-----------------------------------------------------
+
+// mixin & %
+// 既定义了mixin也定义了%，根据需求使用@include或@extend调用
+//-----------------------------------------------------
+
+// Center-align a block level element
+@mixin center-block($extend: true) {
+    @if $extend {
+        @extend %center-block;
+    }
+    @else {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+%center-block {
+    @include center-block(false);
+}
+
+// clearfix
+@mixin clearfix($extend: true) {
+    @if $extend {
+        @extend %clearfix;
+    }
+    @else {
+        &:before,
+        &:after {
+            content: "";
+            display: table;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+}
+
+%clearfix {
+    @include clearfix(false);
+}
+
+// Hide only visually, but have it available for screenreaders
+// 只隐藏于视觉，屏幕浏览器可以阅读
+@mixin hidden-clip($extend: true) {
+    @if $extend {
+        @extend %hidden-clip;
+    }
+    @else {
+        position: absolute;
+        clip: rect(1px, 1px, 1px, 1px);
+    }
+}
+
+%hidden-clip {
+    @include hidden-clip(false);
+}
+
+// ellipsis
+@mixin ellipsis($extend: true) {
+    @if $extend {
+        @extend %ellipsis;
+    }
+    @else {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+%ellipsis {
+    @include ellipsis(false);
+}
+
+// 只有webkit支持多行省略号
+@mixin ellipsis-line($line: 2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}
+
+// word-break
+// 用于链接地址强制换行
+@mixin word-break($extend: true) {
+    @if $extend {
+        @extend %word-break;
+    }
+    @else {
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+}
+
+%word-break {
+    @include word-break(false);
+}
+
+// disabled
+// 禁用样式，加!important
+@mixin disabled($textColor: nth($colorDisabled, 1), $bgColor: nth($colorDisabled, 2), $borderColor: false) {
+    background-color: $bgColor !important;
+    color: $textColor !important;
+    cursor: default !important;
+    pointer-events: none !important;
+    @if $borderColor {
+        border: 1px solid nth($colorDisabled, 3);
+    }
+}
+
+%disabled {
+    @include disabled;
+}
+
+// fixed top & bottom
+@mixin fixed($pos: 0) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    @if $pos == bottom {
+        bottom: 0;
+    }
+    @else {
+        top: $pos;
+    }
+}
+
+%fixed-top {
+    @include fixed;
+}
+
+%fixed-bottom {
+    @include fixed($pos: bottom);
+}
+
+// justify
+@mixin justify($extend: true) {
+    @if $extend {
+        @extend %justify;
+    }
+    @else {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+%justify {
+    @include justify(false);
+}
+
+// bar line
+%bar-line-basic {
+    border-bottom: 1px solid $colorBorder;
+    background-color: #fff;
+    line-height: $barHeight - 11px;
+    padding: 5px 10px;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    &:active, &:hover {
+        background-color: $grayC;
+    }
+}
+
+// 第一个和最后一个都有边框
+@mixin bar-line-outer {
+    @extend %bar-line-basic;
+    &::first-child {
+        border-top: 1px solid $colorBorder;
+    }
+}
+
+// 第一个和最后一个都没有边框
+@mixin bar-line-inner {
+    @extend %bar-line-basic;
+    &::last-child {
+        border-bottom: none;
+    }
+}
+
+// mixin
+// 只定义了mixin，所以只能通过@include来调用
+//-----------------------------------------------------
+
+// table 等分
+@mixin equal-table($children: li) {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    $childrenEle: li div p a span strong;
+    @if index($childrenEle, $children) {
+        #{$children} {
+            display: table-cell;
+        }
+    }
+    @else {
+        .#{$children} {
+            display: table-cell;
+        }
+    }
+}
+
+// flex 等分
+@mixin equal-flex($children: li) {
+    display: flex;
+    $childrenEle: li div p a span strong;
+    @if index($childrenEle, $children) {
+        #{$children} {
+            flex: 1;
+        }
+    }
+    @else {
+        .#{$children} {
+            flex: 1;
+        }
+    }
+}
+
+// flex center
+@mixin center-flex($direction: both) {
+    display: flex;
+    @if $direction == both {
+        justify-content: center;
+        align-items: center;
+    }
+    @else if $direction == x {
+        justify-content: center;
+    }
+    @else if $direction == y {
+        align-items: center;
+    }
+}
+
+// translate center
+@mixin center-translate($direction: both) {
+    position: absolute;
+    @if $direction == both {
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+    }
+    @else if $direction == x {
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
+    }
+    @else if $direction == y {
+        top: 50%;
+        transform: translate3d(0, -50%, 0);
+    }
+}
+
+// triangle 三角箭头
+%triangle-basic {
+    content: "";
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+@mixin triangle($direction: top, $borderWidth: 6px, $borderColor: $grayC) {
+    @extend %triangle-basic;
+    @if $direction == top {
+        border-bottom: $borderWidth solid $borderColor;
+        border-left: $borderWidth dashed transparent;
+        border-right: $borderWidth dashed transparent;
+    }
+    @else if $direction == right {
+        border-left: $borderWidth solid $borderColor;
+        border-top: $borderWidth dashed transparent;
+        border-bottom: $borderWidth dashed transparent;
+    }
+    @else if $direction == bottom {
+        border-top: $borderWidth solid $borderColor;
+        border-left: $borderWidth dashed transparent;
+        border-right: $borderWidth dashed transparent;
+    }
+    @else if $direction == left {
+        border-right: $borderWidth solid $borderColor;
+        border-top: $borderWidth dashed transparent;
+        border-bottom: $borderWidth dashed transparent;
+    }
+}
+
+// arrow 方向箭头
+@mixin arrow($size: 10px, $direction: right, $borderWidth: 2px, $borderColor: $grayC) {
+    display: inline-block;
+    vertical-align: middle;
+    width: $size;
+    height: $size;
+    @if $direction == top {
+        border-top: $borderWidth solid $borderColor;
+        border-right: $borderWidth solid $borderColor;
+        transform: rotate(-45deg);
+    }
+    @else if $direction == right {
+        border-top: $borderWidth solid $borderColor;
+        border-right: $borderWidth solid $borderColor;
+        transform: rotate(45deg);
+    }
+    @else if $direction == bottom {
+        border-left: $borderWidth solid $borderColor;
+        border-bottom: $borderWidth solid $borderColor;
+        transform: rotate(-45deg);
+    }
+    @if $direction == left {
+        border-left: $borderWidth solid $borderColor;
+        border-bottom: $borderWidth solid $borderColor;
+        transform: rotate(45deg);
+    }
+}
+
+// rem
+@mixin rem($px: 1.4, $property: font-size) {
+    #{$property}: $px * 10px;
+    #{$property}: #{$px}rem;
+}
+
+// http://www.css3files.com/font/
+// 1 The eot fontfile. Can be omitted if you don`t want to support Internet Explorer prior to version 9 (including semicolon).
+// 2 Can also be omitted for Internet Explorer < 9. ?iefix prevents IE6 from interpreting all of the following. If the whole IE family (6 to 9) should be supported, 1 and 2 are needed.
+// 3 Can be omitted if iPad versions prior to iOS 4.2 shouldn’t be supported. 
+// 4 The ttf fontfile. Necessary to support (Mobile) Safari and Opera. 
+// 5 The woff fontfile for all modern browsers (best choice).
+@mixin font-face($fontFaceFamily, $fontFacePath, $weight: normal, $style: normal) {
+    @font-face {
+        font-family: $fontFaceFamily;
+        font-weight: $weight;
+        font-style: $style;
+        src: url("#{$fontFacePath}.eot"); // 1
+        src: url("#{$fontFacePath}.eot?#iefix") format("eot"), url("#{$fontFacePath}.svg##{$fontFaceFamily}") format("svg"), url("#{$fontFacePath}.woff") format("woff"), url("#{$fontFacePath}.ttf") format("truetype");
+    }
+}
+
+// selector
+// 父元素不能有组合选择器
+// 详见 https://github.com/W3cplus/Sass-Resources/blob/master/mixins/_selector-replace.scss
+// @mixin selector-context($selectorOld, $selectorNew) {
+//     @at-root #{selector-replace(&, $selectorOld, $selectorNew)} {
+//         @content;
+//     }
+// }
+
+// @mixin selector-parent-state($states...) {
+//     $parent: nth(nth(&, 1), (length(nth(&, 1))-1));
+    
+//     @each $state in $states {    
+//       @at-root #{selector-replace(&, $parent, ($parent#{$state}))} {
+//           @content;
+//       }
+//     }
+// }
+
+// %
+// 只定义了%，所以只能通过@extend来调用
+//-----------------------------------------------------
+// 等分列
+// 可以使用equal-flex或equal-table，默认子元素为li
+%equal-col {
+    @include equal-table;
+}
+
+// item arrow, 右侧箭头跳转指向
+%item-arrow {
+    &::after {
+        content: "";
+        @include arrow;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        margin-top: -1px;
+        transform: rotate(45deg) translate(0, -50%);
+        box-sizing: border-box;
+    }
+}
+
+// 下面的几个%，由于版本或前缀，所以设计成%
+//-----------------------------------------------------
+// flex
+%display-flex {
+    display: flex;
+}
+
+// all-transition
+%transition-all {
+    transition: all 0.3s ease-in-out;
+}
+
+// translate3d
+%translate3d {
+    transform: translate3d(0, 0, 0);
+}
+
+// page switch
+%page-out {
+    transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1) 0.1s;
+}
+
+%page-in {
+    transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+//function
+//-----------------------------------------------------
+
+// 为颜色添加白色，以百分比形式
+@function tint($color, $percent) {
+    @return mix(white, $color, $percent);
+}
+
+// 为颜色添加黑色，以百分比形式
+@function shade($color, $percent) {
+    @return mix(black, $color, $percent);
+}
+
+// btn
+//----------------------------------------------------
+// btn-basic
+// 按钮基本样式，联合申明
+%btn-basic {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    text-align: center;
+    border: 0 none;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+// btn-size
+// 按钮大小
+@mixin btn-size($padding: nth($btnSize, 1), $height: nth($btnSize, 2), $radius: $btnRadius, $border: false) {
+    padding: 0 $padding;
+    height: $height;
+    line-height: $height;
+    @if $radius {
+        border-radius: $btnRadius;
+    }
+    @if $border {
+        line-height: $height - 2;
+    }
+}
+
+// btn-color
+// 包括按钮背景色，文本色，是否有边框
+@mixin btn-color($textColor: nth($btnColor, 1), $bgColor: nth($btnColor, 2), $borderColor: false) {
+    color: $textColor;
+    background-color: $bgColor;
+    @if $borderColor {
+        @if length($borderColor) == 1 { // $borderColor: #dbdbdb
+            border: 1px solid $borderColor;
+        }
+        @else if length($borderColor) == 2 { // $borderColor: #dbdbdb #ccc => #dbdbdb
+            border: 1px solid nth($borderColor, 1);
+        }
+        @else {
+            border: $borderColor; // $borderColor: 1px solid #dbdbdb
+        }
+    }
+    &:hover {
+        @if lightness($bgColor) > 40% {
+            background-color: darken($bgColor, 5%);
+        }
+        @else {
+            background-color: lighten($bgColor, 5%);
+        }
+        @if length($borderColor) == 2 {
+            border-color: nth($borderColor, 2); // $borderColor: #dbdbdb #ccc => #ccc
+        }
+    }
+}
+
+// pc ie8+
+//----------------------------------------------------
+// 图片替换文字
+// 高级浏览器直接2就可以
+// 原生7,8不支持color的transparent，所以采用1;
+@mixin ir($extend: true) {
+    @if $extend {
+        @extend %ir;
+    }
+    @else {
+        font: 0/0 a; // 1
+        text-shadow: none;
+        border: 0 none;
+        color: transparent; // 2
+    }
+}
+
+%ir {
+    @include ir(false);
+}
+
+
+// opacity
+@mixin opacity($opacity: 50, $filter: true) {
+    opacity: $opacity / 100;
+    @if $filter {
+        filter: alpha(opacity = $opacity);
+    }
+}
+
+// rgba 兼容ie8
+%filter-gradient-none {
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='false');
+}
+
+@mixin filter-gradient($startColor, $endColor) {
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#{#{ie-hex-str($startColor)}}', endColorstr='#{#{ie-hex-str($endColor)}}');
+    :root & {
+        @extend %filter-gradient-none;
+    }
+}
+
+@mixin background-rgba($bgcolor: rgba(0, 0, 0, 0.5), $filter: true) {
+    @if $filter {
+        @include filter-gradient($bgcolor, $bgcolor);
+    }
+    @else {
+        background-color: rgb(red($bgcolor), green($bgcolor), blue($bgcolor));
+        background-color: $bgcolor;
+    }
+}
+
+%bgcolor-rgba {
+    @include background-rgba;
+}
