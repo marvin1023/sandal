@@ -1,5 +1,8 @@
 # Sandal
 
+### 新增特性
+
+
 sandal取其“檀香”之意，针对移动端站点为前端人员提供了一些基础的重置，常用的`mixin`，如flex布局，等分，水平垂直居中，常用图标等，基于它你可以扩展出更多你需要的UI组件，[sheral](https://github.com/imweb/sheral)就是基于sandal的移动端UI库。
 
 sandal的整体设计思想如下图：
