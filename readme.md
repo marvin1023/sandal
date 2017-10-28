@@ -19,37 +19,47 @@ sandal，分核心文件和扩展文件两种。其中核心文件包括重置�
 
 #### 安装
 
-    npm install sass-sandal --save-dev
+```
+npm install sass-sandal --save-dev
+```
 
-#### 调用
+#### webpack 使用
 
-    @import 'node_modules/sass-sandal/core';
+```scss
+// 核心文件调用，如需要reset样式则为core
+@import '~sass-sandal/_core';
+// or
+@import '~sass-sandal/_function';
 
-    @import 'node_modules/sass-sandal/function';
+// 扩展调用对应模块
+@import '~sass-sandal/ext/icons';
+@import '~sass-sandal/ext/helper';
+@import '~sass-sandal/ext/grid';
+@import '~sass-sandal/ext/page-slide';
+```
 
-    @import 'node_modules/sass-sandal/ext/icons';
+#### 一般调用
 
-    @import 'node_modules/sass-sandal/ext/helper';
+```scss
+// 核心文件调用，如需要reset样式则为core
+@import 'node_modules/sass-sandal/core';
+// or
+@import 'node_modules/sass-sandal/function';
 
-    @import 'node_modules/sass-sandal/ext/grid';
-
-    @import 'node_modules/sass-sandal/ext/page-slide';
+// 扩展调用对应模块
+@import 'node_modules/sass-sandal/ext/icons';
+@import 'node_modules/sass-sandal/ext/helper';
+@import 'node_modules/sass-sandal/ext/grid';
+@import 'node_modules/sass-sandal/ext/page-slide';
+```
 
 ### 普通使用
 
 在github上下载[sandal](https://github.com/marvin1023/sandal)，解压拷贝到项目目录
 
-    @import 'sandal/core';
-
-    @import 'sandal/function';
-
-    @import 'sandal/ext/icons';
-
-    @import 'sandal/ext/helper';
-
-    @import 'sandal/ext/grid';
-
-    @import 'sandal/ext/page-slide';
+```scss
+@import 'sandal/core';
+```
 
 
 ## 文件简述
