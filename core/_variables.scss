@@ -13,7 +13,7 @@ $borderBoxSwitch:               true !default;
 //-----------------------------------------------------	
 $fontSize:                       14px !default; 
 $fontLineHeight:                 1.5 !default;
-$fontFamily:                     -apple-system, BlinkMacSystemFont, "Seogoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "Source Han Sans CN", sans-serif !default;
+$fontFamily:                     system-ui, -apple-system, BlinkMacSystemFont, "Microsoft YaHei UI", "Microsoft YaHei", Roboto, "Hiragino Sans GB",  "Source Han Sans CN", Fira Sans, "Droid Sans", "Helvetica Neue", arial, sans-serif !default;
 // 苹方, 冬青黑体，微软雅黑UI（win8.1+），微软雅黑，思源黑体（安卓）
 $fontCn:                          "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "Source Han Sans CN" sans-serif !default; 
 // 前两个为safari chrome, ios4.0+, ios4.0-, Android 4.0+, Android 4.0-, windows&windows Phone,
