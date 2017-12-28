@@ -1,5 +1,36 @@
 # Sandal
 
+## 更新说明
+
+- 新增 iphonex mixin，可针对 iphonex 设置样式，调用如下：
+```scss
+// 方法一：
+@include iphonex {
+	.fixed-bottom {
+		padding-bottom: 15px;
+	}
+}
+
+// 方法二：
+.fixed-bottom {
+	@include iphonex {
+		padding-bottom: 15px;
+	}
+}
+```
+- body 新增 iphonex 安全区域 padding，样式如下：
+
+```scss
+body {
+	padding-top: env(safe-area-inset-top); //为导航栏+状态栏的高度 88px            
+	padding-left: env(safe-area-inset-left); //如果未竖屏时为0                
+	padding-right: env(safe-area-inset-right); //如果未竖屏时为0                
+	padding-bottom: env(safe-area-inset-bottom); //为底下圆弧的高度 34px
+}
+```
+
+## 概述
+
 sandal取其“檀香”之意，针对移动端站点为前端人员提供了一些基础的重置，常用的`mixin`，如flex布局，等分，水平垂直居中，常用图标等，基于它你可以扩展出更多你需要的UI组件，[sheral](https://github.com/imweb/sheral)就是基于sandal的移动端UI库。
 
 sandal的整体设计思想如下图：
