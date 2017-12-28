@@ -27,6 +27,10 @@ body {
     color: $colorText;
     background-color: $colorBg;
     min-height: 100%;
+    padding-top: env(safe-area-inset-top); //为导航栏+状态栏的高度 88px            
+    padding-left: env(safe-area-inset-left); //如果未竖屏时为0                
+    padding-right: env(safe-area-inset-right); //如果未竖屏时为0                
+    padding-bottom: env(safe-area-inset-bottom); //为底下圆弧的高度 34px
 }
 
 // HTML5 display definitions

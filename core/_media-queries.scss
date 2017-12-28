@@ -194,6 +194,23 @@
   }
 }
 
+// iphone x
+// ----------------------------------------------------
+
+@mixin iphonex($orientation: false) {
+  $min: 375px;
+  $max: 812px;
+  $pixel-ratio: 3;
+  @include mq(
+    $min-device-width: $min, 
+    $max-device-width: $max, 
+    $orientation: $orientation,
+    $-webkit-device-pixel-ratio: $pixel-ratio
+  ) {
+    @content;
+  }
+}
+
 
 // ipad (all)
 // ----------------------------------------------------
