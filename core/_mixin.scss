@@ -534,6 +534,14 @@
     }
 }
 
+// iphone x
+@mixin iphonex(){
+    @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+        @content;
+    }
+}
+
+
 // %
 // 只定义了%，所以只能通过@extend来调用
 //-----------------------------------------------------
