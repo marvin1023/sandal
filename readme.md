@@ -1,5 +1,7 @@
 # Sandal
 
+该项目为 Sass 的基础库，另有一个针对 PostCSS 的为 [Sandal for PostCSS](https://github.com/marvin1023/sandal-for-postcss)
+
 ## 更新说明
 
 - 新增 iphonex mixin，可针对 iphonex 设置样式，调用如下：
