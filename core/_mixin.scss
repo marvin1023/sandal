@@ -518,7 +518,7 @@
                 }
             }
         }
-        @if $to andd length($to) > 1 {
+        @if $to and length($to) > 1 {
             to {
                 @if nth($to, 1) == x {
                   transform: translate(nth($to, 2), 0);
