@@ -299,7 +299,7 @@
     table-layout: fixed;
     width: 100%;
 
-    #{unquote($child)} {
+    .#{unquote($child)} {
         display: table-cell;
     }
 }
